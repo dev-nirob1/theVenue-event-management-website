@@ -1,92 +1,83 @@
 <script setup>
 import { ref } from 'vue'
-import BaseButton from '../components/BaseButton.vue'
+import HeroSlider from '../components/HeroSlider.vue'
 import EventCard from '../components/EventCard.vue'
 
-const featuredEvents = ref([
+const featuredVenues = ref([
   {
     id: 1,
-    title: 'Horizon Music Festival 2026',
-    date: 'Aug 15, 2026',
-    location: 'Central Park, NY',
-    category: 'Music',
-    price: 49,
-    image: 'https://images.unsplash.com/photo-1459749411177-042180ce4372?q=80&w=2070&auto=format&fit=crop'
+    title: 'The Sky Loft',
+    date: 'Available from Mar 2026',
+    location: 'Central London',
+    category: 'Corporate',
+    price: 1500,
+    image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop'
   },
   {
     id: 2,
-    title: 'TechNova Conference',
-    date: 'Sep 10, 2026',
-    location: 'Silicon Valley, CA',
-    category: 'Technology',
-    price: 199,
-    image: 'https://images.unsplash.com/photo-1540575861501-7ad0582371f3?q=80&w=2070&auto=format&fit=crop'
+    title: 'Ivy Garden Manor',
+    date: 'Available from Jun 2026',
+    location: 'Surrey, UK',
+    category: 'Wedding',
+    price: 3500,
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'
   },
   {
     id: 3,
-    title: 'Modern Art Gala',
-    date: 'Oct 05, 2026',
-    location: 'The Met, NY',
-    category: 'Art',
-    price: 0,
-    image: 'https://images.unsplash.com/photo-1531058020387-3be344556be6?q=80&w=2070&auto=format&fit=crop'
+    title: 'Industrial Warehouse X',
+    date: 'Year-round access',
+    location: 'Shoreditch, London',
+    category: 'Modern',
+    price: 1200,
+    image: 'https://images.unsplash.com/photo-1522158633578-d19005a2c739?q=80&w=2071&auto=format&fit=crop'
   }
 ])
 </script>
 
 <template>
   <div class="home-page">
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container hero-content">
-        <h1 class="hero-title">Experience <span class="text-gradient">Unforgettable</span> Events</h1>
-        <p class="hero-subtitle">Discover, book, and host events that matter. Your gateway to the world's most exciting gatherings.</p>
-        <div class="hero-actions">
-          <router-link to="/events">
-            <BaseButton size="lg">Explore Events</BaseButton>
-          </router-link>
-          <BaseButton variant="outline" size="lg">Host an Event</BaseButton>
-        </div>
-      </div>
-      <div class="hero-bg-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-      </div>
-    </section>
+    <HeroSlider />
 
-    <!-- Featured Events Section -->
+    <!-- Featured Venues Section -->
     <section class="featured-section container">
       <div class="section-header">
-        <h2 class="section-title">Featured Events</h2>
-        <router-link to="/events" class="view-all">View all events →</router-link>
+        <div>
+          <h2 class="section-title">Prestigious Venues</h2>
+          <p class="section-subtitle">Exclusively curated locations for your next milestone.</p>
+        </div>
+        <router-link to="/events" class="view-all">Explore all venues →</router-link>
       </div>
       
       <div class="events-grid">
-        <EventCard v-for="event in featuredEvents" :key="event.id" :event="event" />
+        <EventCard v-for="event in featuredVenues" :key="event.id" :event="event" />
       </div>
     </section>
 
-    <!-- Categories Section -->
-    <section class="categories-section container">
+    <!-- Services Section -->
+    <section class="services-section container">
        <div class="section-header">
-        <h2 class="section-title">Browse by Category</h2>
+        <h2 class="section-title">Our Management Services</h2>
       </div>
-      <div class="categories-grid">
-        <div class="category-item glass">
-          <span class="category-icon">🎸</span>
-          <h3>Music</h3>
+      <div class="services-grid">
+        <div class="service-item glass">
+          <i class="fas fa-handshake service-icon-alt"></i>
+          <h3>Corporate Events</h3>
+          <p>Professional planning for conferences, product launches, and gala dinners.</p>
         </div>
-        <div class="category-item glass">
-          <span class="category-icon">💻</span>
-          <h3>Tech</h3>
+        <div class="service-item glass">
+          <i class="fas fa-heart service-icon-alt"></i>
+          <h3>Private Weddings</h3>
+          <p>Bespoke wedding planning service tailored to your unique love story.</p>
         </div>
-        <div class="category-item glass">
-          <span class="category-icon">🎨</span>
-          <h3>Art</h3>
+        <div class="service-item glass">
+          <i class="fas fa-search-location service-icon-alt"></i>
+          <h3>Venue Sourcing</h3>
+          <p>Finding the perfect backdrop for your event from our exclusive network.</p>
         </div>
-        <div class="category-item glass">
-          <span class="category-icon">🏃</span>
-          <h3>Sports</h3>
+        <div class="service-item glass">
+          <i class="fas fa-magic service-icon-alt"></i>
+          <h3>Full Production</h3>
+          <p>AV, lighting, catering, and logistics handled by our expert team.</p>
         </div>
       </div>
     </section>
@@ -95,71 +86,7 @@ const featuredEvents = ref([
 
 <style scoped>
 .home-page {
-  margin-top: -2rem; /* Offset App.vue padding */
-}
-
-.hero {
-  position: relative;
-  padding: 8rem 0 10rem;
-  background: var(--text-main);
-  color: white;
-  overflow: hidden;
-  text-align: center;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 10;
-}
-
-.hero-title {
-  font-size: clamp(3rem, 8vw, 5rem);
-  margin-bottom: 1.5rem;
-  line-height: 1.1;
-}
-
-.text-gradient {
-  background: linear-gradient(to right, #6366F1, #F43F5E);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.hero-subtitle {
-  font-size: 1.25rem;
-  color: var(--text-muted);
-  max-width: 600px;
-  margin: 0 auto 3rem;
-  opacity: 0.9;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-}
-
-/* Hero Background Shapes */
-.hero-bg-shapes .shape {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.4;
-}
-
-.shape-1 {
-  width: 400px;
-  height: 400px;
-  background: var(--primary);
-  top: -100px;
-  right: -50px;
-}
-
-.shape-2 {
-  width: 300px;
-  height: 300px;
-  background: var(--secondary);
-  bottom: -50px;
-  left: -50px;
+  margin-top: -5rem; /* Offset App.vue padding to make slider flush with top */
 }
 
 /* Section Header */
@@ -167,59 +94,87 @@ const featuredEvents = ref([
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: 2.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 1.125rem;
 }
 
 .view-all {
   color: var(--primary);
-  font-weight: 600;
+  font-weight: 700;
+  padding-bottom: 0.5rem;
 }
 
-/* Events Grid */
+/* Featured Section */
 .featured-section {
-  padding: 6rem 1.5rem;
+  padding: 8rem 1.5rem;
 }
 
 .events-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
 }
 
-/* Categories Grid */
-.categories-section {
-  padding: 4rem 1.5rem 8rem;
+/* Services Grid */
+.services-section {
+  padding: 4rem 1.5rem 10rem;
 }
 
-.categories-grid {
+.services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1.5rem;
 }
 
-.category-item {
-  padding: 2.5rem;
-  text-align: center;
+.service-item {
+  padding: 3rem 2rem;
+  text-align: left;
   border-radius: 1.5rem;
   transition: all var(--transition-normal);
-  cursor: pointer;
   border: 1px solid var(--border);
 }
 
-.category-item:hover {
-  transform: translateY(-5px);
+.service-item:hover {
+  transform: translateY(-8px);
   border-color: var(--primary);
   background: white;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
 }
 
-.category-icon {
-  font-size: 3rem;
+.service-icon-alt {
+  font-size: 2.5rem;
   display: block;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.service-item h3 {
   margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.service-item p {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
 }
 </style>

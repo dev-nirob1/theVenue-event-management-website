@@ -60,7 +60,7 @@ const mytickets = ref([
         <div v-for="ticket in mytickets" :key="ticket.id" class="ticket-card glass">
           <div class="ticket-info">
             <h3>{{ ticket.title }}</h3>
-            <p class="ticket-meta">📅 {{ ticket.date }} | 📍 {{ ticket.location }}</p>
+            <p class="ticket-meta"><i class="far fa-calendar-alt"></i> {{ ticket.date }} | <i class="fas fa-map-marker-alt"></i> {{ ticket.location }}</p>
             <div :class="['ticket-status', ticket.status.toLowerCase().replace(' ', '-')]">
               {{ ticket.status }}
             </div>

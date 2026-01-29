@@ -16,7 +16,7 @@ defineProps({
     <div class="card-content">
       <div class="card-date">{{ event.date }}</div>
       <h3 class="card-title">{{ event.title }}</h3>
-      <p class="card-location"><span>📍</span> {{ event.location }}</p>
+      <p class="card-location"><i class="fas fa-map-marker-alt"></i> {{ event.location }}</p>
       <div class="card-footer">
         <span class="card-price">{{ event.price === 0 ? 'Free' : `$${event.price}` }}</span>
         <router-link :to="`/events/${event.id}`" class="btn btn-primary btn-sm">Details</router-link>

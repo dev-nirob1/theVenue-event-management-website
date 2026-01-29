@@ -31,9 +31,9 @@ import Navbar from './components/layout/Navbar.vue'
         </div>
         <div class="footer-contact">
           <h4>Contact</h4>
-          <p>hello@thevenue.com</p>
-          <p>+44 20 7946 0000</p>
-          <p>London, UK</p>
+          <p><i class="fas fa-envelope"></i> hello@thevenue.com</p>
+          <p><i class="fas fa-phone"></i> +44 20 7946 0000</p>
+          <p><i class="fas fa-map-marker-alt"></i> London, UK</p>
         </div>
       </div>
       <div class="footer-bottom">

@@ -35,7 +35,7 @@ const filteredEvents = computed(() => {
 
     <div class="filters-bar glass">
       <div class="search-input">
-        <span class="icon">🔍</span>
+        <i class="fas fa-search search-icon"></i>
         <input type="text" v-model="searchQuery" placeholder="Search by name or location...">
       </div>
       <div class="category-filters">

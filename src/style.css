@@ -82,14 +82,19 @@ button {
 }
 
 .btn-primary {
-  background-color: var(--primary);
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: white;
+  border: none;
 }
 
 .btn-primary:hover {
-  background-color: var(--primary-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  background: linear-gradient(
+    135deg,
+    var(--primary-hover),
+    var(--secondary-hover)
+  );
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -6px rgba(99, 102, 241, 0.5);
 }
 
 .btn-secondary {
@@ -99,6 +104,8 @@ button {
 
 .btn-secondary:hover {
   background-color: var(--secondary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px -6px rgba(244, 63, 94, 0.4);
 }
 
 .glass {

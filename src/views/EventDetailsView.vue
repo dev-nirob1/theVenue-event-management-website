@@ -34,8 +34,8 @@ const event = {
           <div class="badge">{{ event.category }}</div>
           <h1 class="title">{{ event.title }}</h1>
           <div class="meta-row">
-            <span class="meta-item">📅 {{ event.date }}</span>
-            <span class="meta-item">🕒 {{ event.time }}</span>
+            <span class="meta-item"><i class="far fa-calendar-alt"></i> {{ event.date }}</span>
+            <span class="meta-item"><i class="far fa-clock"></i> {{ event.time }}</span>
           </div>
         </div>
 
