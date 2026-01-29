@@ -17,19 +17,19 @@ const stats = ref([
 const mytickets = ref([
   {
     id: 1,
-    title: 'Horizon Music Festival 2026',
+    title: 'International Tech Expo 2026',
     date: 'Aug 15, 2026',
-    location: 'Central Park, NY',
+    location: 'Grand Ballroom',
     status: 'Confirmed',
-    barcode: 'EVENT-HF-2026-X821'
+    barcode: 'TICK-EXPO-2026-X821'
   },
   {
     id: 5,
-    title: 'Startup Pitch Night',
+    title: 'Global Charity Gala',
     date: 'Nov 12, 2026',
-    location: 'Austin, TX',
-    status: 'Pending Payment',
-    barcode: 'EVENT-SP-2026-B102'
+    location: 'Sky Pavilion',
+    status: 'Confirmed',
+    barcode: 'TICK-GALA-2026-B102'
   }
 ])
 </script>

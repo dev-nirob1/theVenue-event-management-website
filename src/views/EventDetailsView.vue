@@ -8,16 +8,16 @@ const eventId = route.params.id
 // Mock data (In a real app, you'd fetch this by ID)
 const event = {
   id: eventId,
-  title: 'Horizon Music Festival 2026',
-  date: 'Saturday, August 15, 2026',
-  time: '18:00 - 23:00',
-  location: 'Central Park, NY',
-  address: 'Rumsey Playfield, Manhattan, NY 10021',
-  category: 'Music',
-  price: 49,
-  organizer: 'Lumina Events',
-  description: 'Join us for an unforgettable night of music under the stars. The Horizon Music Festival brings together the best international and local talent for a celebration of sound, light, and community. Experience immersive art installations, gourmet food trucks, and three stages of non-stop performances.',
-  image: 'https://images.unsplash.com/photo-1459749411177-042180ce4372?q=80&w=2070&auto=format&fit=crop'
+  title: 'The Grand Ballroom',
+  date: 'Capacity: 1200 Guests',
+  time: 'Operational: 08:00 - 00:00',
+  location: 'North Wing, Level 1',
+  address: '124 Event Pl, Royal Docks, London E16 1XL, UK',
+  category: 'Social/Gala',
+  price: 2500,
+  organizer: 'The Venue Management Team',
+  description: 'The Grand Ballroom is our flagship venue, offering 15,000 square feet of pillar-less luxury. Featuring artisan-crafted chandeliers, a built-in 4K LED wall, and high-fidelity acoustics, it is the perfect setting for prestigious awards ceremonies, grand weddings, and global summits. The space includes a private VIP entrance, dedicated foyer for receptions, and professional green rooms.',
+  image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop'
 }
 </script>
 
@@ -34,21 +34,21 @@ const event = {
           <div class="badge">{{ event.category }}</div>
           <h1 class="title">{{ event.title }}</h1>
           <div class="meta-row">
-            <span class="meta-item"><i class="far fa-calendar-alt"></i> {{ event.date }}</span>
+            <span class="meta-item"><i class="fas fa-users"></i> {{ event.date }}</span>
             <span class="meta-item"><i class="far fa-clock"></i> {{ event.time }}</span>
           </div>
         </div>
 
         <section class="details-section">
-          <h2>About this Event</h2>
+          <h2>Space Description</h2>
           <p class="description">{{ event.description }}</p>
         </section>
 
         <section class="location-section">
-          <h2>Location</h2>
+          <h2>Find this Suite</h2>
           <div class="location-card glass">
             <div class="map-placeholder">
-              <span>📍 Map Integration Placeholder</span>
+              <span>📍 Hall Map Integration Placeholder</span>
             </div>
             <div class="location-info">
               <h3>{{ event.location }}</h3>
@@ -61,13 +61,14 @@ const event = {
       <aside class="sidebar">
         <div class="booking-card glass sticky">
           <div class="price-info">
-            <span class="label">Tickets starting from</span>
-            <span class="price">{{ event.price === 0 ? 'Free' : `$${event.price}` }}</span>
+            <span class="label">Rental starts from</span>
+            <span class="price">{{ event.price === 0 ? 'Inquire' : `$${event.price}` }}</span>
+            <span class="unit">/ full day</span>
           </div>
-          <BaseButton size="lg" class="full-width">Book Tickets Now</BaseButton>
+          <BaseButton size="lg" class="full-width">Inquire About Booking</BaseButton>
           <div class="divider"></div>
           <div class="organizer-info">
-            <span class="label">Organized by</span>
+            <span class="label">Managed by</span>
             <div class="organizer-name">{{ event.organizer }}</div>
           </div>
         </div>

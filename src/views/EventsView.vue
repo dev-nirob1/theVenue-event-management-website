@@ -8,12 +8,12 @@ const selectedCategory = ref('All')
 const categories = ['All', 'Music', 'Technology', 'Art', 'Sports', 'Social']
 
 const events = ref([
-  { id: 1, title: 'Horizon Music Festival 2026', date: 'Aug 15, 2026', location: 'Central Park, NY', category: 'Music', price: 49, image: 'https://images.unsplash.com/photo-1459749411177-042180ce4372?q=80&w=2070&auto=format&fit=crop' },
-  { id: 2, title: 'TechNova Conference', date: 'Sep 10, 2026', location: 'Silicon Valley, CA', category: 'Technology', price: 199, image: 'https://images.unsplash.com/photo-1540575861501-7ad0582371f3?q=80&w=2070&auto=format&fit=crop' },
-  { id: 3, title: 'Modern Art Gala', date: 'Oct 05, 2026', location: 'The Met, NY', category: 'Art', price: 0, image: 'https://images.unsplash.com/photo-1531058020387-3be344556be6?q=80&w=2070&auto=format&fit=crop' },
-  { id: 4, title: 'Sunset Yoga Session', date: 'Aug 20, 2026', location: 'Santa Monica, CA', category: 'Sports', price: 15, image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2000&auto=format&fit=crop' },
-  { id: 5, title: 'Startup Pitch Night', date: 'Nov 12, 2026', location: 'Austin, TX', category: 'Technology', price: 30, image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=2070&auto=format&fit=crop' },
-  { id: 6, title: 'Wine & Jazz Evening', date: 'Dec 01, 2026', location: 'Napa Valley, CA', category: 'Music', price: 75, image: 'https://images.unsplash.com/photo-1514525253361-bee8d137452e?q=80&w=2070&auto=format&fit=crop' },
+  { id: 1, title: 'The Grand Ballroom', date: 'Capacity: 1200', location: 'North Wing', category: 'Social', price: 2500, image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop' },
+  { id: 2, title: 'The Sky Pavilion', date: 'Capacity: 450', location: 'Rooftop', category: 'Social', price: 1800, image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop' },
+  { id: 3, title: 'Conference Suite A', date: 'Capacity: 200', location: 'East Wing', category: 'Technology', price: 800, image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop' },
+  { id: 4, title: 'The Industrial Hall', date: 'Capacity: 800', location: 'West Wing', category: 'Art', price: 1500, image: 'https://images.unsplash.com/photo-1522158633578-d19005a2c739?q=80&w=2071&auto=format&fit=crop' },
+  { id: 5, title: 'VIP Lounge North', date: 'Capacity: 50', location: 'North Wing', category: 'Social', price: 400, image: 'https://images.unsplash.com/photo-1517457373958-b7bdd458ad20?q=80&w=2070&auto=format&fit=crop' },
+  { id: 6, title: 'Innovation Suite', date: 'Capacity: 150', location: 'East Wing', category: 'Technology', price: 600, image: 'https://images.unsplash.com/photo-1431540015161-0bf868a2d407?q=80&w=2070&auto=format&fit=crop' },
 ])
 
 const filteredEvents = computed(() => {
@@ -29,14 +29,14 @@ const filteredEvents = computed(() => {
 <template>
   <div class="events-page container">
     <header class="page-header">
-      <h1 class="page-title">Browse Events</h1>
-      <p class="page-subtitle">Find the perfect event for your next adventure.</p>
+      <h1 class="page-title">Our Premium Spaces</h1>
+      <p class="page-subtitle">Choose from our versatile range of grand halls, suites, and rooftop pavilions.</p>
     </header>
 
     <div class="filters-bar glass">
       <div class="search-input">
         <i class="fas fa-search search-icon"></i>
-        <input type="text" v-model="searchQuery" placeholder="Search by name or location...">
+        <input type="text" v-model="searchQuery" placeholder="Search by hall name or wing...">
       </div>
       <div class="category-filters">
         <button 
@@ -51,7 +51,7 @@ const filteredEvents = computed(() => {
     </div>
 
     <div class="results-info">
-      <p>Showing <strong>{{ filteredEvents.length }}</strong> events</p>
+      <p>Showing <strong>{{ filteredEvents.length }}</strong> spaces available</p>
     </div>
 
     <div class="events-grid">
@@ -59,7 +59,7 @@ const filteredEvents = computed(() => {
     </div>
 
     <div v-if="filteredEvents.length === 0" class="no-results">
-      <h3>No events found matching your search.</h3>
+      <h3>No spaces found matching your criteria.</h3>
       <p>Try adjusting your filters or search query.</p>
     </div>
   </div>

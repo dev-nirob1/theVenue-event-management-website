@@ -6,22 +6,22 @@ const currentSlide = ref(0)
 const slides = [
   {
     id: 1,
-    title: 'Exquisite Events, <br/><span class="text-gradient">Flawlessly</span> Executed',
-    subtitle: 'From intimate gatherings to grand celebrations, we manage every detail to perfection.',
-    image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop',
+    title: 'The Grand <br/><span class="text-gradient">Ballroom</span>',
+    subtitle: 'London\'s most prestigious space for gala dinners, weddings, and high-profile corporate events.',
+    image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop',
     align: 'left'
   },
   {
     id: 2,
-    title: 'Discover the <br/><span class="text-gradient">Perfect</span> Setting',
-    subtitle: 'Access our exclusive portfolio of London\'s most prestigious and unique venues.',
-    image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop',
+    title: 'The Sky <br/><span class="text-gradient">Pavilion</span>',
+    subtitle: 'A breathtaking rooftop venue with panoramic city views, perfect for cocktail receptions and product launches.',
+    image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop',
     align: 'right'
   },
   {
     id: 3,
-    title: 'Seamless <br/><span class="text-gradient">Planning</span> Experience',
-    subtitle: 'Our expert team brings your vision to life with precision and unparalleled creativity.',
+    title: 'Modern <br/><span class="text-gradient">Conference</span> Suites',
+    subtitle: 'State-of-the-art facilities designed for global exhibitions, conferences, and hybrid events.',
     image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop',
     align: 'left'
   }
