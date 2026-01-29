@@ -1,97 +1,44 @@
 <script setup>
-import { ref } from 'vue'
 import HeroSlider from '../components/HeroSlider.vue'
-import EventCard from '../components/EventCard.vue'
-
-const featuredHalls = ref([
-  {
-    id: 1,
-    title: 'Grand Royal Hall',
-    date: 'Cap: 1200 Guests',
-    location: 'North Wing',
-    category: 'Gala/Wedding',
-    price: 2500,
-    image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop'
-  },
-  {
-    id: 2,
-    title: 'The Glass Pavilion',
-    date: 'Cap: 450 Guests',
-    location: 'Rooftop Terrace',
-    category: 'Cocktail/Product',
-    price: 1800,
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'
-  },
-  {
-    id: 3,
-    title: 'The Industrial Studio',
-    date: 'Cap: 800 Guests',
-    location: 'East Wing',
-    category: 'Exhibition/Tech',
-    price: 1500,
-    image: 'https://images.unsplash.com/photo-1522158633578-d19005a2c739?q=80&w=2071&auto=format&fit=crop'
-  }
-])
+import VisionSection from '../components/VisionSection.vue'
+import FeaturedSpaces from '../components/FeaturedSpaces.vue'
+import PremiumFacilities from '../components/PremiumFacilities.vue'
+import BaseButton from '../components/BaseButton.vue'
 </script>
 
 <template>
   <div class="home-page">
     <HeroSlider />
 
-    <!-- Featured Venue Spaces -->
-    <section class="featured-section container">
-      <div class="section-header">
-        <div>
-          <h2 class="section-title">Exquisite Event Spaces</h2>
-          <p class="section-subtitle">Discover the perfect setting within our world-class convention center.</p>
-        </div>
-        <router-link to="/events" class="view-all">View all halls →</router-link>
-      </div>
-      
-      <div class="events-grid">
-        <EventCard v-for="hall in featuredHalls" :key="hall.id" :event="hall" />
-      </div>
-    </section>
+    <!-- Vision & Philosophy Section -->
+    <VisionSection />
 
-    <!-- Amenities Section -->
-    <section class="services-section container">
-       <div class="section-header">
-        <h2 class="section-title">Premium Facilities</h2>
-        <p class="section-subtitle">Everything you need for a seamless world-class experience.</p>
-      </div>
-      <div class="services-grid">
-        <div class="service-item glass">
-          <i class="fas fa-utensils service-icon-alt"></i>
-          <h3>In-House Catering</h3>
-          <p>Exquisite culinary experiences tailored to your event requirements.</p>
-        </div>
-        <div class="service-item glass">
-          <i class="fas fa-microchip service-icon-alt"></i>
-          <h3>High-Tech AV</h3>
-          <p>State-of-the-art sound, lighting, and streaming technology in every hall.</p>
-        </div>
-        <div class="service-item glass">
-          <i class="fas fa-shield-alt service-icon-alt"></i>
-          <h3>Concierge Security</h3>
-          <p>Professional event security and concierge services for your peace of mind.</p>
-        </div>
-        <div class="service-item glass">
-          <i class="fas fa-parking service-icon-alt"></i>
-          <h3>Valet Parking</h3>
-          <p>Ample secure parking with professional valet service for all guests.</p>
-        </div>
-      </div>
-    </section>
+    <!-- Featured Venue Spaces -->
+    <FeaturedSpaces />
+
+    <!-- Premium Facilities -->
+    <PremiumFacilities />
 
     <!-- Newsletter CTA -->
-    <section class="newsletter-section glass container">
-      <div class="newsletter-content">
-        <h2>Stay in the Loop</h2>
-        <p>Subscribe to receive updates about upcoming exhibitions, public shows, and exclusive venue offers.</p>
-        <form class="newsletter-form" @submit.prevent>
-          <input type="email" placeholder="Enter your email address" required>
-          <BaseButton variant="primary">Subscribe</BaseButton>
-        </form>
+    <section class="newsletter-section-fancy">
+      <div class="container">
+        <div class="newsletter-card glass">
+          <div class="newsletter-glow"></div>
+          <div class="newsletter-content-inner">
+            <div class="icon-circle">
+              <i class="fas fa-paper-plane"></i>
+            </div>
+            <h2 class="title">Stay in the Arena</h2>
+            <p class="subtitle">Join our exclusive circle of event planners and industry leaders. Receive quarterly insights on event technology and venue innovations.</p>
+            <form class="newsletter-form-fancy" @submit.prevent>
+              <div class="input-group-fancy">
+                <input type="email" placeholder="Your executive email" required>
+                <BaseButton variant="primary" class="btn-glow">Subscribe Now</BaseButton>
+              </div>
+            </form>
+            <p class="privacy-note">Zero spam. Only world-class inspiration.</p>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -102,142 +49,135 @@ const featuredHalls = ref([
   margin-top: -5rem; 
 }
 
-/* Newsletter Section */
-.newsletter-section {
-  margin: 4rem auto 8rem;
-  padding: 5rem 3rem;
-  border-radius: 2rem;
-  text-align: center;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(244, 63, 94, 0.1));
-}
-
-.newsletter-content h2 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.newsletter-content p {
-  color: var(--text-muted);
-  max-width: 600px;
-  margin: 0 auto 3rem;
-  font-size: 1.125rem;
-}
-
-.newsletter-form {
-  display: flex;
-  gap: 1rem;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.newsletter-form input {
-  flex: 1;
-  padding: 1rem 1.5rem;
-  border-radius: 0.75rem;
-  border: 1px solid var(--border);
-  background: white;
-  font-family: inherit;
-  font-size: 1rem;
-  outline: none;
-  transition: border-color 0.3s;
-}
-
-.newsletter-form input:focus {
-  border-color: var(--primary);
-}
-
-@media (max-width: 640px) {
-  .newsletter-form {
-    flex-direction: column;
-  }
-}
-
-/* Section Header */
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 3.5rem;
-}
-
-.section-title {
-  font-size: 2.75rem;
-  margin-bottom: 0.5rem;
-}
-
-.section-subtitle {
-  color: var(--text-muted);
-  font-size: 1.125rem;
-}
-
-.view-all {
-  color: var(--primary);
-  font-weight: 700;
-  padding-bottom: 0.5rem;
-}
-
-/* Featured Section */
-.featured-section {
-  padding: 8rem 1.5rem;
-}
-
-.events-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2.5rem;
-}
-
-/* Services Grid */
-.services-section {
-  padding: 4rem 1.5rem 10rem;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5rem;
-}
-
-.service-item {
-  padding: 3rem 2rem;
-  text-align: left;
-  border-radius: 1.5rem;
-  transition: all var(--transition-normal);
-  border: 1px solid var(--border);
-}
-
-.service-item:hover {
-  transform: translateY(-8px);
-  border-color: var(--primary);
-  background: white;
-  box-shadow: var(--shadow-lg);
-}
-
-.service-icon-alt {
-  font-size: 2.5rem;
-  display: block;
-  margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+.text-gradient {
+  background: linear-gradient(to right, #6366F1, #F43F5E);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.service-item h3 {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
+/* Fancy Newsletter Section */
+.newsletter-section-fancy {
+  padding: 8rem 0;
+  background: white;
+  position: relative;
 }
 
-.service-item p {
-  color: var(--text-muted);
-  line-height: 1.6;
+.newsletter-card {
+  position: relative;
+  padding: 6rem 4.5rem;
+  border-radius: 3rem;
+  background: #1E293B; /* Slate 800 */
+  text-align: left;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 40px 80px -20px rgba(15, 23, 42, 0.3);
 }
 
-@media (max-width: 768px) {
-  .section-header {
+.newsletter-glow {
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+  z-index: 0;
+}
+
+.newsletter-content-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+}
+
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+  font-size: 2rem;
+  color: var(--primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.newsletter-card .title {
+  color: white;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.newsletter-card .subtitle {
+  color: #94A3B8;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin-bottom: 3.5rem;
+}
+
+.newsletter-form-fancy {
+  max-width: 550px;
+  margin-bottom: 2.5rem;
+}
+
+.input-group-fancy {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(10px);
+}
+
+.input-group-fancy input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 1rem 1.5rem;
+  color: white;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+}
+
+.btn-glow {
+  border-radius: 1rem;
+  padding: 0 2rem;
+  font-weight: 800;
+  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+  white-space: nowrap;
+}
+
+.privacy-note {
+  font-size: 0.8rem;
+  color: #64748B;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 640px) {
+  .input-group-fancy {
     flex-direction: column;
-    align-items: flex-start;
+    background: transparent;
+    border: none;
+    padding: 0;
     gap: 1.5rem;
+  }
+  
+  .input-group-fancy input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+  }
+  
+  .btn-glow {
+    padding: 1.25rem;
   }
 }
 </style>
