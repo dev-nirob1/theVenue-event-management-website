@@ -79,6 +79,7 @@ button {
   font-weight: 600;
   transition: all var(--transition-fast);
   gap: 0.5rem;
+  white-space: nowrap;
 }
 
 .btn-primary {

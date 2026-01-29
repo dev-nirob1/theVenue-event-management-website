@@ -110,8 +110,8 @@ onUnmounted(() => {
 <style scoped>
 .hero-slider {
   position: relative;
-  height: 90vh;
-  min-height: 600px;
+  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   background: #000;
 }
@@ -199,7 +199,6 @@ onUnmounted(() => {
 .slide-content {
   max-width: 700px;
   color: white;
-  padding: 2rem;
 }
 
 .align-left {
@@ -269,8 +268,8 @@ onUnmounted(() => {
   transform: translateY(-50%) scale(1.1);
 }
 
-.prev { left: 2rem; }
-.next { right: 2rem; }
+.prev { left: 1rem; }
+.next { right: 1rem; }
 
 /* Indicators */
 .indicators {
@@ -317,9 +316,14 @@ onUnmounted(() => {
 @media (max-width: 768px) {
   .slide-content {
     text-align: center !important;
+    padding: 1rem;
   }
   .slide-actions {
-    justify-content: center !important;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+    max-width: 280px;
+    margin: 0 auto;
   }
   .nav-btn {
     width: 35px;

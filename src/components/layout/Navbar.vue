@@ -27,7 +27,7 @@ const toggleMobileMenu = () => {
     <nav class="navbar container">
       <router-link to="/" class="logo">
         <span class="logo-icon">V</span>
-        <span class="logo-text">The <span class="accent">Venue</span></span>
+        <span class="logo-text">The<span class="accent">Venue</span></span>
       </router-link>
 
       <!-- Desktop Nav -->
@@ -39,8 +39,8 @@ const toggleMobileMenu = () => {
       </ul>
 
       <div class="nav-actions">
-        <router-link to="/auth/login" class="login-link">Login</router-link>
-        <BaseButton size="md">Plan Your Event</BaseButton>
+        <router-link to="/auth/login" class="login-link desktop-only">Login</router-link>
+        <BaseButton size="md" class="desktop-only">Book Venue</BaseButton>
         <button class="mobile-toggle" @click="toggleMobileMenu">
           <span class="bar"></span>
           <span class="bar"></span>
@@ -60,7 +60,7 @@ const toggleMobileMenu = () => {
             <li><router-link to="/contact" @click="toggleMobileMenu">Contact</router-link></li>
             <li><router-link to="/auth/login" @click="toggleMobileMenu">Login</router-link></li>
           </ul>
-          <BaseButton class="full-width">Plan Your Event</BaseButton>
+          <BaseButton class="full-width">Book Venue</BaseButton>
         </div>
       </div>
     </transition>
@@ -100,8 +100,13 @@ const toggleMobileMenu = () => {
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 1.5rem;
-  color: var(--text-main);
+  color: white;
   text-decoration: none;
+  transition: color var(--transition-normal);
+}
+
+.is-scrolled .logo {
+  color: var(--text-main);
 }
 
 .logo-icon {
@@ -137,10 +142,14 @@ const toggleMobileMenu = () => {
 
 .nav-links a {
   font-weight: 600;
-  color: var(--text-main);
+  color: rgba(255, 255, 255, 0.9);
   transition: color var(--transition-fast);
   position: relative;
   padding: 0.5rem 0;
+}
+
+.is-scrolled .nav-links a {
+  color: var(--text-main);
 }
 
 .nav-links a::after {
@@ -171,6 +180,21 @@ const toggleMobileMenu = () => {
 
 .login-link {
   font-weight: 600;
+  color: white;
+  transition: color var(--transition-normal);
+}
+
+.desktop-only {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .desktop-only {
+    display: inline-flex;
+  }
+}
+
+.is-scrolled .login-link {
   color: var(--text-main);
 }
 
@@ -190,8 +214,12 @@ const toggleMobileMenu = () => {
 .mobile-toggle .bar {
   width: 25px;
   height: 2px;
-  background-color: var(--text-main);
+  background-color: white;
   transition: all 0.3s;
+}
+
+.is-scrolled .mobile-toggle .bar {
+  background-color: var(--text-main);
 }
 
 /* Mobile Menu */
