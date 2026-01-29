@@ -47,24 +47,23 @@ const featuredHalls = ref([
 </script>
 
 <template>
-  <section class="featured-section container">
+  <section class="featured-spaces container">
     <div class="section-badge">Featured Spaces</div>
+    
     <div class="section-header">
-      <div class="header-content">
-        <h2 class="section-title">Architectural <br/><span class="text-gradient">Masterpieces</span></h2>
-        <p class="section-subtitle">A curated selection of our most iconic halls, designed for unparalleled event experiences.</p>
-        <router-link to="/events" class="explore-all-btn">
-          <span>Explore All Halls</span>
-          <i class="fas fa-long-arrow-alt-right"></i>
-        </router-link>
-      </div>
+      <h2 class="section-title">Architectural <br/><span class="text-gradient">Venue Masterpieces</span></h2>
+      <p class="section-subtitle">Explore our curated selection of high-performance event environments, each engineered for inspiration and excellence.</p>
+      <router-link to="/events" class="explore-all-btn">
+        <span>Explore All Halls</span>
+        <i class="fas fa-long-arrow-alt-right"></i>
+      </router-link>
     </div>
     
-    <div class="bento-grid">
+    <div class="bento-reveal-grid">
       <div 
-        v-for="hall in featuredHalls" 
+        v-for="(hall, index) in featuredHalls" 
         :key="hall.id" 
-        :class="['grid-item', `size-${hall.size}`]"
+        :class="['bento-node', `size-${hall.size}`, `delay-${index}`]"
       >
         <EventCard :event="hall" :variant="hall.size" />
       </div>
@@ -73,8 +72,9 @@ const featuredHalls = ref([
 </template>
 
 <style scoped>
-.featured-section {
-  padding: 6rem 0 8rem;
+.featured-spaces {
+  padding: 8rem 0;
+  position: relative;
 }
 
 .section-badge {
@@ -92,13 +92,7 @@ const featuredHalls = ref([
 
 .section-header {
   margin-bottom: 5rem;
-}
-
-.header-content {
   max-width: 700px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 }
 
 .section-title {
@@ -113,7 +107,6 @@ const featuredHalls = ref([
   color: var(--text-muted);
   font-size: clamp(1rem, 2vw, 1.25rem);
   line-height: 1.6;
-  max-width: 500px;
   margin-bottom: 2rem;
 }
 
@@ -126,7 +119,6 @@ const featuredHalls = ref([
   font-size: 1.125rem;
   transition: all 0.3s ease;
   padding: 1rem 0;
-  margin-top: 1rem;
 }
 
 .explore-all-btn i {
@@ -143,50 +135,51 @@ const featuredHalls = ref([
   transform: translateX(10px);
 }
 
-/* Bento Grid System */
-.bento-grid {
+/* Bento Reveal Grid */
+.bento-reveal-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 250px;
-  gap: 1.5rem;
+  grid-auto-rows: 300px;
+  gap: 2rem;
 }
 
-.grid-item {
+.bento-node {
   position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: revealUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-.size-large {
-  grid-column: span 2;
-  grid-row: span 2;
-}
+.size-large { grid-column: span 2; grid-row: span 2; }
+.size-medium { grid-column: span 2; grid-row: span 1; }
+.size-small { grid-column: span 1; grid-row: span 1; }
 
-.size-medium {
-  grid-column: span 2;
-  grid-row: span 1;
-}
+.delay-0 { animation-delay: 0.1s; }
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.3s; }
+.delay-3 { animation-delay: 0.4s; }
 
-.size-small {
-  grid-column: span 1;
-  grid-row: span 1;
+@keyframes revealUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 1024px) {
-  .bento-grid {
+  .bento-reveal-grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 300px;
   }
 }
 
 @media (max-width: 768px) {
-  .section-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2rem;
+  .featured-spaces {
+    padding: 6rem 1.5rem;
   }
   
-  .bento-grid {
+  .bento-reveal-grid {
     grid-template-columns: 1fr;
-    grid-auto-rows: minmax(350px, auto);
+    grid-auto-rows: minmax(400px, auto);
   }
   
   .size-large, .size-medium, .size-small {

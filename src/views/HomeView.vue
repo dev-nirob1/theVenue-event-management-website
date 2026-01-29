@@ -49,13 +49,6 @@ import BaseButton from '../components/BaseButton.vue'
   margin-top: -5rem; 
 }
 
-.text-gradient {
-  background: linear-gradient(to right, #6366F1, #F43F5E);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
 /* Fancy Newsletter Section */
 .newsletter-section-fancy {
   padding: 8rem 0;

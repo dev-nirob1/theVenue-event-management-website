@@ -13,42 +13,49 @@
 
   /* Fonts */
   --font-main: "Inter", system-ui, -apple-system, sans-serif;
-  --font-heading: "Outfit", "Inter", sans-serif;
+  --font-heading: "Outfit", sans-serif;
 
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg:
-    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 20px 50px -10px rgba(0, 0, 0, 0.12);
 
   /* Transitions */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
+  --transition-slow: 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
   font-family: var(--font-main);
   background-color: var(--background);
   color: var(--text-main);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
 }
 
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
+h4 {
   font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--text-main);
+  letter-spacing: -0.03em;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 a {
