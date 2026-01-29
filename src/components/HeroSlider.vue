@@ -21,7 +21,7 @@ const slides = [
     id: 3,
     title: 'Industrial Hall <br/><span class="text-gradient">Exhibition Wing</span>',
     subtitle: 'Vast, RAW, and versatile. A 15,000 sq ft canvas built for massive tech exhibitions and automotive shows.',
-    image: 'https://images.unsplash.com/photo-1522158633578-d19005a2c739?q=80&w=2071&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop',
     align: 'left'
   }
 ]
