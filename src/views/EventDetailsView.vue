@@ -72,9 +72,9 @@ onMounted(() => {
               </div>
             </div>
 
-            <BaseButton variant="primary" class="full-width-btn" v-if="event.type === 'upcoming'">
-              Secure Your Spot
-            </BaseButton>
+            <router-link :to="`/events/${event.slug}/register`" class="full-width-btn" v-if="event.type === 'upcoming'">
+              <BaseButton variant="primary">Secure Your Spot</BaseButton>
+            </router-link>
             <BaseButton variant="secondary" class="full-width-btn" v-else disabled>
               Event Concluded
             </BaseButton>
