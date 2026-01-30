@@ -6,7 +6,7 @@ import { rooms } from '../data/rooms'
 </script>
 
 <template>
-  <div class="rooms-page">
+  <div class="rooms-page page-padding">
     <div class="header-section">
       <div class="container">
         <SectionHeader 
@@ -115,5 +115,8 @@ import { rooms } from '../data/rooms'
   .rooms-grid {
     grid-template-columns: 1fr;
   }
+}
+.page-padding {
+  padding-top: 6rem;
 }
 </style>

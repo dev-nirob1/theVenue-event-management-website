@@ -63,13 +63,13 @@ const featuredHalls = ref([
       </router-link>
     </div>
     
-    <div class="bento-reveal-grid">
+    <div class="simple-spaces-grid">
       <div 
         v-for="(hall, index) in featuredHalls" 
         :key="hall.id" 
-        :class="['bento-node', `size-${hall.size}`, `delay-${index}`]"
+        :class="['space-card-node', `delay-${index}`]"
       >
-        <EventCard :event="hall" :variant="hall.size" />
+        <EventCard :event="hall" variant="medium" />
       </div>
     </div>
   </section>
@@ -105,24 +105,19 @@ const featuredHalls = ref([
   transform: translateX(10px);
 }
 
-/* Bento Reveal Grid */
-.bento-reveal-grid {
+/* Simple Grid */
+.simple-spaces-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 300px;
-  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
 }
 
-.bento-node {
+.space-card-node {
   position: relative;
   opacity: 0;
   transform: translateY(30px);
   animation: revealUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
-
-.size-large { grid-column: span 2; grid-row: span 2; }
-.size-medium { grid-column: span 2; grid-row: span 1; }
-.size-small { grid-column: span 1; grid-row: span 1; }
 
 .delay-0 { animation-delay: 0.1s; }
 .delay-1 { animation-delay: 0.2s; }
@@ -137,8 +132,8 @@ const featuredHalls = ref([
 }
 
 @media (max-width: 1024px) {
-  .bento-reveal-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .simple-spaces-grid {
+    gap: 2rem;
   }
 }
 
@@ -147,14 +142,8 @@ const featuredHalls = ref([
     padding: 6rem 1.5rem;
   }
   
-  .bento-reveal-grid {
+  .simple-spaces-grid {
     grid-template-columns: 1fr;
-    grid-auto-rows: minmax(400px, auto);
-  }
-  
-  .size-large, .size-medium, .size-small {
-    grid-column: span 1;
-    grid-row: span 1;
   }
 }
 </style>

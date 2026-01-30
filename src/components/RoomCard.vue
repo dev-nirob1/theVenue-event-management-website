@@ -20,52 +20,48 @@ const prevImg = () => {
 </script>
 
 <template>
-  <div class="room-card glass">
-    <div class="card-image-wrapper">
+  <div class="room-card-refined">
+    <div class="card-media">
       <div class="image-slider">
         <img 
-          :src="room.images[currentImgIndex]" 
+          :src="(room.images && room.images[currentImgIndex]) || 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop'" 
           :alt="room.title" 
           class="room-img"
+          @error="(e) => (e.target.src = 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop')"
         >
         <div class="slider-controls" v-if="room.images.length > 1">
           <button @click.stop="prevImg" class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
           <button @click.stop="nextImg" class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
         </div>
-        <div class="slider-dots" v-if="room.images.length > 1">
-          <span 
-            v-for="(_, index) in room.images" 
-            :key="index"
-            :class="['dot', { active: currentImgIndex === index }]"
-          ></span>
-        </div>
       </div>
-      <div class="card-badge">{{ room.category }}</div>
+      <div class="category-badge">{{ room.category }} Hall</div>
     </div>
 
-    <div class="card-body">
-      <div class="card-header">
-        <h3 class="room-name">{{ room.title }}</h3>
-        <div class="capacity">
+    <div class="card-content">
+      <div class="header-row">
+        <h3 class="room-title">{{ room.title }}</h3>
+        <div class="capacity-pill">
           <i class="fas fa-users"></i>
-          <span>{{ room.capacity }} Guests</span>
+          <span>{{ room.capacity }}</span>
         </div>
       </div>
       
-      <div class="event-types">
-        <span v-for="type in room.eventTypes" :key="type" class="type-tag">
+      <div class="event-capsules">
+        <span v-for="type in room.eventTypes.slice(0, 3)" :key="type" class="capsule">
           {{ type }}
         </span>
       </div>
 
-      <div class="card-footer">
-        <div class="price">
-          <span class="label">Starting at</span>
-          <span class="amount">${{ room.price }}</span>
+      <div class="card-spacer"></div>
+
+      <div class="footer-row">
+        <div class="pricing">
+          <span class="p-label">Rental starts</span>
+          <span class="p-value">${{ room.price }}</span>
         </div>
-        <router-link :to="`/rooms/${room.slug}`" class="view-details-btn">
-          View Room
-          <i class="fas fa-arrow-right"></i>
+        <router-link :to="`/rooms/${room.slug}`" class="view-btn">
+          <span>Explore</span>
+          <i class="fas fa-long-arrow-alt-right"></i>
         </router-link>
       </div>
     </div>
@@ -73,25 +69,25 @@ const prevImg = () => {
 </template>
 
 <style scoped>
-.room-card {
-  border-radius: 2rem;
-  overflow: hidden;
+.room-card-refined {
   background: white;
+  border-radius: 2.5rem;
+  overflow: hidden;
   border: 1px solid var(--border);
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   display: flex;
   flex-direction: column;
 }
 
-.room-card:hover {
+.room-card-refined:hover {
   transform: translateY(-10px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 40px 80px -20px rgba(15, 23, 42, 0.1);
   border-color: var(--primary);
 }
 
-.card-image-wrapper {
+.card-media {
+  height: 260px;
   position: relative;
-  height: 280px;
   overflow: hidden;
 }
 
@@ -108,8 +104,8 @@ const prevImg = () => {
   transition: transform 0.8s ease;
 }
 
-.room-card:hover .room-img {
-  transform: scale(1.05);
+.room-card-refined:hover .room-img {
+  transform: scale(1.08);
 }
 
 .slider-controls {
@@ -120,23 +116,24 @@ const prevImg = () => {
   align-items: center;
   padding: 0 1rem;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.room-card:hover .slider-controls {
+.room-card-refined:hover .slider-controls {
   opacity: 1;
 }
 
 .slide-btn {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
+  background: white;
+  color: var(--text-main);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-main);
   font-size: 0.8rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
 }
 
@@ -145,99 +142,80 @@ const prevImg = () => {
   color: white;
 }
 
-.slider-dots {
+.category-badge {
   position: absolute;
-  bottom: 1.25rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 0.5rem;
-}
-
-.dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  transition: all 0.3s ease;
-}
-
-.dot.active {
-  width: 18px;
-  border-radius: 3px;
-  background: white;
-}
-
-.card-badge {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  padding: 0.4rem 1rem;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  padding: 0.5rem 1rem;
   background: rgba(15, 23, 42, 0.8);
   backdrop-filter: blur(8px);
   color: white;
   border-radius: 2rem;
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
-.card-body {
-  padding: 2rem;
-  flex: 1;
+/* Content */
+.card-content {
+  padding: 2.5rem;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
-.card-header {
+.header-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  gap: 1rem;
   margin-bottom: 1.5rem;
 }
 
-.room-name {
-  font-size: 1.5rem;
-  font-weight: 800;
+.room-title {
+  font-size: 1.75rem;
+  font-weight: 950;
   color: var(--text-main);
 }
 
-.capacity {
+.capacity-pill {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  font-weight: 600;
-  background: var(--background);
   padding: 0.4rem 0.8rem;
+  background: var(--background);
   border-radius: 2rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  white-space: nowrap;
 }
 
-.capacity i {
-  color: var(--primary);
-}
+.capacity-pill i { color: var(--primary); }
 
-.event-types {
+.event-capsules {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 2rem;
 }
 
-.type-tag {
+.capsule {
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--text-muted);
-  background: rgba(99, 102, 241, 0.05);
-  padding: 0.3rem 0.75rem;
+  background: #f1f5f9;
+  padding: 0.4rem 0.75rem;
   border-radius: 0.5rem;
-  border: 1px solid rgba(99, 102, 241, 0.1);
 }
 
-.card-footer {
+.card-spacer {
   margin-top: auto;
+  height: 1.5rem;
+}
+
+.footer-row {
   padding-top: 1.5rem;
   border-top: 1px solid var(--border);
   display: flex;
@@ -245,29 +223,35 @@ const prevImg = () => {
   align-items: center;
 }
 
-.price .label {
+.p-label {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
+  font-weight: 700;
   margin-bottom: 0.25rem;
 }
 
-.price .amount {
-  font-size: 1.25rem;
-  font-weight: 800;
+.p-value {
+  font-size: 1.5rem;
+  font-weight: 900;
   color: var(--text-main);
 }
 
-.view-details-btn {
+.view-btn {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  font-weight: 700;
+  gap: 1rem;
+  font-weight: 900;
   color: var(--primary);
-  transition: gap 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.view-details-btn:hover {
-  gap: 1.25rem;
+.view-btn:hover {
+  gap: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .room-title { font-size: 1.5rem; }
+  .card-content { padding: 1.5rem; }
 }
 </style>

@@ -6,68 +6,85 @@ defineProps({
   },
   variant: {
     type: String,
-    default: 'small' // large, medium, small
+    default: 'medium' // large, medium, small
   }
 })
 </script>
 
 <template>
-  <div :class="['event-card', `card-${variant}`]">
-    <div class="card-image-box">
-      <img :src="event.image || 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=2070&auto=format&fit=crop'" :alt="event.title" class="card-img">
-      <div class="card-overlay"></div>
+  <div :class="['modern-event-card', `variant-${variant}`]">
+    <!-- Image Section -->
+    <div class="card-media">
+      <img 
+        :src="event.image || 'https://images.unsplash.com/photo-1540575861501-7c001173a271?q=80&w=2070&auto=format&fit=crop'" 
+        :alt="event.title" 
+        class="card-img"
+        @error="(e) => (e.target.src = 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=2070&auto=format&fit=crop')"
+      >
+      <div class="category-tag">{{ event.category }}</div>
+      <div v-if="event.ticketStatus" :class="['status-pill', event.ticketStatus.toLowerCase().replace(' ', '-')]">
+        {{ event.ticketStatus }}
+      </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="card-content">
+      <div class="content-header">
+        <span class="org-name">{{ event.organizer }}</span>
+        <h3 class="event-title">{{ event.title }}</h3>
+      </div>
       
-      <!-- Top Badges -->
-      <div class="card-badges">
-        <div class="card-badge glass">{{ event.category }}</div>
-      </div>
-
-      <!-- Corner Content (Editorial Style) -->
-      <div class="card-corner-top-right" v-if="variant === 'large'">
-        <div class="capacity-pill glass">
-          <i class="fas fa-users"></i> {{ event.date.replace('Cap: ', '') }}
+      <div class="event-metadata">
+        <div class="meta-node">
+          <i class="far fa-calendar-alt"></i>
+          <span>{{ event.displayDate }}</span>
+        </div>
+        <div class="meta-node">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>{{ event.location }}</span>
         </div>
       </div>
 
-      <div class="card-info-box">
-        <div class="info-top">
-          <span class="location-label"><i class="fas fa-map-marker-alt"></i> {{ event.location }}</span>
-          <h3 class="card-title">{{ event.title }}</h3>
+      <div class="card-divider"></div>
+
+      <div class="content-footer">
+        <div class="price-block">
+          <span class="price-label">Tickets from</span>
+          <span class="price-value" v-if="event.price > 0">${{ event.price }}</span>
+          <span class="price-value free" v-else>FREE</span>
         </div>
         
-        <div class="info-bottom" v-if="variant !== 'small'">
-          <div class="price-info">
-            <span class="label">Rental from</span>
-            <span class="amount">${{ event.price }}</span>
-          </div>
-          <router-link :to="`/events/${event.id}`" class="explore-btn">
-            View Hall <i class="fas fa-arrow-right"></i>
-          </router-link>
-        </div>
-        
-        <!-- Small variant specific link -->
-        <router-link :to="`/events/${event.id}`" class="full-link" v-if="variant === 'small'"></router-link>
+        <router-link :to="`/events/${event.slug}`" class="action-btn">
+          <span>Details</span>
+          <i class="fas fa-arrow-right"></i>
+        </router-link>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.event-card {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 1.5rem;
+.modern-event-card {
+  background: white;
+  border-radius: 2rem;
   overflow: hidden;
-  background: var(--surface);
   border: 1px solid var(--border);
-  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.card-image-box {
+.modern-event-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px -15px rgba(0,0,0,0.1);
+  border-color: var(--primary);
+}
+
+/* Media Section */
+.card-media {
   position: relative;
-  width: 100%;
-  height: 100%;
+  height: 240px;
   overflow: hidden;
 }
 
@@ -75,170 +92,160 @@ defineProps({
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform 0.6s ease;
 }
 
-.event-card:hover .card-img {
-  transform: scale(1.1);
+.modern-event-card:hover .card-img {
+  transform: scale(1.05);
 }
 
-.card-overlay {
+.category-tag {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.2) 50%, transparent 100%);
-  opacity: 0.85;
-  transition: opacity 0.5s ease;
-}
-
-.event-card:hover .card-overlay {
-  opacity: 0.95;
-}
-
-.card-badges {
-  position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
-  z-index: 10;
-}
-
-.card-badge {
-  padding: 0.4rem 0.8rem;
-  border-radius: 2rem;
-  font-size: 0.65rem;
+  top: 1.25rem;
+  left: 1.25rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  color: var(--text-main);
+  border-radius: 3rem;
+  font-size: 0.7rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.status-pill {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  padding: 0.5rem 1rem;
+  border-radius: 3rem;
+  font-size: 0.65rem;
+  font-weight: 900;
+  text-transform: uppercase;
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.card-corner-top-right {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  z-index: 10;
-}
+.status-pill.available { background: #10B981; }
+.status-pill.waitlist { background: #F59E0B; }
+.status-pill.completed { background: #64748B; }
 
-.capacity-pill {
-  padding: 0.4rem 0.8rem;
-  border-radius: 2rem;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #10B981;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-}
-
-.card-info-box {
-  position: absolute;
-  inset: 0;
+/* Content Section */
+.card-content {
   padding: 2rem;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  z-index: 5;
-  color: white;
 }
 
-.location-label {
+.org-name {
   display: block;
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 0.8rem;
   color: var(--primary);
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
-.card-title {
+.event-title {
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 900;
+  color: var(--text-main);
   line-height: 1.2;
-  margin-bottom: 0.5rem;
-  transition: transform 0.3s ease;
+  margin-bottom: 1.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  overflow: hidden;
 }
 
-.info-bottom {
+.event-metadata {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s ease 0.1s;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
 }
 
-.event-card:hover .info-bottom {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.price-info .label {
-  display: block;
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 0.25rem;
-}
-
-.price-info .amount {
-  font-size: 1.5rem;
-  font-weight: 800;
-}
-
-.explore-btn {
-  color: white;
-  font-weight: 700;
-  font-size: 0.9rem;
+.meta-node {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  transition: gap 0.3s ease;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
-.explore-btn:hover {
-  gap: 1.25rem;
+.meta-node i {
   color: var(--primary);
+  width: 16px;
 }
 
-.full-link {
-  position: absolute;
-  inset: 0;
-  z-index: 15;
+.card-divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 1.5rem;
+  margin-top: auto;
 }
 
-/* Variant Specifics */
-.card-large .card-title {
-  font-size: 2.5rem;
+.content-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.card-medium .card-title {
-  font-size: 1.75rem;
+.price-label {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
 }
 
-.card-small .card-title {
-  font-size: 1.125rem;
+.price-value {
+  font-size: 1.5rem;
+  font-weight: 950;
+  color: var(--text-main);
 }
 
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+.price-value.free {
+  color: #10B981;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--primary);
+  font-weight: 800;
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  gap: 1.25rem;
+}
+
+/* Variant Tweaks */
+.variant-large {
+  flex-direction: row;
+  min-height: 350px;
+}
+
+.variant-large .card-media {
+  width: 40%;
+  height: 100%;
+}
+
+.variant-large .card-content {
+  width: 60%;
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {
-  .card-large .card-title,
-  .card-medium .card-title,
-  .card-small .card-title {
-    font-size: 1.5rem;
-  }
-  
-  .info-bottom {
-    opacity: 1;
-    transform: none;
-  }
+  .variant-large { flex-direction: column; }
+  .variant-large .card-media { width: 100%; height: 240px; }
+  .variant-large .card-content { width: 100%; }
 }
 </style>

@@ -1,176 +1,290 @@
 <script setup>
 import { ref, computed } from 'vue'
+import { events } from '../data/events'
 import EventCard from '../components/EventCard.vue'
+import SectionHeader from '../components/SectionHeader.vue'
 
 const searchQuery = ref('')
 const selectedCategory = ref('All')
+const selectedTimeFrame = ref('upcoming') // upcoming, past
 
-const categories = ['All', 'Music', 'Technology', 'Art', 'Sports', 'Social']
-
-const events = ref([
-  { id: 1, title: 'The Grand Ballroom', date: 'Capacity: 1200', location: 'North Wing', category: 'Social', price: 2500, image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop' },
-  { id: 2, title: 'The Sky Pavilion', date: 'Capacity: 450', location: 'Rooftop', category: 'Social', price: 1800, image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop' },
-  { id: 3, title: 'Conference Suite A', date: 'Capacity: 200', location: 'East Wing', category: 'Technology', price: 800, image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop' },
-  { id: 4, title: 'The Industrial Hall', date: 'Capacity: 800', location: 'West Wing', category: 'Art', price: 1500, image: 'https://images.unsplash.com/photo-1522158633578-d19005a2c739?q=80&w=2071&auto=format&fit=crop' },
-  { id: 5, title: 'VIP Lounge North', date: 'Capacity: 50', location: 'North Wing', category: 'Social', price: 400, image: 'https://images.unsplash.com/photo-1517457373958-b7bdd458ad20?q=80&w=2070&auto=format&fit=crop' },
-  { id: 6, title: 'Innovation Suite', date: 'Capacity: 150', location: 'East Wing', category: 'Technology', price: 600, image: 'https://images.unsplash.com/photo-1431540015161-0bf868a2d407?q=80&w=2070&auto=format&fit=crop' },
-])
+const categories = ['All', 'Technology', 'Social', 'Art', 'Music', 'Business']
 
 const filteredEvents = computed(() => {
-  return events.value.filter(event => {
+  return events.filter(event => {
     const matchesSearch = event.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-                         event.location.toLowerCase().includes(searchQuery.value.toLowerCase())
+                          event.organizer.toLowerCase().includes(searchQuery.value.toLowerCase())
     const matchesCategory = selectedCategory.value === 'All' || event.category === selectedCategory.value
-    return matchesSearch && matchesCategory
+    const matchesTime = event.type === selectedTimeFrame.value
+    
+    return matchesSearch && matchesCategory && matchesTime
   })
 })
 </script>
 
 <template>
-  <div class="events-page container">
-    <header class="page-header">
-      <h1 class="page-title">Our Premium Spaces</h1>
-      <p class="page-subtitle">Choose from our versatile range of grand halls, suites, and rooftop pavilions.</p>
-    </header>
-
-    <div class="filters-bar glass">
-      <div class="search-input">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" v-model="searchQuery" placeholder="Search by hall name or wing...">
-      </div>
-      <div class="category-filters">
-        <button 
-          v-for="cat in categories" 
-          :key="cat"
-          @click="selectedCategory = cat"
-          :class="['filter-btn', { active: selectedCategory === cat }]"
-        >
-          {{ cat }}
-        </button>
+  <div class="events-page page-padding">
+    <div class="header-section">
+      <div class="container">
+        <SectionHeader 
+          badge="What's Happening"
+          title="Extraordinary Moments <br/> In Motion"
+          subtitle="Explore the world-class gatherings, summits, and celebrations that define our space."
+          theme="light"
+        />
       </div>
     </div>
 
-    <div class="results-info">
-      <p>Showing <strong>{{ filteredEvents.length }}</strong> spaces available</p>
+    <div class="container filters-section">
+      <div class="filters-layout glass">
+        <!-- Search & Category (Top Row) -->
+        <div class="filters-main">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" v-model="searchQuery" placeholder="Search events or organizers...">
+          </div>
+          
+          <div class="time-toggle">
+            <button 
+              @click="selectedTimeFrame = 'upcoming'" 
+              :class="['time-btn', { active: selectedTimeFrame === 'upcoming' }]"
+            >
+              Upcoming
+            </button>
+            <button 
+              @click="selectedTimeFrame = 'past'" 
+              :class="['time-btn', { active: selectedTimeFrame === 'past' }]"
+            >
+              Past
+            </button>
+          </div>
+        </div>
+
+        <!-- Categories (Bottom Row) -->
+        <div class="category-strip">
+          <button 
+            v-for="cat in categories" 
+            :key="cat"
+            @click="selectedCategory = cat"
+            :class="['cat-pill', { active: selectedCategory === cat }]"
+          >
+            {{ cat }}
+          </button>
+        </div>
+      </div>
     </div>
 
-    <div class="events-grid">
-      <EventCard v-for="event in filteredEvents" :key="event.id" :event="event" />
-    </div>
+    <div class="results-section container">
+      <div class="results-meta">
+        <p>Showing <strong>{{ filteredEvents.length }}</strong> events found</p>
+      </div>
 
-    <div v-if="filteredEvents.length === 0" class="no-results">
-      <h3>No spaces found matching your criteria.</h3>
-      <p>Try adjusting your filters or search query.</p>
+      <div v-if="filteredEvents.length > 0" class="events-grid">
+        <EventCard 
+          v-for="event in filteredEvents" 
+          :key="event.id" 
+          :event="event" 
+          variant="medium"
+        />
+      </div>
+
+      <div v-else class="no-results glass">
+        <div class="no-results-content">
+          <i class="fas fa-calendar-times"></i>
+          <h3>No events found</h3>
+          <p>Try adjusting your search query or switching between Upcoming and Past events.</p>
+          <button @click="searchQuery = ''; selectedCategory = 'All'" class="reset-btn">Clear All Filters</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
 .events-page {
-  padding: 4rem 1.5rem;
+  padding-bottom: 8rem;
 }
 
-.page-header {
-  margin-bottom: 3rem;
-  text-align: center;
+.header-section {
+  padding: 6rem 0 4rem;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
 }
 
-.page-title {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
+.filters-section {
+  margin-top: -3rem;
+  position: relative;
+  z-index: 10;
 }
 
-.page-subtitle {
-  color: var(--text-muted);
-  font-size: 1.125rem;
+.filters-layout {
+  padding: 2.5rem;
+  border-radius: 2.5rem;
+  background: white;
+  border: 1px solid var(--border);
+  box-shadow: 0 40px 80px -20px rgba(0,0,0,0.08);
 }
 
-.filters-bar {
+.filters-main {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: 1.5rem;
-  border-radius: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
   margin-bottom: 2rem;
 }
 
-@media (min-width: 768px) {
-  .filters-bar {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-}
-
-.search-input {
+.search-box {
+  flex: 1;
   display: flex;
   align-items: center;
-  background: white;
-  padding: 0.75rem 1rem;
-  border-radius: 0.75rem;
+  gap: 1rem;
+  background: var(--background);
+  padding: 1rem 1.5rem;
+  border-radius: 1.5rem;
   border: 1px solid var(--border);
-  flex-grow: 1;
-  max-width: 400px;
+  transition: all 0.3s ease;
 }
 
-.search-input input {
+.search-box:focus-within {
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.search-box i {
+  color: #94A3B8;
+  font-size: 1.125rem;
+}
+
+.search-box input {
   border: none;
-  outline: none;
+  background: transparent;
   width: 100%;
-  margin-left: 0.5rem;
-  font-family: inherit;
-  font-size: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  outline: none;
 }
 
-.category-filters {
+.time-toggle {
   display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.category-filters::-webkit-scrollbar {
-  display: none;
-}
-
-.filter-btn {
-  white-space: nowrap;
-  padding: 0.5rem 1rem;
+  background: var(--background);
+  padding: 0.5rem;
   border-radius: 2rem;
+  border: 1px solid var(--border);
+}
+
+.time-btn {
+  padding: 0.75rem 1.75rem;
+  border-radius: 1.5rem;
+  font-weight: 800;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+}
+
+.time-btn.active {
+  background: white;
+  color: var(--primary);
+  box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1);
+}
+
+.category-strip {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.cat-pill {
+  padding: 0.6rem 1.25rem;
+  border-radius: 3rem;
   background: white;
   border: 1px solid var(--border);
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all var(--transition-fast);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.filter-btn:hover {
+.cat-pill:hover {
   border-color: var(--primary);
   color: var(--primary);
 }
 
-.filter-btn.active {
+.cat-pill.active {
   background: var(--primary);
   color: white;
   border-color: var(--primary);
 }
 
-.results-info {
+.results-section {
+  margin-top: 4rem;
+}
+
+.results-meta {
   margin-bottom: 2rem;
   color: var(--text-muted);
 }
 
 .events-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 2.5rem;
 }
 
 .no-results {
+  padding: 6rem 2rem;
   text-align: center;
-  padding: 4rem;
+  background: white;
+  border-radius: 3rem;
+  border: 1px dashed var(--border);
+}
+
+.no-results-content i {
+  font-size: 4rem;
+  color: #E2E8F0;
+  margin-bottom: 1.5rem;
+}
+
+.no-results-content h3 {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.no-results-content p {
   color: var(--text-muted);
+  margin-bottom: 2rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reset-btn {
+  padding: 1rem 2rem;
+  background: var(--background);
+  border: 2px solid var(--border);
+  border-radius: 3rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+  background: var(--text-main);
+  color: white;
+  border-color: var(--text-main);
+}
+
+@media (max-width: 768px) {
+  .filters-layout { padding: 1.5rem; }
+  .filters-main { flex-direction: column; align-items: stretch; }
+  .events-grid { grid-template-columns: 1fr; }
+}
+.page-padding {
+  padding-top: 6rem;
 }
 </style>

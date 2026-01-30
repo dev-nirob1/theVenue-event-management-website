@@ -42,10 +42,18 @@ import SectionHeader from './SectionHeader.vue'
       <div class="vision-visuals">
         <div class="image-stack">
           <div class="img-wrapper main-img">
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" alt="Architecture">
+            <img 
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
+              alt="Architecture"
+              @error="(e) => (e.target.src = 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop')"
+            >
           </div>
           <div class="img-wrapper floating-img">
-            <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2069&auto=format&fit=crop" alt="Detail">
+            <img 
+              src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2069&auto=format&fit=crop" 
+              alt="Detail"
+              @error="(e) => (e.target.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop')"
+            >
           </div>
         </div>
         

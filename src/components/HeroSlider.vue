@@ -64,7 +64,12 @@ onUnmounted(() => {
       >
         <!-- Background with slow zoom -->
         <div class="image-wrapper">
-          <img :src="slide.image" :alt="slide.title" class="slide-image">
+          <img 
+            :src="slide.image || 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop'" 
+            :alt="slide.title" 
+            class="slide-image"
+            @error="(e) => (e.target.src = 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop')"
+          >
           <div class="overlay"></div>
         </div>
 
@@ -180,13 +185,15 @@ onUnmounted(() => {
   opacity: 0;
   transform: skewY(5deg) translateY(50px);
   transition: all 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) 0.8s;
+  z-index: 2;
 }
 
 .text-gradient {
-  background: linear-gradient(to right, #6366F1, #F43F5E);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: linear-gradient(to right, #6366F1, #F43F5E) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  display: inline-block;
 }
 
 .slide-subtitle-bottom {

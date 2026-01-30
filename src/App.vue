@@ -28,7 +28,6 @@ import TheFooter from './components/layout/TheFooter.vue'
 
 .content-area {
   flex: 1;
-  padding-top: 5rem; /* Space for fixed navbar */
 }
 
 /* Shared Utility for Logo Text (Used in Navbar and Footer) */

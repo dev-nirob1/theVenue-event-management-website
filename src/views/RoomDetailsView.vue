@@ -9,10 +9,10 @@ const route = useRoute()
 const slug = computed(() => route.params.slug)
 const room = computed(() => rooms.find(r => r.slug === slug.value))
 
-const activeImage = ref('')
+const activeImage = ref(room.value?.images?.[0] || '')
 
 onMounted(() => {
-  if (room.value) {
+  if (room.value && !activeImage.value) {
     activeImage.value = room.value.images[0]
   }
   window.scrollTo(0, 0)
@@ -24,13 +24,20 @@ const setActiveImage = (img) => {
 </script>
 
 <template>
-  <div v-if="room" class="room-details-revised">
+  <div v-if="room" class="room-details-revised page-padding">
     <!-- 1. Room Gallery Section -->
     <section class="gallery-section">
       <div class="container gallery-container">
         <div class="main-stage">
           <transition name="fade-scale" mode="out-in">
-            <img :key="activeImage" :src="activeImage" :alt="room.title" class="stage-img">
+            <img 
+              v-if="activeImage"
+              :key="activeImage" 
+              :src="activeImage" 
+              :alt="room.title" 
+              class="stage-img"
+              @error="(e) => (e.target.src = 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop')"
+            >
           </transition>
           <div class="stage-overlay">
             <div class="room-meta">
@@ -579,5 +586,8 @@ const setActiveImage = (img) => {
   .stage-overlay { padding: 2rem; }
   .cta-banner-premium { padding: 3rem 2rem; }
   .cta-actions { flex-direction: column; width: 100%; }
+}
+.page-padding {
+  padding-top: 6rem;
 }
 </style>
