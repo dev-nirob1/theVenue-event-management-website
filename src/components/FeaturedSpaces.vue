@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import SectionHeader from './SectionHeader.vue'
 import EventCard from './EventCard.vue'
 
 const featuredHalls = ref([
@@ -48,11 +49,14 @@ const featuredHalls = ref([
 
 <template>
   <section class="featured-spaces container">
-    <div class="section-badge">Featured Spaces</div>
+    <SectionHeader 
+      badge="Featured Spaces"
+      title="Architectural <br/> Venue Masterpieces"
+      subtitle="Curated high-performance environments engineered for inspiration."
+      theme="light"
+    />
     
-    <div class="section-header">
-      <h2 class="section-title">Architectural <br/><span class="text-gradient">Venue Masterpieces</span></h2>
-      <p class="section-subtitle">Explore our curated selection of high-performance event environments, each engineered for inspiration and excellence.</p>
+    <div class="section-actions" style="margin-top: -1.5rem; margin-bottom: 3rem;">
       <router-link to="/events" class="explore-all-btn">
         <span>Explore All Halls</span>
         <i class="fas fa-long-arrow-alt-right"></i>
@@ -77,39 +81,6 @@ const featuredHalls = ref([
   position: relative;
 }
 
-.section-badge {
-  display: inline-block;
-  padding: 0.5rem 1.25rem;
-  background: rgba(99, 102, 241, 0.1);
-  color: var(--primary);
-  border-radius: 2rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 2rem;
-}
-
-.section-header {
-  margin-bottom: 5rem;
-  max-width: 700px;
-}
-
-.section-title {
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
-  margin-bottom: 1.5rem;
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-
-.section-subtitle {
-  color: var(--text-muted);
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
-
 .explore-all-btn {
   display: flex;
   align-items: center;
@@ -118,7 +89,6 @@ const featuredHalls = ref([
   color: var(--text-main);
   font-size: 1.125rem;
   transition: all 0.3s ease;
-  padding: 1rem 0;
 }
 
 .explore-all-btn i {

@@ -1,5 +1,6 @@
 <script setup>
 import BaseButton from './BaseButton.vue'
+import SectionHeader from './SectionHeader.vue'
 </script>
 
 <template>
@@ -7,14 +8,14 @@ import BaseButton from './BaseButton.vue'
     <div class="vision-grid">
       <!-- Content Side (Left) -->
       <div class="vision-content">
-        <div class="section-badge">Our Philosophy</div>
-        <h2 class="section-title">
-          Where Vision Meets <br/>
-          <span class="text-gradient">Architectural Mastery</span>
-        </h2>
+        <SectionHeader 
+          badge="Our Philosophy"
+          title="Where Vision Meets <br/> Architectural Mastery"
+          theme="light"
+        />
         
         <p class="section-desc">
-          The Venue is more than a structure; it is a symphony of glass, steel, and vision. Designed by world-renowned architects, our space serves as the ultimate stage for the most prestigious global summits and intimate luxury celebrations.
+          An architectural symphony of glass and steel, designed to serve as the ultimate stage for global summits and luxury ceremonies.
         </p>
 
         <div class="stats-row">
@@ -70,33 +71,12 @@ import BaseButton from './BaseButton.vue'
   align-items: center;
 }
 
-.section-badge {
-  display: inline-block;
-  padding: 0.5rem 1.25rem;
-  background: rgba(99, 102, 241, 0.1);
-  color: var(--primary);
-  border-radius: 2rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 2rem;
-}
-
-.section-title {
-  font-size: clamp(2.5rem, 8vw, 4rem);
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 2rem;
-  letter-spacing: -0.03em;
-}
-
 .section-desc {
   font-size: 1.125rem;
   line-height: 1.7;
   color: var(--text-muted);
   max-width: 500px;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .stats-row {

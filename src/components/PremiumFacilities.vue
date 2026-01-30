@@ -1,4 +1,5 @@
 <script setup>
+import SectionHeader from './SectionHeader.vue'
 const facilities = [
   {
     icon: 'fa-utensils',
@@ -42,11 +43,12 @@ const facilities = [
 <template>
   <section class="holographic-hub">
     <div class="container container-content">
-      <div class="section-header">
-        <div class="glow-tag">Infrastructure 4.0</div>
-        <h2 class="section-title">The <span class="text-glow">Holographic</span> Hub</h2>
-        <p class="section-subtitle">Exceeding international standards with next-generation facility ecosystems.</p>
-      </div>
+      <SectionHeader 
+        badge="Infrastructure 4.0"
+        title="The Holographic Hub"
+        subtitle="Next-generation facility ecosystems exceeding international standards."
+        theme="dark"
+      />
 
       <div class="facilities-grid">
         <div v-for="facility in facilities" :key="facility.title" class="hologram-card glass">
@@ -99,43 +101,6 @@ const facilities = [
 .container-content {
   position: relative;
   z-index: 1;
-}
-
-.glow-tag {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: rgba(99, 102, 241, 0.1);
-  color: #818CF8;
-  border-radius: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(99, 102, 241, 0.3);
-}
-
-.section-title {
-  color: white;
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
-}
-
-.text-glow {
-  background: linear-gradient(to right, #818CF8, #F43F5E);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 0 10px rgba(129, 140, 248, 0.5));
-}
-
-.section-subtitle {
-  color: #94A3B8; /* Slate 400 */
-  font-size: 1.125rem;
-  max-width: 600px;
-  margin-bottom: 6rem;
 }
 
 .facilities-grid {

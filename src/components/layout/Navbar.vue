@@ -33,8 +33,9 @@ const toggleMobileMenu = () => {
       <!-- Desktop Nav -->
       <ul class="nav-links">
         <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/events">Venues</router-link></li>
-        <li><router-link to="/about">Our Story</router-link></li>
+        <li><router-link to="/rooms">Venues</router-link></li>
+        <li><router-link to="/events">Events</router-link></li>
+        <li><router-link to="/about">About</router-link></li>
         <li><router-link to="/contact">Contact</router-link></li>
       </ul>
 
@@ -55,8 +56,9 @@ const toggleMobileMenu = () => {
         <div class="mobile-menu glass" @click.stop>
           <ul class="mobile-nav-links">
             <li><router-link to="/" @click="toggleMobileMenu">Home</router-link></li>
-            <li><router-link to="/events" @click="toggleMobileMenu">Venues</router-link></li>
-            <li><router-link to="/about" @click="toggleMobileMenu">Our Story</router-link></li>
+            <li><router-link to="/rooms" @click="toggleMobileMenu">Venues</router-link></li>
+            <li><router-link to="/events" @click="toggleMobileMenu">Events</router-link></li>
+            <li><router-link to="/about" @click="toggleMobileMenu">About</router-link></li>
             <li><router-link to="/contact" @click="toggleMobileMenu">Contact</router-link></li>
             <li><router-link to="/auth/login" @click="toggleMobileMenu">Login</router-link></li>
           </ul>
