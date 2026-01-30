@@ -1,5 +1,6 @@
 <script setup>
-// import HeroSlider from '../Components/Section/HeroSlider.vue'
+import HeroSection from '../Components/Section/HeroSection.vue';
+import HeroSlider from '../Components/Section/HeroSlider.vue'
 // import VisionSection from '../Components/Section/VisionSection.vue'
 // import FeaturedSpaces from '../Components/Section/FeaturedSpaces.vue'
 // import PremiumFacilities from '../Components/Section/PremiumFacilities.vue'
@@ -8,7 +9,8 @@
 </script>
 
 <template>
-  <div class="home-page">
+  <div>
+    <HeroSection/>
     <HeroSlider />
 
     <!-- Vision & Philosophy Section -->
