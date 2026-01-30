@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import BaseButton from './BaseButton.vue'
+import BaseButton from '../Widget/BaseButton.vue'
 
 const slides = [
   {

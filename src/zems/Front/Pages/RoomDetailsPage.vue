@@ -2,8 +2,9 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { rooms } from '../data/rooms'
-import BaseButton from '../components/BaseButton.vue'
-import SectionHeader from '../components/SectionHeader.vue'
+import BaseButton from '../Components/Widget/BaseButton.vue'
+import SectionHeader from '../Components/Widget/SectionHeader.vue'
+import Breadcrumbs from '../Components/Widget/Breadcrumbs.vue'
 
 const route = useRoute()
 const slug = computed(() => route.params.slug)
@@ -28,6 +29,7 @@ const setActiveImage = (img) => {
     <!-- 1. Room Gallery Section -->
     <section class="gallery-section">
       <div class="container gallery-container">
+        <Breadcrumbs />
         <div class="main-stage">
           <transition name="fade-scale" mode="out-in">
             <img 

@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import BaseButton from '../components/BaseButton.vue'
+import BaseButton from '../Components/Widget/BaseButton.vue'
+import Breadcrumbs from '../Components/Widget/Breadcrumbs.vue'
 
 const user = ref({
   name: 'John Doe',
@@ -35,7 +36,8 @@ const mytickets = ref([
 </script>
 
 <template>
-  <div class="dashboard-page container">
+  <div class="dashboard-page container page-padding">
+    <Breadcrumbs />
     <header class="dashboard-header">
       <div class="user-profile">
         <div class="user-avatar">{{ user.name.charAt(0) }}</div>

@@ -1,7 +1,8 @@
 <script setup>
 import { onMounted } from 'vue'
-import SectionHeader from '../components/SectionHeader.vue'
-import BaseButton from '../components/BaseButton.vue'
+import SectionHeader from '../Components/Widget/SectionHeader.vue'
+import BaseButton from '../Components/Widget/BaseButton.vue'
+import Breadcrumbs from '../Components/Widget/Breadcrumbs.vue'
 
 onMounted(() => {
   window.scrollTo(0, 0)
@@ -29,20 +30,21 @@ const pillars = [
 <template>
   <div class="about-page page-padding">
     <!-- 1. Cinematic Hero -->
-    <section class="about-hero">
+    <!-- <section class="about-hero">
       <div class="hero-image-wrapper">
         <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" alt="The Venue Architecture" class="hero-img">
         <div class="hero-overlay"></div>
       </div>
       <div class="container hero-content">
+        <Breadcrumbs />
         <div class="hero-badge">Est. 1998</div>
         <h1 class="hero-title">Engineering <br/><span class="text-accent">Memorable Legacies</span></h1>
         <p class="hero-subtitle">Discover the architectural masterpiece designed to host the world's most significant gatherings.</p>
       </div>
-    </section>
+    </section> -->
 
     <!-- 2. The Heritage Story -->
-    <section class="heritage-section container">
+    <!-- <section class="heritage-section container">
       <div class="heritage-grid">
         <div class="heritage-text">
           <SectionHeader 
@@ -80,10 +82,10 @@ const pillars = [
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- 3. Pillars of Excellence -->
-    <section class="pillars-section">
+    <!-- <section class="pillars-section">
       <div class="container">
         <SectionHeader 
           align="center"
@@ -102,10 +104,10 @@ const pillars = [
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- 4. CTA -->
-    <section class="about-cta container">
+    <!-- <section class="about-cta container">
       <div class="cta-inner glass">
         <div class="cta-text">
           <h2>Ready to book <br/> your next masterpiece?</h2>
@@ -116,7 +118,7 @@ const pillars = [
           <router-link to="/contact" class="secondary-btn">Contact Sales <i class="fas fa-arrow-right"></i></router-link>
         </div>
       </div>
-    </section>
+    </section> -->
   </div>
 </template>
 

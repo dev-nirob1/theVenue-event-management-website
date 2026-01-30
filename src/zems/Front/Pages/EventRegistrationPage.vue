@@ -2,7 +2,8 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { events } from '../data/events'
-import BaseButton from '../components/BaseButton.vue'
+import BaseButton from '../Components/Widget/BaseButton.vue'
+import Breadcrumbs from '../Components/Widget/Breadcrumbs.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -42,6 +43,7 @@ const downloadPass = () => {
 <template>
   <div class="registration-page page-padding" v-if="event">
     <div class="container">
+      <Breadcrumbs />
       <div v-if="!isSuccess" class="reg-layout">
         <!-- Left: Event Recap -->
         <div class="event-brief glass">

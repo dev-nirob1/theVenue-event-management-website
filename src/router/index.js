@@ -1,61 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { front_routes } from '../zems/Front/front_routes'
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/events',
-    name: 'events',
-    component: () => import('../views/EventsView.vue')
-  },
-  {
-    path: '/events/:slug',
-    name: 'event-details',
-    component: () => import('../views/EventDetailsView.vue')
-  },
-  {
-    path: '/events/:slug/register',
-    name: 'event-registration',
-    component: () => import('../views/EventRegistrationView.vue')
-  },
-  {
-    path: '/rooms',
-    name: 'rooms',
-    component: () => import('../views/RoomsView.vue')
-  },
-  {
-    path: '/rooms/:slug',
-    name: 'room-details',
-    component: () => import('../views/RoomDetailsView.vue')
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue')
-  },
-  {
-    path: '/contact',
-    name: 'contact',
-    component: () => import('../views/ContactView.vue')
-  },
-  {
-    path: '/auth/login',
-    name: 'login',
-    component: () => import('../views/LoginView.vue')
-  },
-  {
-    path: '/auth/register',
-    name: 'register',
-    component: () => import('../views/RegisterView.vue')
-  },
+  ...front_routes,
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: () => import('../views/DashboardView.vue')
+    component: () => import('../zems/Front/Pages/DashboardPage.vue')
   }
 ]
 

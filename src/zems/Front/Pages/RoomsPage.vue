@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from 'vue'
-import SectionHeader from '../components/SectionHeader.vue'
-import RoomCard from '../components/RoomCard.vue'
+import SectionHeader from '../Components/Widget/SectionHeader.vue'
+import RoomCard from '../Components/Widget/RoomCard.vue'
+import Breadcrumbs from '../Components/Widget/Breadcrumbs.vue'
 import { rooms } from '../data/rooms'
 </script>
 
@@ -9,6 +10,7 @@ import { rooms } from '../data/rooms'
   <div class="rooms-page page-padding">
     <div class="header-section">
       <div class="container">
+        <Breadcrumbs />
         <SectionHeader 
           badge="Exquisite Venues"
           title="Discover Our <br/> World-Class Spaces"

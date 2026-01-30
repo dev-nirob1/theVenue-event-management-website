@@ -1,6 +1,6 @@
 <script setup>
-import BaseButton from './BaseButton.vue'
-import SectionHeader from './SectionHeader.vue'
+import BaseButton from '../Widget/BaseButton.vue'
+import SectionHeader from '../Widget/SectionHeader.vue'
 </script>
 
 <template>

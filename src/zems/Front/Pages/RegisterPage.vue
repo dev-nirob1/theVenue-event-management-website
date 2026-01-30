@@ -1,10 +1,13 @@
 <script setup>
-import BaseButton from '../components/BaseButton.vue'
+import BaseButton from '../Components/Widget/BaseButton.vue'
+import Breadcrumbs from '../Components/Widget/Breadcrumbs.vue'
 </script>
 
 <template>
-  <div class="auth-page container">
-    <div class="auth-card glass">
+  <div class="auth-page container page-padding">
+    <div class="auth-wrapper">
+      <Breadcrumbs />
+      <div class="auth-card glass">
       <h1 class="auth-title">Join Eventify</h1>
       <p class="auth-subtitle">Create an account to start booking events.</p>
       
@@ -28,6 +31,7 @@ import BaseButton from '../components/BaseButton.vue'
       
       <div class="auth-footer">
         <p>Already have an account? <router-link to="/auth/login">Login</router-link></p>
+      </div>
       </div>
     </div>
   </div>

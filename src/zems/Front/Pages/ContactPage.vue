@@ -1,7 +1,8 @@
 <script setup>
 import { onMounted } from 'vue'
-import SectionHeader from '../components/SectionHeader.vue'
-import BaseButton from '../components/BaseButton.vue'
+import SectionHeader from '../Components/Widget/SectionHeader.vue'
+import BaseButton from '../Components/Widget/BaseButton.vue'
+import Breadcrumbs from '../Components/Widget/Breadcrumbs.vue'
 
 onMounted(() => {
   window.scrollTo(0, 0)
@@ -35,8 +36,9 @@ const contactDepts = [
 <template>
   <div class="contact-page page-padding">
     <!-- 1. Header Section -->
-    <section class="contact-header">
+    <!-- <section class="contact-header">
       <div class="container header-content">
+        <Breadcrumbs />
         <SectionHeader 
           badge="Contact Us"
           title="Connect with Our <br/> <span class='text-accent'>Master Curators</span>"
@@ -44,13 +46,13 @@ const contactDepts = [
           theme="light"
         />
       </div>
-    </section>
+    </section> -->
 
     <!-- 2. Booking Hub -->
-    <section class="booking-hub container">
-      <div class="hub-grid">
+    <!-- <section class="booking-hub container">
+      <div class="hub-grid"> -->
         <!-- Left: The Desk -->
-        <div class="hub-sidebar">
+        <!-- <div class="hub-sidebar">
           <div class="desk-card glass">
             <h3 class="desk-title">The Concierge Desk</h3>
             <p class="desk-intro">Available 24/7 for our premier clients and event organizers.</p>
@@ -78,10 +80,10 @@ const contactDepts = [
               <p>458 Architecture Lane, <br/>Innovation District, NY 10012</p>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- Right: Inquiry Form -->
-        <div class="hub-main">
+        <!-- <div class="hub-main">
           <div class="inquiry-card glass">
             <div class="form-header">
               <h3>Start Your Inquiry</h3>
@@ -137,17 +139,17 @@ const contactDepts = [
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- 3. Map Section placeholder -->
-    <section class="map-section container">
+    <!-- <section class="map-section container">
       <div class="map-container glass">
         <div class="map-placeholder">
           <i class="fas fa-compass"></i>
           <p>Interactive Map Integration <br/> <span>Coming Soon</span></p>
         </div>
       </div>
-    </section>
+    </section> -->
   </div>
 </template>
 

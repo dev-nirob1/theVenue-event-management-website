@@ -1,8 +1,9 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { events } from '../data/events'
-import EventCard from '../components/EventCard.vue'
-import SectionHeader from '../components/SectionHeader.vue'
+import EventCard from '../Components/Widget/EventCard.vue'
+import SectionHeader from '../Components/Widget/SectionHeader.vue'
+import Breadcrumbs from '../Components/Widget/Breadcrumbs.vue'
 
 const searchQuery = ref('')
 const selectedCategory = ref('All')
@@ -26,6 +27,7 @@ const filteredEvents = computed(() => {
   <div class="events-page page-padding">
     <div class="header-section">
       <div class="container">
+        <Breadcrumbs />
         <SectionHeader 
           badge="What's Happening"
           title="Extraordinary Moments <br/> In Motion"

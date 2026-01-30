@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import BaseButton from '../BaseButton.vue'
+import BaseButton from '../../zems/Front/Components/Widget/BaseButton.vue'
+
 
 const isScrolled = ref(false)
 const isMobileMenuOpen = ref(false)

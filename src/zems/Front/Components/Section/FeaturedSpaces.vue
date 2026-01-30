@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import SectionHeader from './SectionHeader.vue'
-import EventCard from './EventCard.vue'
+import SectionHeader from '../Widget/SectionHeader.vue'
+import EventCard from '../Widget/EventCard.vue'
 
 const featuredHalls = ref([
   {

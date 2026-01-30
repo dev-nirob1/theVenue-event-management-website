@@ -3,8 +3,9 @@ import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { events } from '../data/events'
 import { rooms } from '../data/rooms'
-import BaseButton from '../components/BaseButton.vue'
-import SectionHeader from '../components/SectionHeader.vue'
+import BaseButton from '../Components/Widget/BaseButton.vue'
+import SectionHeader from '../Components/Widget/SectionHeader.vue'
+import Breadcrumbs from '../Components/Widget/Breadcrumbs.vue'
 
 const route = useRoute()
 const slug = computed(() => route.params.slug)
@@ -19,13 +20,14 @@ onMounted(() => {
 <template>
   <div v-if="event" class="event-details-page page-padding">
     <!-- Hero Section -->
-    <section class="event-hero">
+    <!-- <section class="event-hero">
       <div class="hero-bg">
         <img :src="event.image" :alt="event.title" class="hero-img">
         <div class="hero-overlay"></div>
       </div>
       
       <div class="container hero-content">
+        <Breadcrumbs />
         <div class="event-badge">{{ event.category }} Event</div>
         <h1 class="event-title">{{ event.title }}</h1>
         <div class="event-short-meta">
@@ -33,13 +35,13 @@ onMounted(() => {
           <span><i class="fas fa-map-marker-alt"></i> {{ event.location }}</span>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Main Content -->
-    <section class="event-info-section container">
-      <div class="info-grid">
+    <!-- <section class="event-info-section container">
+      <div class="info-grid"> -->
         <!-- Main Description -->
-        <div class="info-main">
+        <!-- <div class="info-main">
           <SectionHeader 
             badge="About the Event"
             title="The Vision & Experience"
@@ -54,10 +56,10 @@ onMounted(() => {
               <h4 class="org-name">{{ event.organizer }}</h4>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- Sidebar Actions -->
-        <div class="info-sidebar">
+        <!-- <div class="info-sidebar">
           <div class="booking-card glass">
             <div class="booking-header">
               <div class="status-indicator" :class="event.ticketStatus.toLowerCase().replace(' ', '-')">
@@ -80,10 +82,10 @@ onMounted(() => {
             </BaseButton>
             
             <p class="cta-note">Secure payment gateway integrated via Stripe.</p>
-          </div>
+          </div> -->
 
           <!-- Feature List -->
-          <div class="features-card glass">
+          <!-- <div class="features-card glass">
             <h4 class="card-title">Event Highlights</h4>
             <ul class="feature-list">
               <li><i class="fas fa-check-circle"></i> Networking session included</li>
@@ -92,11 +94,11 @@ onMounted(() => {
             </ul>
           </div>
         </div>
-      </div>
-    </section>
+      </div> -->
+    <!-- </section> -->
 
     <!-- Venue Spotlight -->
-    <section v-if="relatedVenue" class="venue-spotlight container">
+    <!-- <section v-if="relatedVenue" class="venue-spotlight container">
       <div class="spotlight-card glass">
         <div class="spotlight-img">
           <img :src="relatedVenue.images[0]" :alt="relatedVenue.title">
@@ -113,13 +115,13 @@ onMounted(() => {
           </router-link>
         </div>
       </div>
-    </section>
+    </section> -->
   </div>
 
-  <div v-else class="not-found container">
+  <!-- <div v-else class="not-found container">
     <h2>Event Not Found</h2>
     <router-link to="/events">Back to Events</router-link>
-  </div>
+  </div> -->
 </template>
 
 <style scoped>
