@@ -63,7 +63,7 @@ const prevImg = () => {
           <span class="label">Starting at</span>
           <span class="amount">${{ room.price }}</span>
         </div>
-        <router-link :to="`/rooms/${room.id}`" class="view-details-btn">
+        <router-link :to="`/rooms/${room.slug}`" class="view-details-btn">
           View Room
           <i class="fas fa-arrow-right"></i>
         </router-link>

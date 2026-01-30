@@ -18,9 +18,9 @@ const routes = [
     component: () => import('../views/RoomsView.vue')
   },
   {
-    path: '/events/:id',
-    name: 'event-details',
-    component: () => import('../views/EventDetailsView.vue')
+    path: '/rooms/:slug',
+    name: 'room-details',
+    component: () => import('../views/RoomDetailsView.vue')
   },
   {
     path: '/about',
