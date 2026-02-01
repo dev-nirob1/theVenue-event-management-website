@@ -47,7 +47,7 @@ const facilities = [
     <div class="container relative">
       <SectionHeader
         class="mb-2"
-        subTitle="Infrastructure 4.0"
+        badge="Infrastructure 4.0"
         title="The Holographic Hub"
       />
 

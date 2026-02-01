@@ -44,7 +44,7 @@ const upcomingEvents = [
     <div class="container">
       <SectionHeader
         class="text-center mb-2"
-        subTitle="Calendar"
+        badge="Calendar"
         title="Upcoming Events"
       />
 

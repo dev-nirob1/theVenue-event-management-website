@@ -1,27 +1,28 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
-import { rooms } from '../data/rooms'
-import BaseButton from '../Components/Widget/BaseButton.vue'
-import SectionHeader from '../Components/Widget/SectionHeader.vue'
-import Breadcrumbs from '../Components/Widget/Breadcrumbs.vue'
+import { ref, computed, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import { rooms } from "../../../data/rooms";
+import BaseButton from "../Components/Widget/BaseButton.vue";
+import SectionHeader from "../Components/Widget/SectionHeader.vue";
+import Breadcrumbs from "../Components/Widget/Breadcrumbs.vue";
+import AppCTA from "../Components/Section/AppCTA.vue";
 
-const route = useRoute()
-const slug = computed(() => route.params.slug)
-const room = computed(() => rooms.find(r => r.slug === slug.value))
+const route = useRoute();
+const slug = computed(() => route.params.slug);
+const room = computed(() => rooms.find((r) => r.slug === slug.value));
 
-const activeImage = ref(room.value?.images?.[0] || '')
+const activeImage = ref(room.value?.images?.[0] || "");
 
 onMounted(() => {
   if (room.value && !activeImage.value) {
-    activeImage.value = room.value.images[0]
+    activeImage.value = room.value.images[0];
   }
-  window.scrollTo(0, 0)
-})
+  window.scrollTo(0, 0);
+});
 
 const setActiveImage = (img) => {
-  activeImage.value = img
-}
+  activeImage.value = img;
+};
 </script>
 
 <template>
@@ -32,14 +33,18 @@ const setActiveImage = (img) => {
         <Breadcrumbs />
         <div class="main-stage">
           <transition name="fade-scale" mode="out-in">
-            <img 
+            <img
               v-if="activeImage"
-              :key="activeImage" 
-              :src="activeImage" 
-              :alt="room.title" 
+              :key="activeImage"
+              :src="activeImage"
+              :alt="room.title"
               class="stage-img"
-              @error="(e) => (e.target.src = 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop')"
-            >
+              @error="
+                (e) =>
+                  (e.target.src =
+                    'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop')
+              "
+            />
           </transition>
           <div class="stage-overlay">
             <div class="room-meta">
@@ -48,15 +53,15 @@ const setActiveImage = (img) => {
             </div>
           </div>
         </div>
-        
+
         <div class="thumbnail-grid">
-          <div 
-            v-for="(img, idx) in room.images" 
-            :key="idx" 
+          <div
+            v-for="(img, idx) in room.images"
+            :key="idx"
             :class="['thumb-box', { active: activeImage === img }]"
             @click="setActiveImage(img)"
           >
-            <img :src="img" alt="Venue view">
+            <img :src="img" alt="Venue view" />
             <div class="thumb-overlay"></div>
           </div>
         </div>
@@ -68,13 +73,13 @@ const setActiveImage = (img) => {
       <div class="info-grid">
         <!-- Left: Basic Info & Description -->
         <div class="info-main">
-          <SectionHeader 
+          <SectionHeader
             badge="The Space"
             title="Architectural Details & <br/> Atmosphere"
             theme="light"
           />
           <p class="description-text">{{ room.description }}</p>
-          
+
           <div class="spec-highlights">
             <div class="spec-node">
               <i class="fas fa-users-cog"></i>
@@ -97,9 +102,15 @@ const setActiveImage = (img) => {
         <div class="info-sidebar">
           <!-- Layout Types -->
           <div class="info-card glass">
-            <h3 class="card-title"><i class="fas fa-th-large"></i> Seating Layouts</h3>
+            <h3 class="card-title">
+              <i class="fas fa-th-large"></i> Seating Layouts
+            </h3>
             <div class="layouts-list">
-              <div v-for="layout in room.layouts" :key="layout.name" class="layout-item">
+              <div
+                v-for="layout in room.layouts"
+                :key="layout.name"
+                class="layout-item"
+              >
                 <span class="name">{{ layout.name }}</span>
                 <span class="cap">{{ layout.capacity }} Ppl</span>
               </div>
@@ -108,9 +119,15 @@ const setActiveImage = (img) => {
 
           <!-- Facilities -->
           <div class="info-card glass">
-            <h3 class="card-title"><i class="fas fa-concierge-bell"></i> Amenities</h3>
+            <h3 class="card-title">
+              <i class="fas fa-concierge-bell"></i> Amenities
+            </h3>
             <div class="facilities-grid-sm">
-              <div v-for="facility in room.facilities" :key="facility.text" class="facility-pill">
+              <div
+                v-for="facility in room.facilities"
+                :key="facility.text"
+                class="facility-pill"
+              >
                 <i :class="['fas', facility.icon]"></i>
                 {{ facility.text }}
               </div>
@@ -133,22 +150,28 @@ const setActiveImage = (img) => {
     <!-- 3. Events Hosted In This Room -->
     <section class="hosted-events-section">
       <div class="container">
-        <SectionHeader 
+        <SectionHeader
           align="center"
           badge="Gallery"
           title="Events Hosted In This Room"
-          subtitle="A showcase of extraordinary moments captured within our walls."
+          description="A showcase of extraordinary moments captured within our walls."
         />
-        
+
         <div class="hosted-grid">
-          <div v-for="event in room.hostedEvents" :key="event.title" class="hosted-card">
+          <div
+            v-for="event in room.hostedEvents"
+            :key="event.title"
+            class="hosted-card"
+          >
             <div class="card-img">
-              <img :src="event.image" :alt="event.title">
+              <img :src="event.image" :alt="event.title" />
               <div class="date-tag">{{ event.date }}</div>
             </div>
             <div class="card-body">
               <h4>{{ event.title }}</h4>
-              <button class="view-story">View Story <i class="fas fa-arrow-right"></i></button>
+              <button class="view-story">
+                View Story <i class="fas fa-arrow-right"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -162,10 +185,15 @@ const setActiveImage = (img) => {
         <div class="cta-content">
           <div class="cta-text">
             <h2>Experience {{ room.title }}</h2>
-            <p>Our event curators are ready to help you plan your next masterpiece.</p>
+            <p>
+              Our event curators are ready to help you plan your next
+              masterpiece.
+            </p>
           </div>
           <div class="cta-actions">
-            <BaseButton variant="primary" size="lg" class="btn-cta">Check Availability</BaseButton>
+            <BaseButton variant="primary" size="lg" class="btn-cta"
+              >Check Availability</BaseButton
+            >
             <button class="btn-secondary-outline">Schedule Virtual Tour</button>
           </div>
         </div>
@@ -201,7 +229,7 @@ const setActiveImage = (img) => {
   height: 600px;
   border-radius: 3rem;
   overflow: hidden;
-  box-shadow: 0 40px 100px -20px rgba(0,0,0,0.15);
+  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.15);
 }
 
 .stage-img {
@@ -213,7 +241,11 @@ const setActiveImage = (img) => {
 .stage-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.8) 0%, transparent 60%);
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 42, 0.8) 0%,
+    transparent 60%
+  );
   display: flex;
   align-items: flex-end;
   padding: 4rem;
@@ -350,7 +382,9 @@ const setActiveImage = (img) => {
   gap: 0.75rem;
 }
 
-.card-title i { color: var(--primary); }
+.card-title i {
+  color: var(--primary);
+}
 
 .layouts-list {
   display: flex;
@@ -367,8 +401,12 @@ const setActiveImage = (img) => {
   font-weight: 700;
 }
 
-.layout-item .name { color: var(--text-muted); }
-.layout-item .cap { color: var(--text-main); }
+.layout-item .name {
+  color: var(--text-muted);
+}
+.layout-item .cap {
+  color: var(--text-main);
+}
 
 .facilities-grid-sm {
   display: flex;
@@ -423,7 +461,7 @@ const setActiveImage = (img) => {
 /* 3. Hosted Events */
 .hosted-events-section {
   padding: 10rem 0;
-  background: #0F172A;
+  background: #0f172a;
   color: white;
 }
 
@@ -437,14 +475,14 @@ const setActiveImage = (img) => {
   background: rgba(255, 255, 255, 0.03);
   border-radius: 2.5rem;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.4s ease;
 }
 
 .hosted-card:hover {
   transform: translateY(-10px);
   border-color: var(--primary);
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .card-img {
@@ -493,7 +531,9 @@ const setActiveImage = (img) => {
   transition: gap 0.3s ease;
 }
 
-.view-story:hover { gap: 1.25rem; }
+.view-story:hover {
+  gap: 1.25rem;
+}
 
 /* 4. CTA Section */
 .booking-cta-section {
@@ -504,7 +544,7 @@ const setActiveImage = (img) => {
   padding: 5rem;
   background: white;
   border-radius: 3.5rem;
-  box-shadow: 0 50px 100px -30px rgba(0,0,0,0.15);
+  box-shadow: 0 50px 100px -30px rgba(0, 0, 0, 0.15);
   position: relative;
   overflow: hidden;
 }
@@ -515,7 +555,11 @@ const setActiveImage = (img) => {
   right: -20%;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.1) 0%,
+    transparent 70%
+  );
 }
 
 .cta-content {
@@ -578,16 +622,34 @@ const setActiveImage = (img) => {
 }
 
 @media (max-width: 1024px) {
-  .info-grid { grid-template-columns: 1fr; gap: 4rem; }
-  .cta-content { flex-direction: column; text-align: center; }
-  .spec-highlights { flex-direction: column; gap: 2rem; }
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  .cta-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .spec-highlights {
+    flex-direction: column;
+    gap: 2rem;
+  }
 }
 
 @media (max-width: 640px) {
-  .main-stage { height: 400px; }
-  .stage-overlay { padding: 2rem; }
-  .cta-banner-premium { padding: 3rem 2rem; }
-  .cta-actions { flex-direction: column; width: 100%; }
+  .main-stage {
+    height: 400px;
+  }
+  .stage-overlay {
+    padding: 2rem;
+  }
+  .cta-banner-premium {
+    padding: 3rem 2rem;
+  }
+  .cta-actions {
+    flex-direction: column;
+    width: 100%;
+  }
 }
 .page-padding {
   padding-top: 6rem;

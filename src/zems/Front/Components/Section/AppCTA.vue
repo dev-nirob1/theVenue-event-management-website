@@ -1,6 +1,13 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import BaseButton from "../Widget/BaseButton.vue";
+
+defineProps({
+  showExplore: {
+    type: Boolean,
+    default: true,
+  },
+});
 </script>
 
 <template>
@@ -15,7 +22,7 @@ import BaseButton from "../Widget/BaseButton.vue";
           </p>
         </div>
         <div class="cta-btns">
-          <RouterLink to="/rooms">
+          <RouterLink v-if="showExplore" to="/rooms">
             <BaseButton variant="primary" size="lg">Explore Venues</BaseButton>
           </RouterLink>
           <RouterLink to="/contact" class="secondary-btn">

@@ -12,7 +12,7 @@ import SectionHeader from "../Widget/SectionHeader.vue";
       <!-- Content Side (Left) -->
       <div class="vision-content">
         <SectionHeader
-          subTitle="Our Philosophy"
+          badge="Our Philosophy"
           title="Where Vision Meets Architectural Mastery"
         />
 

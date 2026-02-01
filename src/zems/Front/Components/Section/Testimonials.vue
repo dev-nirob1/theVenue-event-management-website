@@ -100,7 +100,7 @@ onUnmounted(() => {
   <section class="testimonials-section">
     <div class="container">
       <div class="header-row">
-        <SectionHeader subTitle="Testimonials" title="What Our Clients Say" />
+        <SectionHeader badge="Testimonials" title="What Our Clients Say" />
 
         <!-- Custom Navigation -->
         <div class="slider-nav">

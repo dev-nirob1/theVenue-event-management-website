@@ -1,64 +1,62 @@
 <script setup>
-import { onMounted } from 'vue'
-import SectionHeader from '../Components/Widget/SectionHeader.vue'
-import BaseButton from '../Components/Widget/BaseButton.vue'
-import Breadcrumbs from '../Components/Widget/Breadcrumbs.vue'
+import { onMounted } from "vue";
+import SectionHeader from "../Components/Widget/SectionHeader.vue";
+import BaseButton from "../Components/Widget/BaseButton.vue";
+import PageHero from "../Components/Widget/PageHero.vue";
+import AppCTA from "../Components/Section/AppCTA.vue";
 
 onMounted(() => {
-  window.scrollTo(0, 0)
-})
+  window.scrollTo(0, 0);
+});
 
 const pillars = [
   {
-    icon: 'fa-pencil-ruler',
-    title: 'Architectural Vision',
-    desc: 'Designed by world-class visionaries, our space blends structural innovation with timeless elegance.'
+    icon: "fa-pencil-ruler",
+    title: "Architectural Vision",
+    desc: "Designed by world-class visionaries, our space blends structural innovation with timeless elegance.",
   },
   {
-    icon: 'fa-hand-sparkles',
-    title: 'Elite Hospitality',
-    desc: 'Every detail is curated by expert event managers dedicated to flawless guest experiences.'
+    icon: "fa-hand-sparkles",
+    title: "Elite Hospitality",
+    desc: "Every detail is curated by expert event managers dedicated to flawless guest experiences.",
   },
   {
-    icon: 'fa-microchip',
-    title: 'Future Tech',
-    desc: 'Equipped with Tier-1 data connectivity and immersive audiovisual systems for global summits.'
-  }
-]
+    icon: "fa-microchip",
+    title: "Future Tech",
+    desc: "Equipped with Tier-1 data connectivity and immersive audiovisual systems for global summits.",
+  },
+];
 </script>
 
 <template>
-  <div class="about-page page-padding">
+  <div class="about-page">
     <!-- 1. Cinematic Hero -->
-    <!-- <section class="about-hero">
-      <div class="hero-image-wrapper">
-        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" alt="The Venue Architecture" class="hero-img">
-        <div class="hero-overlay"></div>
-      </div>
-      <div class="container hero-content">
-        <Breadcrumbs />
-        <div class="hero-badge">Est. 1998</div>
-        <h1 class="hero-title">Engineering <br/><span class="text-accent">Memorable Legacies</span></h1>
-        <p class="hero-subtitle">Discover the architectural masterpiece designed to host the world's most significant gatherings.</p>
-      </div>
-    </section> -->
+    <PageHero
+      title="Engineering <br/> Memorable Legacies"
+      subtitle="Our Journey & Vision"
+      image="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop"
+    />
 
     <!-- 2. The Heritage Story -->
-    <!-- <section class="heritage-section container">
+    <section class="heritage-section container">
       <div class="heritage-grid">
         <div class="heritage-text">
-          <SectionHeader 
+          <SectionHeader
             badge="Our Story"
             title="A Landmark of <br/> Unrivaled Ambition"
             theme="light"
           />
           <p class="main-para">
-            "The Venue" was conceived not just as a convention center, but as a cathedral of industry. Born from the vision of avant-garde architects, it spans over 50,000 sq ft of engineered excellence.
+            "The Venue" was conceived not just as a convention center, but as a
+            cathedral of industry. Born from the vision of avant-garde
+            architects, it spans over 50,000 sq ft of engineered excellence.
           </p>
           <p class="sub-para">
-            From the soaring ceilings of the Grand Royal Hall to the cinematic city views of the Sky Pavilion, every inch of this space has been optimized for inspiration, collaboration, and celebration.
+            From the soaring ceilings of the Grand Royal Hall to the cinematic
+            city views of the Sky Pavilion, every inch of this space has been
+            optimized for inspiration, collaboration, and celebration.
           </p>
-          
+
           <div class="heritage-stats">
             <div class="h-stat">
               <span class="num">25+</span>
@@ -70,32 +68,42 @@ const pillars = [
             </div>
           </div>
         </div>
-        
+
         <div class="heritage-visual">
           <div class="visual-stack">
             <div class="img-box top">
-              <img src="https://images.unsplash.com/photo-1517457373958-b7bdd458ad20?q=80&w=2070&auto=format&fit=crop" alt="Heritage 1">
+              <img
+                src="https://images.unsplash.com/photo-1517457373958-b7bdd458ad20?q=80&w=2070&auto=format&fit=crop"
+                alt="Heritage 1"
+              />
             </div>
             <div class="img-box bottom glass">
-              <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop" alt="Heritage 2">
+              <img
+                src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop"
+                alt="Heritage 2"
+              />
             </div>
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
 
     <!-- 3. Pillars of Excellence -->
-    <!-- <section class="pillars-section">
+    <section class="pillars-section">
       <div class="container">
-        <SectionHeader 
+        <SectionHeader
           align="center"
           badge="Our Values"
           title="The Pillars of Perfection"
-          subtitle="Guided by precision, driven by passion, and defined by the excellence of our execution."
+          description="Guided by precision, driven by passion, and defined by the excellence of our execution."
         />
 
         <div class="pillars-grid">
-          <div v-for="pillar in pillars" :key="pillar.title" class="pillar-card glass">
+          <div
+            v-for="pillar in pillars"
+            :key="pillar.title"
+            class="pillar-card glass"
+          >
             <div class="pillar-icon">
               <i :class="['fas', pillar.icon]"></i>
             </div>
@@ -104,21 +112,29 @@ const pillars = [
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
 
     <!-- 4. CTA -->
-    <!-- <section class="about-cta container">
+    <section class="about-cta container">
       <div class="cta-inner glass">
         <div class="cta-text">
-          <h2>Ready to book <br/> your next masterpiece?</h2>
-          <p>Join the ranks of global leaders who choose our space for their vision.</p>
+          <h2>
+            Ready to book <br />
+            your next masterpiece?
+          </h2>
+          <p>
+            Join the ranks of global leaders who choose our space for their
+            vision.
+          </p>
         </div>
         <div class="cta-btns">
           <BaseButton variant="primary" size="lg">Explore Venues</BaseButton>
-          <router-link to="/contact" class="secondary-btn">Contact Sales <i class="fas fa-arrow-right"></i></router-link>
+          <router-link to="/contact" class="secondary-btn"
+            >Contact Sales <i class="fas fa-arrow-right"></i
+          ></router-link>
         </div>
       </div>
-    </section> -->
+    </section>
   </div>
 </template>
 
@@ -129,78 +145,6 @@ const pillars = [
 
 .page-padding {
   padding-top: 0; /* Hero is full screen */
-}
-
-/* 1. Hero Section */
-.about-hero {
-  position: relative;
-  height: 90vh;
-  min-height: 600px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-
-.hero-image-wrapper {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.1);
-  animation: slowZoom 20s infinite alternate;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.4) 60%, transparent 100%);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  color: white;
-}
-
-.hero-badge {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 3rem;
-  font-size: 0.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  margin-bottom: 2rem;
-}
-
-.hero-title {
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 950;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-  margin-bottom: 2rem;
-}
-
-.text-accent {
-  background: linear-gradient(to right, #6366F1, #F43F5E);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero-subtitle {
-  font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.8);
-  max-width: 500px;
-  line-height: 1.6;
 }
 
 /* 2. Heritage Section */
@@ -353,7 +297,7 @@ const pillars = [
 
 .cta-inner {
   padding: 6rem;
-  background: #0F172A;
+  background: #0f172a;
   border-radius: 4rem;
   display: flex;
   justify-content: space-between;
@@ -393,20 +337,42 @@ const pillars = [
 }
 
 @keyframes slowZoom {
-  to { transform: scale(1.2); }
+  to {
+    transform: scale(1.2);
+  }
 }
 
 @media (max-width: 1024px) {
-  .heritage-grid { grid-template-columns: 1fr; gap: 4rem; }
-  .pillars-grid { grid-template-columns: 1fr; }
-  .cta-inner { flex-direction: column; text-align: center; gap: 4rem; }
+  .heritage-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+  .cta-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 4rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .hero-title { font-size: 3.5rem; }
-  .about-hero { height: 80vh; }
-  .cta-inner { padding: 4rem 2rem; }
-  .cta-text h2 { font-size: 2.25rem; }
-  .heritage-stats { flex-direction: column; gap: 2rem; }
+  .hero-title {
+    font-size: 3.5rem;
+  }
+  .about-hero {
+    height: 80vh;
+  }
+  .cta-inner {
+    padding: 4rem 2rem;
+  }
+  .cta-text h2 {
+    font-size: 2.25rem;
+  }
+  .heritage-stats {
+    flex-direction: column;
+    gap: 2rem;
+  }
 }
 </style>

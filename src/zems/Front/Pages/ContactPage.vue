@@ -1,64 +1,65 @@
 <script setup>
-import { onMounted } from 'vue'
-import SectionHeader from '../Components/Widget/SectionHeader.vue'
-import BaseButton from '../Components/Widget/BaseButton.vue'
-import Breadcrumbs from '../Components/Widget/Breadcrumbs.vue'
+import { onMounted } from "vue";
+import SectionHeader from "../Components/Widget/SectionHeader.vue";
+import BaseButton from "../Components/Widget/BaseButton.vue";
+import PageHero from "../Components/Widget/PageHero.vue";
+import AppCTA from "../Components/Section/AppCTA.vue";
 
 onMounted(() => {
-  window.scrollTo(0, 0)
-})
+  window.scrollTo(0, 0);
+});
 
 const contactDepts = [
   {
-    name: 'Events Concierge',
-    icon: 'fa-concierge-bell',
-    desc: 'For bespoke planning and VIP arrangements.',
-    email: 'concierge@thevenue.com',
-    phone: '+1 800 VENUE 01'
+    name: "Events Concierge",
+    icon: "fa-concierge-bell",
+    desc: "For bespoke planning and VIP arrangements.",
+    email: "concierge@thevenue.com",
+    phone: "+1 800 VENUE 01",
   },
   {
-    name: 'Sales & Booking',
-    icon: 'fa-calendar-check',
-    desc: 'Availability, pricing, and contract inquiries.',
-    email: 'sales@thevenue.com',
-    phone: '+1 800 VENUE 02'
+    name: "Sales & Booking",
+    icon: "fa-calendar-check",
+    desc: "Availability, pricing, and contract inquiries.",
+    email: "sales@thevenue.com",
+    phone: "+1 800 VENUE 02",
   },
   {
-    name: 'Technical Support',
-    icon: 'fa-tools',
-    desc: 'AV, Connectivity, and setup assistance.',
-    email: 'tech@thevenue.com',
-    phone: '+1 800 VENUE 03'
-  }
-]
+    name: "Technical Support",
+    icon: "fa-tools",
+    desc: "AV, Connectivity, and setup assistance.",
+    email: "tech@thevenue.com",
+    phone: "+1 800 VENUE 03",
+  },
+];
 </script>
 
 <template>
-  <div class="contact-page page-padding">
+  <div class="contact-page">
     <!-- 1. Header Section -->
-    <!-- <section class="contact-header">
-      <div class="container header-content">
-        <Breadcrumbs />
-        <SectionHeader 
-          badge="Contact Us"
-          title="Connect with Our <br/> <span class='text-accent'>Master Curators</span>"
-          subtitle="Whether you're planning a global summit or a private gala, our team is ready to bring your vision to life."
-          theme="light"
-        />
-      </div>
-    </section> -->
+    <PageHero
+      title="Connect with Our <br/> Master Curators"
+      subtitle="The Concierge Desk"
+      image="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2069&auto=format&fit=crop"
+    />
 
     <!-- 2. Booking Hub -->
-    <!-- <section class="booking-hub container">
-      <div class="hub-grid"> -->
+    <section class="booking-hub container">
+      <div class="hub-grid">
         <!-- Left: The Desk -->
-        <!-- <div class="hub-sidebar">
+        <div class="hub-sidebar">
           <div class="desk-card glass">
             <h3 class="desk-title">The Concierge Desk</h3>
-            <p class="desk-intro">Available 24/7 for our premier clients and event organizers.</p>
-            
+            <p class="desk-intro">
+              Available 24/7 for our premier clients and event organizers.
+            </p>
+
             <div class="dept-list">
-              <div v-for="dept in contactDepts" :key="dept.name" class="dept-node">
+              <div
+                v-for="dept in contactDepts"
+                :key="dept.name"
+                class="dept-node"
+              >
                 <div class="node-icon"><i :class="['fas', dept.icon]"></i></div>
                 <div class="node-info">
                   <h4>{{ dept.name }}</h4>
@@ -77,13 +78,13 @@ const contactDepts = [
                 <i class="fas fa-map-marker-alt"></i>
                 <span>Our Headquarters</span>
               </div>
-              <p>458 Architecture Lane, <br/>Innovation District, NY 10012</p>
+              <p>458 Architecture Lane, <br />Innovation District, NY 10012</p>
             </div>
           </div>
-        </div> -->
+        </div>
 
         <!-- Right: Inquiry Form -->
-        <!-- <div class="hub-main">
+        <div class="hub-main">
           <div class="inquiry-card glass">
             <div class="form-header">
               <h3>Start Your Inquiry</h3>
@@ -94,11 +95,11 @@ const contactDepts = [
               <div class="form-grid">
                 <div class="input-group">
                   <label>Full Name</label>
-                  <input type="text" placeholder="Johnathan Doe" required>
+                  <input type="text" placeholder="Johnathan Doe" required />
                 </div>
                 <div class="input-group">
                   <label>Email Address</label>
-                  <input type="email" placeholder="john@company.com" required>
+                  <input type="email" placeholder="john@company.com" required />
                 </div>
                 <div class="input-group">
                   <label>Event Type</label>
@@ -112,13 +113,19 @@ const contactDepts = [
                 </div>
                 <div class="input-group">
                   <label>Planned Date</label>
-                  <input type="date">
+                  <input type="date" />
                 </div>
               </div>
 
               <div class="input-group">
                 <label>Expected Guest Count</label>
-                <input type="range" min="50" max="2000" step="50" class="range-slider">
+                <input
+                  type="range"
+                  min="50"
+                  max="2000"
+                  step="50"
+                  class="range-slider"
+                />
                 <div class="range-labels">
                   <span>50</span>
                   <span>1000</span>
@@ -128,7 +135,10 @@ const contactDepts = [
 
               <div class="input-group">
                 <label>Vision Description</label>
-                <textarea rows="5" placeholder="Tell us about the atmosphere, requirements, and goals for your event..."></textarea>
+                <textarea
+                  rows="5"
+                  placeholder="Tell us about the atmosphere, requirements, and goals for your event..."
+                ></textarea>
               </div>
 
               <BaseButton variant="primary" size="lg" class="submit-btn">
@@ -139,17 +149,20 @@ const contactDepts = [
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
 
     <!-- 3. Map Section placeholder -->
-    <!-- <section class="map-section container">
+    <section class="map-section container">
       <div class="map-container glass">
         <div class="map-placeholder">
           <i class="fas fa-compass"></i>
-          <p>Interactive Map Integration <br/> <span>Coming Soon</span></p>
+          <p>
+            Interactive Map Integration <br />
+            <span>Coming Soon</span>
+          </p>
         </div>
       </div>
-    </section> -->
+    </section>
   </div>
 </template>
 
@@ -164,7 +177,7 @@ const contactDepts = [
 }
 
 .text-accent {
-  background: linear-gradient(to right, #6366F1, #F43F5E);
+  background: linear-gradient(to right, #6366f1, #f43f5e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -185,7 +198,7 @@ const contactDepts = [
 /* Sidebar / Desk */
 .desk-card {
   padding: 3.5rem;
-  background: #0F172A;
+  background: #0f172a;
   border-radius: 3rem;
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -270,7 +283,9 @@ const contactDepts = [
   margin-bottom: 1rem;
 }
 
-.loc-header i { color: var(--secondary); }
+.loc-header i {
+  color: var(--secondary);
+}
 
 .hq-location p {
   color: rgba(255, 255, 255, 0.5);
@@ -326,8 +341,8 @@ const contactDepts = [
   color: var(--text-main);
 }
 
-.input-group input, 
-.input-group select, 
+.input-group input,
+.input-group select,
 .input-group textarea {
   padding: 1rem 1.25rem;
   background: #f8fafc;
@@ -339,8 +354,8 @@ const contactDepts = [
   transition: all 0.3s ease;
 }
 
-.input-group input:focus, 
-.input-group select:focus, 
+.input-group input:focus,
+.input-group select:focus,
 .input-group textarea:focus {
   outline: none;
   border-color: var(--primary);
@@ -432,6 +447,8 @@ const contactDepts = [
     align-items: flex-start;
     gap: 0.5rem;
   }
-  .node-links .dot { display: none; }
+  .node-links .dot {
+    display: none;
+  }
 }
 </style>

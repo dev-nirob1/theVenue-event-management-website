@@ -1,26 +1,25 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import BaseButton from '../../zems/Front/Components/Widget/BaseButton.vue'
+import { ref, onMounted, onUnmounted } from "vue";
+import BaseButton from "../../zems/Front/Components/Widget/BaseButton.vue";
 
-
-const isScrolled = ref(false)
-const isMobileMenuOpen = ref(false)
+const isScrolled = ref(false);
+const isMobileMenuOpen = ref(false);
 
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > 20
-}
+  isScrolled.value = window.scrollY > 20;
+};
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-})
+  window.addEventListener("scroll", handleScroll);
+});
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
+  window.removeEventListener("scroll", handleScroll);
+});
 
 const toggleMobileMenu = () => {
-  isMobileMenuOpen.value = !isMobileMenuOpen.value
-}
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
+};
 </script>
 
 <template>
@@ -41,7 +40,9 @@ const toggleMobileMenu = () => {
       </ul>
 
       <div class="nav-actions">
-        <router-link to="/auth/login" class="login-link desktop-only">Login</router-link>
+        <router-link to="/auth/login" class="login-link desktop-only"
+          >Login</router-link
+        >
         <BaseButton size="md" class="desktop-only">Book Venue</BaseButton>
         <button class="mobile-toggle" @click="toggleMobileMenu">
           <span class="bar"></span>
@@ -53,15 +54,41 @@ const toggleMobileMenu = () => {
 
     <!-- Mobile Menu Overlay -->
     <transition name="fade">
-      <div v-if="isMobileMenuOpen" class="mobile-menu-overlay" @click="toggleMobileMenu">
+      <div
+        v-if="isMobileMenuOpen"
+        class="mobile-menu-overlay"
+        @click="toggleMobileMenu"
+      >
         <div class="mobile-menu glass" @click.stop>
           <ul class="mobile-nav-links">
-            <li><router-link to="/" @click="toggleMobileMenu">Home</router-link></li>
-            <li><router-link to="/rooms" @click="toggleMobileMenu">Venues</router-link></li>
-            <li><router-link to="/events" @click="toggleMobileMenu">Events</router-link></li>
-            <li><router-link to="/about" @click="toggleMobileMenu">About</router-link></li>
-            <li><router-link to="/contact" @click="toggleMobileMenu">Contact</router-link></li>
-            <li><router-link to="/auth/login" @click="toggleMobileMenu">Login</router-link></li>
+            <li>
+              <router-link to="/" @click="toggleMobileMenu">Home</router-link>
+            </li>
+            <li>
+              <router-link to="/rooms" @click="toggleMobileMenu"
+                >Venues</router-link
+              >
+            </li>
+            <li>
+              <router-link to="/events" @click="toggleMobileMenu"
+                >Events</router-link
+              >
+            </li>
+            <li>
+              <router-link to="/about" @click="toggleMobileMenu"
+                >About</router-link
+              >
+            </li>
+            <li>
+              <router-link to="/contact" @click="toggleMobileMenu"
+                >Contact</router-link
+              >
+            </li>
+            <li>
+              <router-link to="/auth/login" @click="toggleMobileMenu"
+                >Login</router-link
+              >
+            </li>
           </ul>
           <BaseButton class="full-width">Book Venue</BaseButton>
         </div>
@@ -156,7 +183,7 @@ const toggleMobileMenu = () => {
 }
 
 .nav-links a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
