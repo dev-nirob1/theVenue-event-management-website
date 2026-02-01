@@ -13,7 +13,7 @@ export const events = [
     description: 'A two-day immersive experience featuring the worlds leading innovators in AI, Robotics, and Sustainable Energy. Join 1,200 visionaries for keynote sessions and hands-on workshops.',
     ticketStatus: 'Available',
     price: 499,
-    image: 'https://images.unsplash.com/photo-1540575861501-7c001173a271?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop'
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ export const events = [
     description: 'High fashion meets high purpose. An exclusive black-tie event raised funds for global education initiatives, featuring a panoramic sky-view dinner and celebrity auctions.',
     ticketStatus: 'Waitlist',
     price: 1500,
-    image: 'https://images.unsplash.com/photo-1519671482749-fd09cc28c044?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=2069&auto=format&fit=crop'
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ export const events = [
     description: 'Discover the next generation of creative masters. A multi-room exhibition featuring interactive installations, digital art, and contemporary sculpture.',
     ticketStatus: 'Free Registration',
     price: 0,
-    image: 'https://images.unsplash.com/photo-1531058020387-3be344556ec6?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=2068&auto=format&fit=crop'
   },
   {
     id: 4,

@@ -1,28 +1,18 @@
 <script setup>
-import { ref, computed } from "vue";
-import { events } from "../data/events";
-import EventCard from "../Components/Widget/EventCard.vue";
+import { ref, computed, onMounted } from "vue";
+import { events } from "../../../data/events";
+import UpcomingEventCard from "../Components/Widget/UpcomingEventCard.vue";
 import PageHero from "../Components/Widget/PageHero.vue";
 import AppCTA from "../Components/Section/AppCTA.vue";
 
-const searchQuery = ref("");
-const selectedCategory = ref("All");
 const selectedTimeFrame = ref("upcoming"); // upcoming, past
 
-const categories = ["All", "Technology", "Social", "Art", "Music", "Business"];
-
 const filteredEvents = computed(() => {
-  return events.filter((event) => {
-    const matchesSearch =
-      event.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-      event.organizer.toLowerCase().includes(searchQuery.value.toLowerCase());
-    const matchesCategory =
-      selectedCategory.value === "All" ||
-      event.category === selectedCategory.value;
-    const matchesTime = event.type === selectedTimeFrame.value;
+  return events.filter((event) => event.type === selectedTimeFrame.value);
+});
 
-    return matchesSearch && matchesCategory && matchesTime;
-  });
+onMounted(() => {
+  window.scrollTo(0, 0);
 });
 </script>
 
@@ -30,282 +20,229 @@ const filteredEvents = computed(() => {
   <div class="events-page">
     <PageHero
       title="Extraordinary Moments <br/> In Motion"
-      subtitle="Curated Experiences"
-      image="https://images.unsplash.com/photo-1540575861501-7ad058211a37?q=80&w=2070&auto=format&fit=crop"
+      subtitle="The Event Gallery"
+      image="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop"
     />
 
-    <div class="container filters-section">
-      <div class="filters-layout glass">
-        <!-- Search & Category (Top Row) -->
-        <div class="filters-main">
-          <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input
-              type="text"
-              v-model="searchQuery"
-              placeholder="Search events or organizers..."
-            />
-          </div>
+    <!-- Ultra-Premium Cinematic Tabs -->
+    <div class="container tabs-lockup">
+      <div class="luxury-dock glass">
+        <!-- Sliding Indicator -->
+        <div class="active-slide" :class="selectedTimeFrame"></div>
 
-          <div class="time-toggle">
-            <button
-              @click="selectedTimeFrame = 'upcoming'"
-              :class="[
-                'time-btn',
-                { active: selectedTimeFrame === 'upcoming' },
-              ]"
-            >
-              Upcoming
-            </button>
-            <button
-              @click="selectedTimeFrame = 'past'"
-              :class="['time-btn', { active: selectedTimeFrame === 'past' }]"
-            >
-              Past
-            </button>
-          </div>
-        </div>
+        <button
+          @click="selectedTimeFrame = 'upcoming'"
+          :class="['dock-link', { active: selectedTimeFrame === 'upcoming' }]"
+        >
+          <span class="link-label">Upcoming</span>
+          <span class="link-count">{{
+            events.filter((e) => e.type === "upcoming").length
+          }}</span>
+        </button>
 
-        <!-- Categories (Bottom Row) -->
-        <div class="category-strip">
-          <button
-            v-for="cat in categories"
-            :key="cat"
-            @click="selectedCategory = cat"
-            :class="['cat-pill', { active: selectedCategory === cat }]"
-          >
-            {{ cat }}
-          </button>
-        </div>
+        <button
+          @click="selectedTimeFrame = 'past'"
+          :class="['dock-link', { active: selectedTimeFrame === 'past' }]"
+        >
+          <span class="link-label">Past</span>
+          <span class="link-count">{{
+            events.filter((e) => e.type === "past").length
+          }}</span>
+        </button>
       </div>
     </div>
 
-    <div class="results-section container">
-      <div class="results-meta">
+    <!-- Architectural List Section -->
+    <div class="container events-gallery">
+      <div v-if="filteredEvents.length > 0" class="vertical-stack">
+        <transition-group name="fade-slide">
+          <UpcomingEventCard
+            v-for="(event, idx) in filteredEvents"
+            :key="event.id"
+            :event="event"
+            class="gallery-item"
+            :style="{ '--delay': idx * 0.15 + 's' }"
+          />
+        </transition-group>
+      </div>
+
+      <!-- Empty Architecture -->
+      <div v-else class="gallery-empty glass">
+        <div class="empty-symbol"><i class="fas fa-calendar-alt"></i></div>
+        <h3>Curated Selection Pending</h3>
         <p>
-          Showing <strong>{{ filteredEvents.length }}</strong> events found
+          Our upcoming calendar is being meticulously refined. Please check back
+          for our next unveiling.
         </p>
       </div>
-
-      <div v-if="filteredEvents.length > 0" class="events-grid">
-        <EventCard
-          v-for="event in filteredEvents"
-          :key="event.id"
-          :event="event"
-          variant="medium"
-        />
-      </div>
-
-      <div v-else class="no-results glass">
-        <div class="no-results-content">
-          <i class="fas fa-calendar-times"></i>
-          <h3>No events found</h3>
-          <p>
-            Try adjusting your search query or switching between Upcoming and
-            Past events.
-          </p>
-          <button
-            @click="
-              searchQuery = '';
-              selectedCategory = 'All';
-            "
-            class="reset-btn"
-          >
-            Clear All Filters
-          </button>
-        </div>
-      </div>
     </div>
+
+    <!-- Final CTA -->
+    <AppCTA />
   </div>
 </template>
 
 <style scoped>
 .events-page {
-  padding-bottom: 8rem;
+  padding-bottom: 0;
 }
 
-.filters-section {
-  margin-top: -3rem;
+/* Luxury Tab Dock */
+.tabs-lockup {
+  display: flex;
+  justify-content: center;
   position: relative;
-  z-index: 10;
+  z-index: 100;
+  margin-bottom: 2.5rem;
 }
 
-.filters-layout {
-  padding: 2.5rem;
-  border-radius: 2.5rem;
-  background: white;
-  border: 1px solid var(--border);
-  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.08);
-}
-
-.filters-main {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.search-box {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background: var(--background);
-  padding: 1rem 1.5rem;
-  border-radius: 1.5rem;
-  border: 1px solid var(--border);
-  transition: all 0.3s ease;
-}
-
-.search-box:focus-within {
-  border-color: var(--primary);
-  background: white;
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
-}
-
-.search-box i {
-  color: #94a3b8;
-  font-size: 1.125rem;
-}
-
-.search-box input {
-  border: none;
-  background: transparent;
-  width: 100%;
-  font-size: 1.125rem;
-  font-weight: 500;
-  outline: none;
-}
-
-.time-toggle {
-  display: flex;
-  background: var(--background);
+.luxury-dock {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(25px) saturate(180%);
   padding: 0.5rem;
-  border-radius: 2rem;
-  border: 1px solid var(--border);
-}
-
-.time-btn {
-  padding: 0.75rem 1.75rem;
-  border-radius: 1.5rem;
-  font-weight: 800;
-  font-size: 0.9rem;
-  border: none;
-  cursor: pointer;
-  background: transparent;
-  color: var(--text-muted);
-  transition: all 0.3s ease;
-}
-
-.time-btn.active {
-  background: white;
-  color: var(--primary);
-  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
-}
-
-.category-strip {
+  border-radius: 100px;
   display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+  gap: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 30px 60px -12px rgba(15, 23, 42, 0.12),
+    0 18px 36px -18px rgba(15, 23, 42, 0.1);
+  position: relative;
+  min-width: 420px;
 }
 
-.cat-pill {
-  padding: 0.6rem 1.25rem;
-  border-radius: 3rem;
-  background: white;
-  border: 1px solid var(--border);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text-muted);
+.dock-link {
+  flex: 1;
+  padding: 1.15rem 2.5rem;
+  border: none;
+  background: transparent;
   cursor: pointer;
-  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.cat-pill:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-}
-
-.cat-pill.active {
-  background: var(--primary);
-  color: white;
-  border-color: var(--primary);
-}
-
-.results-section {
-  margin-top: 4rem;
-}
-
-.results-meta {
-  margin-bottom: 2rem;
+.link-label {
+  font-weight: 900;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
   color: var(--text-muted);
+  transition: all 0.4s ease;
 }
 
-.events-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 2.5rem;
+.dock-link.active .link-label {
+  color: var(--text-main);
 }
 
-.no-results {
-  padding: 6rem 2rem;
+.link-count {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  background: rgba(15, 23, 42, 0.05);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  transition: all 0.4s ease;
+}
+
+.dock-link.active .link-count {
+  background: rgba(255, 255, 255, 0.3);
+  color: var(--text-main);
+}
+
+/* Sliding Background */
+.active-slide {
+  position: absolute;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: calc(50% - 0.75rem);
+  background: white;
+  border-radius: 100px;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+  transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: 1;
+}
+
+.active-slide.past {
+  transform: translateX(calc(100% + 0.5rem));
+}
+
+.vertical-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1050px;
+  margin: 0 auto;
+  margin-bottom: 4rem;
+}
+
+.gallery-item {
+  width: 100%;
+}
+
+/* Animations */
+.fade-slide-enter-active {
+  transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+  transition-delay: var(--delay);
+}
+
+.fade-slide-enter-from {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* Empty State */
+.gallery-empty {
+  padding: 10rem 2rem;
   text-align: center;
   background: white;
-  border-radius: 3rem;
+  border-radius: 4rem;
   border: 1px dashed var(--border);
 }
 
-.no-results-content i {
-  font-size: 4rem;
+.empty-symbol {
+  font-size: 3.5rem;
   color: #e2e8f0;
+  margin-bottom: 2.5rem;
+}
+
+.gallery-empty h3 {
+  font-size: 2.5rem;
+  font-weight: 950;
+  color: var(--text-main);
+  letter-spacing: -0.03em;
   margin-bottom: 1.5rem;
 }
 
-.no-results-content h3 {
-  font-size: 1.75rem;
-  font-weight: 900;
-  color: var(--text-main);
-  margin-bottom: 1rem;
-}
-
-.no-results-content p {
+.gallery-empty p {
   color: var(--text-muted);
-  margin-bottom: 2rem;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.reset-btn {
-  padding: 1rem 2rem;
-  background: var(--background);
-  border: 2px solid var(--border);
-  border-radius: 3rem;
-  font-weight: 800;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.reset-btn:hover {
-  background: var(--text-main);
-  color: white;
-  border-color: var(--text-main);
+  font-size: 1.15rem;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.8;
 }
 
 @media (max-width: 768px) {
-  .filters-layout {
-    padding: 1.5rem;
+  .luxury-dock {
+    min-width: 100%;
+    border-radius: 2.5rem;
   }
-  .filters-main {
-    flex-direction: column;
-    align-items: stretch;
+  .active-slide {
+    display: none;
   }
-  .events-grid {
-    grid-template-columns: 1fr;
+  .dock-link.active {
+    background: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
   }
-}
-.page-padding {
-  padding-top: 6rem;
+  .events-gallery {
+    margin-top: 6rem;
+  }
+  .vertical-stack {
+    gap: 2.5rem;
+  }
 }
 </style>

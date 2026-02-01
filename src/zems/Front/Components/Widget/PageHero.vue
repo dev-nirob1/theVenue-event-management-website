@@ -66,7 +66,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  margin-bottom: 8rem;
+  margin-bottom: 4rem;
   background: #0f172a;
 }
 
