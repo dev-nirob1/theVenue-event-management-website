@@ -5,6 +5,7 @@ import VisionSection from "../Components/Section/VisionSection.vue";
 import FeaturedSpaces from "../Components/Section/FeaturedSpaces.vue";
 import PremiumFacilities from "../Components/Section/PremiumFacilities.vue";
 import UpcomingEvents from "../Components/Section/UpcomingEvents.vue";
+import Testimonials from "../Components/Section/Testimonials.vue";
 import AppCTA from "../Components/Section/AppCTA.vue";
 </script>
 
@@ -25,19 +26,12 @@ import AppCTA from "../Components/Section/AppCTA.vue";
     <!-- Upcoming Events -->
     <UpcomingEvents />
 
+    <!-- Testimonials -->
+    <Testimonials />
+
     <!-- Final CTA -->
-    <AppCTA class="overlap-footer" />
+    <AppCTA />
   </div>
 </template>
 
-<style scoped>
-.home-page {
-  margin-top: -5rem;
-}
-
-.overlap-footer {
-  margin-bottom: -15rem; /* Overlap amount */
-  position: relative;
-  z-index: 50;
-}
-</style>
+<style scoped></style>

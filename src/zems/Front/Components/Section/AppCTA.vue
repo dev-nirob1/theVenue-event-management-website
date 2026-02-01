@@ -15,7 +15,7 @@ import BaseButton from "../Widget/BaseButton.vue";
           </p>
         </div>
         <div class="cta-btns">
-          <RouterLink to="/events">
+          <RouterLink to="/rooms">
             <BaseButton variant="primary" size="lg">Explore Venues</BaseButton>
           </RouterLink>
           <RouterLink to="/contact" class="secondary-btn">
@@ -29,30 +29,39 @@ import BaseButton from "../Widget/BaseButton.vue";
 
 <style scoped>
 .app-cta {
-  padding: 5rem 0;
+  padding: 3rem 0;
   position: relative;
-  z-index: 10;
-  background: #0f172a;
-  margin-bottom: 3rem;
+  z-index: 100;
+  margin-bottom: -7rem; /* This creates the overlap with the footer */
 }
 
 .cta-inner {
-  padding: 2rem;
+  padding: 4rem 3rem;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-radius: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.cta-text {
+  flex: 1;
+  min-width: 300px; /* Prevent text from squashing too much */
+  margin-right: 2rem;
 }
 
 .cta-text h2 {
-  font-size: 3rem;
+  font-size: 2.75rem;
   font-weight: 900;
   color: white;
   margin-bottom: 1rem;
 }
 
 .cta-text p {
-  font-size: 1.125rem;
+  font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.6);
 }
 
@@ -60,7 +69,8 @@ import BaseButton from "../Widget/BaseButton.vue";
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
+  flex-shrink: 0;
 }
 
 .secondary-btn {
@@ -85,14 +95,14 @@ import BaseButton from "../Widget/BaseButton.vue";
 @media (max-width: 768px) {
   .cta-inner {
     flex-direction: column;
-    gap: 2rem;
-    padding: 2rem 0;
+    align-items: center;
+    text-align: center;
   }
   .app-cta {
     padding: 3rem 0;
   }
   .cta-text h2 {
-    font-size: 2.25rem;
+    font-size: 2rem;
   }
 }
 </style>

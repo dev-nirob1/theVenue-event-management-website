@@ -1,5 +1,4 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
   <footer class="main-footer">
@@ -11,12 +10,20 @@
           <span class="logo-text">The<span class="accent">Venue</span></span>
         </router-link>
         <p class="brand-desc">
-          London's premier destination for world-class conventions, exhibitions, and gala events. Where architectural grandeur meets state-of-the-art technology.
+          London's premier destination for world-class conventions, exhibitions,
+          and gala events. Where architectural grandeur meets state-of-the-art
+          technology.
         </p>
         <div class="social-links">
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" aria-label="LinkedIn"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <a href="#" aria-label="Facebook"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
           <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
         </div>
       </div>
@@ -45,7 +52,10 @@
       <!-- Contact Info -->
       <div class="footer-contact">
         <h4>Find Us</h4>
-        <p><i class="fas fa-map-marker-alt"></i> 124 Event Pl, Royal Docks, London E16 1XL, UK</p>
+        <p>
+          <i class="fas fa-map-marker-alt"></i> 124 Event Pl, Royal Docks,
+          London E16 1XL, UK
+        </p>
         <p><i class="fas fa-phone"></i> +44 20 7946 0000</p>
         <p><i class="fas fa-envelope"></i> bookings@thevenue.com</p>
         <div class="opening-hours">
@@ -66,19 +76,22 @@
 
 <style scoped>
 .main-footer {
-  background: #0F172A;
+  background: #0f172a;
   color: white;
-  padding: 8rem 0 2rem;
-  margin-top: 4rem;
+  padding: 8rem 0 2rem 0;
+  margin-top: 0;
   position: relative;
   overflow: hidden;
+}
+.main-footer h4 {
+  color: var(--white-color);
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1.5fr;
   gap: 4rem;
-  margin-bottom: 6rem;
+  margin-bottom: 3rem;
 }
 
 /* Brand Section */
@@ -94,7 +107,7 @@
 }
 
 .brand-desc {
-  color: #94A3B8;
+  color: #94a3b8;
   line-height: 1.7;
   margin-bottom: 2.5rem;
   max-width: 400px;
@@ -135,7 +148,7 @@ h4 {
 }
 
 h4::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -152,7 +165,7 @@ ul {
 }
 
 ul a {
-  color: #94A3B8;
+  color: #94a3b8;
   transition: all 0.3s ease;
   display: inline-block;
 }
@@ -164,7 +177,7 @@ ul a:hover {
 
 /* Contact Section */
 .footer-contact p {
-  color: #94A3B8;
+  color: #94a3b8;
   margin-bottom: 1.25rem;
   display: flex;
   gap: 1rem;
@@ -185,11 +198,11 @@ ul a:hover {
 /* Bottom Bar */
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 2.5rem;
+  padding-top: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #64748B;
+  color: #64748b;
   font-size: 0.95rem;
 }
 
@@ -199,7 +212,7 @@ ul a:hover {
 }
 
 .bottom-links a {
-  color: #64748B;
+  color: #64748b;
   transition: color 0.3s;
 }
 
@@ -219,8 +232,10 @@ ul a:hover {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-  
-  .footer-brand, .footer-nav, .footer-contact {
+
+  .footer-brand,
+  .footer-nav,
+  .footer-contact {
     text-align: center;
   }
 
