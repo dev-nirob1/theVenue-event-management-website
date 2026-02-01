@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import SectionHeader from "../Widget/SectionHeader.vue";
-import EventCard from "../Widget/EventCard.vue";
+import VenueCard from "../Widget/VenueCard.vue";
 
 const featuredHalls = ref([
   {
@@ -92,7 +92,7 @@ const featuredHalls = ref([
 
       <div class="medium-2 large-3 gap-2">
         <div v-for="(hall, index) in featuredHalls" :key="hall.id">
-          <EventCard :event="hall" variant="medium" />
+          <VenueCard :venue="hall" variant="medium" />
         </div>
       </div>
     </div>

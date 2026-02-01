@@ -4,7 +4,7 @@ import HeroSlider from "../Components/Section/HeroSlider.vue";
 import VisionSection from "../Components/Section/VisionSection.vue";
 import FeaturedSpaces from "../Components/Section/FeaturedSpaces.vue";
 import PremiumFacilities from "../Components/Section/PremiumFacilities.vue";
-// import UpcomingEvents from '../Components/Section/UpcomingEvents.vue'
+import UpcomingEvents from "../Components/Section/UpcomingEvents.vue";
 // import HomeCTA from '../Components/Section/HomeCTA.vue'
 </script>
 
@@ -23,7 +23,7 @@ import PremiumFacilities from "../Components/Section/PremiumFacilities.vue";
     <PremiumFacilities />
 
     <!-- Upcoming Events -->
-    <!-- <UpcomingEvents /> -->
+    <UpcomingEvents />
 
     <!-- Final CTA -->
     <!-- <HomeCTA /> -->

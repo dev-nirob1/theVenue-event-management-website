@@ -20,9 +20,6 @@ defineProps({
 </template>
 
 <style>
-.section-header {
-  max-width: 700px;
-}
 .section-header .sub-title {
   display: inline-block;
   padding: 0.25rem 1rem;

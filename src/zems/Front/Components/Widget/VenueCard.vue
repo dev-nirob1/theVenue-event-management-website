@@ -4,7 +4,7 @@ import BaseImage from "../../../../components/element/BaseImage.vue";
 import SubTitle from "../../../../components/element/SubTitle.vue";
 
 defineProps({
-  event: {
+  venue: {
     type: Object,
     required: true,
   },
@@ -16,55 +16,43 @@ defineProps({
 </script>
 
 <template>
-  <div class="event-card group">
+  <div class="venue-card group">
     <div class="image-wrapper">
-      <BaseImage :image="event.image" :alt="event.title" class="card-image" />
+      <BaseImage :image="venue.image" :alt="venue.title" class="card-image" />
 
       <!-- Overlays -->
-      <div v-if="event.category" class="category-badge">
-        {{ event.category }}
-      </div>
-      <div
-        v-if="event.ticketStatus"
-        :class="[
-          'status-badge',
-          event.ticketStatus.toLowerCase().replace(' ', '-'),
-        ]"
-      >
-        {{ event.ticketStatus }}
+      <div v-if="venue.category" class="category-badge">
+        {{ venue.category }}
       </div>
     </div>
 
     <div class="content">
       <div class="header mb-1">
-        <span v-if="event.organizer" class="organizer">{{
-          event.organizer
+        <span v-if="venue.location" class="location-tag">{{
+          venue.location
         }}</span>
-        <SubTitle class="title">{{ event.title }}</SubTitle>
+        <SubTitle class="title">{{ venue.title }}</SubTitle>
       </div>
 
       <div class="meta-info">
         <div class="meta-item">
-          <i class="far fa-calendar-alt icon"></i>
-          <span>{{ event.date || event.displayDate }}</span>
-        </div>
-        <div class="meta-item">
-          <i class="fas fa-map-marker-alt icon"></i>
-          <span>{{ event.location }}</span>
+          <i class="fas fa-users icon"></i>
+          <span>{{ venue.date }}</span>
+          <!-- Capacity -->
         </div>
       </div>
 
       <div class="card-footer">
         <div class="price-block">
-          <span class="price-label">Tickets from</span>
-          <span class="price-value" v-if="event.price > 0"
-            >${{ event.price }}</span
+          <span class="price-label">Starting from</span>
+          <span class="price-value" v-if="venue.price > 0"
+            >${{ venue.price }}</span
           >
-          <span class="price-value free" v-else>FREE</span>
+          <span class="price-value free" v-else>Contact Us</span>
         </div>
 
-        <RouterLink :to="`/events/${event.slug}`" class="details-btn">
-          <span>Details</span>
+        <RouterLink to="/contact" class="details-btn">
+          <span>Book Now</span>
           <i class="fas fa-arrow-right"></i>
         </RouterLink>
       </div>
@@ -73,7 +61,7 @@ defineProps({
 </template>
 
 <style scoped>
-.event-card {
+.venue-card {
   background: var(--surface);
   border-radius: 1rem;
   box-shadow: var(--shadow-sm);
@@ -85,7 +73,7 @@ defineProps({
   border: 1px solid var(--border);
 }
 
-.event-card:hover {
+.venue-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
   border-color: var(--primary);
@@ -104,7 +92,7 @@ defineProps({
   transition: transform 0.5s ease;
 }
 
-.event-card:hover .card-image {
+.venue-card:hover .card-image {
   transform: scale(1.05);
 }
 
@@ -123,29 +111,6 @@ defineProps({
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.status-badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.25rem 0.75rem;
-  border-radius: 2rem;
-  font-size: 0.7rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: white;
-  background: var(--text-muted); /* Fallback */
-}
-
-.status-badge.available {
-  background: #10b981;
-}
-.status-badge.selling-fast {
-  background: #f59e0b;
-}
-.status-badge.sold-out {
-  background: #ef4444;
-}
-
 .content {
   padding: 1.25rem;
   flex-grow: 1;
@@ -153,7 +118,7 @@ defineProps({
   flex-direction: column;
 }
 
-.organizer {
+.location-tag {
   display: block;
   font-size: 0.75rem;
   color: var(--primary);
