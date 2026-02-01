@@ -1,251 +1,238 @@
 <script setup>
+import { RouterLink } from "vue-router";
+import BaseImage from "../../../../components/element/BaseImage.vue";
+import SubTitle from "../../../../components/element/SubTitle.vue";
+
 defineProps({
   event: {
     type: Object,
-    required: true
+    required: true,
   },
   variant: {
     type: String,
-    default: 'medium' // large, medium, small
-  }
-})
+    default: "medium", // large, medium, small
+  },
+});
 </script>
 
 <template>
-  <div :class="['modern-event-card', `variant-${variant}`]">
-    <!-- Image Section -->
-    <div class="card-media">
-      <img 
-        :src="event.image || 'https://images.unsplash.com/photo-1540575861501-7c001173a271?q=80&w=2070&auto=format&fit=crop'" 
-        :alt="event.title" 
-        class="card-img"
-        @error="(e) => (e.target.src = 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=2070&auto=format&fit=crop')"
+  <div class="event-card group">
+    <div class="image-wrapper">
+      <BaseImage :image="event.image" :alt="event.title" class="card-image" />
+
+      <!-- Overlays -->
+      <div v-if="event.category" class="category-badge">
+        {{ event.category }}
+      </div>
+      <div
+        v-if="event.ticketStatus"
+        :class="[
+          'status-badge',
+          event.ticketStatus.toLowerCase().replace(' ', '-'),
+        ]"
       >
-      <div class="category-tag">{{ event.category }}</div>
-      <div v-if="event.ticketStatus" :class="['status-pill', event.ticketStatus.toLowerCase().replace(' ', '-')]">
         {{ event.ticketStatus }}
       </div>
     </div>
 
-    <!-- Content Section -->
-    <div class="card-content">
-      <div class="content-header">
-        <span class="org-name">{{ event.organizer }}</span>
-        <h3 class="event-title">{{ event.title }}</h3>
+    <div class="content">
+      <div class="header mb-1">
+        <span v-if="event.organizer" class="organizer">{{
+          event.organizer
+        }}</span>
+        <SubTitle class="title">{{ event.title }}</SubTitle>
       </div>
-      
-      <div class="event-metadata">
-        <div class="meta-node">
-          <i class="far fa-calendar-alt"></i>
-          <span>{{ event.displayDate }}</span>
+
+      <div class="meta-info">
+        <div class="meta-item">
+          <i class="far fa-calendar-alt icon"></i>
+          <span>{{ event.date || event.displayDate }}</span>
         </div>
-        <div class="meta-node">
-          <i class="fas fa-map-marker-alt"></i>
+        <div class="meta-item">
+          <i class="fas fa-map-marker-alt icon"></i>
           <span>{{ event.location }}</span>
         </div>
       </div>
 
-      <div class="card-divider"></div>
-
-      <div class="content-footer">
+      <div class="card-footer">
         <div class="price-block">
           <span class="price-label">Tickets from</span>
-          <span class="price-value" v-if="event.price > 0">${{ event.price }}</span>
+          <span class="price-value" v-if="event.price > 0"
+            >${{ event.price }}</span
+          >
           <span class="price-value free" v-else>FREE</span>
         </div>
-        
-        <router-link :to="`/events/${event.slug}`" class="action-btn">
+
+        <RouterLink :to="`/events/${event.slug}`" class="details-btn">
           <span>Details</span>
           <i class="fas fa-arrow-right"></i>
-        </router-link>
+        </RouterLink>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.modern-event-card {
-  background: white;
-  border-radius: 2rem;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+.event-card {
+  background: var(--surface);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--border);
 }
 
-.modern-event-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 30px 60px -15px rgba(0,0,0,0.1);
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
   border-color: var(--primary);
 }
 
-/* Media Section */
-.card-media {
+.image-wrapper {
   position: relative;
-  height: 240px;
   overflow: hidden;
+  aspect-ratio: 4/3;
 }
 
-.card-img {
+.card-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.5s ease;
 }
 
-.modern-event-card:hover .card-img {
+.event-card:hover .card-image {
   transform: scale(1.05);
 }
 
-.category-tag {
+/* Badges */
+.category-badge {
   position: absolute;
-  top: 1.25rem;
-  left: 1.25rem;
-  padding: 0.5rem 1rem;
-  background: white;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.25rem 0.75rem;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
   color: var(--text-main);
-  border-radius: 3rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 2rem;
   font-size: 0.7rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.status-pill {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  padding: 0.5rem 1rem;
-  border-radius: 3rem;
-  font-size: 0.65rem;
-  font-weight: 900;
-  text-transform: uppercase;
   color: white;
+  background: var(--text-muted); /* Fallback */
 }
 
-.status-pill.available { background: #10B981; }
-.status-pill.waitlist { background: #F59E0B; }
-.status-pill.completed { background: #64748B; }
+.status-badge.available {
+  background: #10b981;
+}
+.status-badge.selling-fast {
+  background: #f59e0b;
+}
+.status-badge.sold-out {
+  background: #ef4444;
+}
 
-/* Content Section */
-.card-content {
-  padding: 2rem;
+.content {
+  padding: 1.25rem;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
-.org-name {
+.organizer {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--primary);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.75rem;
-}
-
-.event-title {
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: var(--text-main);
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  line-clamp: 2;
-  overflow: hidden;
-}
-
-.event-metadata {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-}
-
-.meta-node {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.meta-node i {
-  color: var(--primary);
-  width: 16px;
-}
-
-.card-divider {
-  height: 1px;
-  background: var(--border);
-  margin-bottom: 1.5rem;
-  margin-top: auto;
-}
-
-.content-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.price-label {
-  display: block;
-  font-size: 0.7rem;
-  color: var(--text-muted);
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
   margin-bottom: 0.25rem;
 }
 
+.title {
+  font-size: 1.25rem !important; /* Override if needed */
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.meta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.meta-item .icon {
+  color: var(--primary);
+  width: 16px;
+  text-align: center;
+}
+
+.card-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+.price-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
 .price-value {
-  font-size: 1.5rem;
-  font-weight: 950;
+  font-size: 1.25rem;
+  font-weight: 700;
   color: var(--text-main);
 }
 
 .price-value.free {
-  color: #10B981;
+  color: #10b981;
 }
 
-.action-btn {
+.details-btn {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  color: var(--primary);
-  font-weight: 800;
+  gap: 0.5rem;
+  color: var(--text-main); /* Default text color */
+  font-weight: 600;
+  font-size: 0.9rem;
   transition: all 0.3s ease;
 }
 
-.action-btn:hover {
-  gap: 1.25rem;
-}
-
-/* Variant Tweaks */
-.variant-large {
-  flex-direction: row;
-  min-height: 350px;
-}
-
-.variant-large .card-media {
-  width: 40%;
-  height: 100%;
-}
-
-.variant-large .card-content {
-  width: 60%;
-  overflow: hidden;
-}
-
-@media (max-width: 768px) {
-  .variant-large { flex-direction: column; }
-  .variant-large .card-media { width: 100%; height: 240px; }
-  .variant-large .card-content { width: 100%; }
+.details-btn:hover {
+  color: var(--primary);
+  gap: 0.75rem;
 }
 </style>

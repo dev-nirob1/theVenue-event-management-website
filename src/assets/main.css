@@ -304,7 +304,7 @@ ul {
 @media (min-width: 1200px) {
   :root {
     --heading-2: 2.5rem;
-    --heading-3: 3.5rem;
+    --heading-3: 3rem;
   }
 }
 

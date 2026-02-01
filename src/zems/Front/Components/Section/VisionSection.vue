@@ -81,7 +81,7 @@ import SectionHeader from "../Widget/SectionHeader.vue";
 
 <style scoped>
 .vision-section {
-  padding: 3.75rem 0;
+  padding: 3.75rem 0 4.75rem 0;
   position: relative;
 }
 

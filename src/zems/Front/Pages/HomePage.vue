@@ -2,7 +2,7 @@
 // import HeroSection from '../Components/Section/HeroSection.vue';
 import HeroSlider from "../Components/Section/HeroSlider.vue";
 import VisionSection from "../Components/Section/VisionSection.vue";
-// import FeaturedSpaces from '../Components/Section/FeaturedSpaces.vue'
+import FeaturedSpaces from "../Components/Section/FeaturedSpaces.vue";
 // import PremiumFacilities from '../Components/Section/PremiumFacilities.vue'
 // import UpcomingEvents from '../Components/Section/UpcomingEvents.vue'
 // import HomeCTA from '../Components/Section/HomeCTA.vue'
@@ -17,7 +17,7 @@ import VisionSection from "../Components/Section/VisionSection.vue";
     <VisionSection />
 
     <!-- Featured Venue Spaces -->
-    <!-- <FeaturedSpaces /> -->
+    <FeaturedSpaces />
 
     <!-- Premium Facilities -->
     <!-- <PremiumFacilities /> -->
