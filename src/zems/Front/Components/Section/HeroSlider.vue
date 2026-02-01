@@ -1,75 +1,95 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import BaseButton from '../Widget/BaseButton.vue'
+import { ref, onMounted, onUnmounted } from "vue";
+import BaseButton from "../Widget/BaseButton.vue";
 
 const slides = [
   {
     id: 1,
-    title: 'Grand Ballroom & <br/><span class="text-gradient">Royal Suites</span>',
-    subtitle: 'Where architectural grandeur meets world-class hospitality for the most prestigious global summits.',
-    image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop',
-    align: 'left'
+    title:
+      'Grand Ballroom & <br/><span class="text-gradient">Royal Suites</span>',
+    subtitle:
+      "Where architectural grandeur meets world-class hospitality for the most prestigious global summits.",
+    image:
+      "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop",
+    align: "left",
   },
   {
     id: 2,
-    title: 'Sky Pavilion <br/><span class="text-gradient">Rooftop Lounge</span>',
-    subtitle: 'A cinematic glass-walled ecosystem suspended above the city skyline, perfect for high-end product launches.',
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop',
-    align: 'left'
+    title:
+      'Sky Pavilion <br/><span class="text-gradient">Rooftop Lounge</span>',
+    subtitle:
+      "A cinematic glass-walled ecosystem suspended above the city skyline, perfect for high-end product launches.",
+    image:
+      "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop",
+    align: "left",
   },
   {
     id: 3,
-    title: 'Industrial Hall <br/><span class="text-gradient">Exhibition Wing</span>',
-    subtitle: 'Vast, RAW, and versatile. A 15,000 sq ft canvas built for massive tech exhibitions and automotive shows.',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop',
-    align: 'left'
-  }
-]
+    title:
+      'Industrial Hall <br/><span class="text-gradient">Exhibition Wing</span>',
+    subtitle:
+      "Vast, RAW, and versatile. A 15,000 sq ft canvas built for massive tech exhibitions and automotive shows.",
+    image:
+      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop",
+    align: "left",
+  },
+];
 
-const currentSlide = ref(0)
-const slideInterval = ref(null)
+const currentSlide = ref(0);
+const slideInterval = ref(null);
 
 const nextSlide = () => {
-  currentSlide.value = (currentSlide.value + 1) % slides.length
-}
+  currentSlide.value = (currentSlide.value + 1) % slides.length;
+};
 
 const prevSlide = () => {
-  currentSlide.value = (currentSlide.value - 1 + slides.length) % slides.length
-}
+  currentSlide.value = (currentSlide.value - 1 + slides.length) % slides.length;
+};
 
 const startAutoplay = () => {
-  slideInterval.value = setInterval(nextSlide, 5000)
-}
+  slideInterval.value = setInterval(nextSlide, 5000);
+};
 
 const stopAutoplay = () => {
-  if (slideInterval.value) clearInterval(slideInterval.value)
-}
+  if (slideInterval.value) clearInterval(slideInterval.value);
+};
 
 onMounted(() => {
-  startAutoplay()
-})
+  startAutoplay();
+});
 
 onUnmounted(() => {
-  stopAutoplay()
-})
+  stopAutoplay();
+});
 </script>
 
 <template>
-  <section class="hero-slider" @mouseenter="stopAutoplay" @mouseleave="startAutoplay">
+  <section
+    class="hero-slider"
+    @mouseenter="stopAutoplay"
+    @mouseleave="startAutoplay"
+  >
     <div class="slides-container">
-      <div 
-        v-for="(slide, index) in slides" 
+      <div
+        v-for="(slide, index) in slides"
         :key="slide.id"
         :class="['slide', { active: currentSlide === index }]"
       >
         <!-- Background with slow zoom -->
         <div class="image-wrapper">
-          <img 
-            :src="slide.image || 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop'" 
-            :alt="slide.title" 
+          <img
+            :src="
+              slide.image ||
+              'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop'
+            "
+            :alt="slide.title"
             class="slide-image"
-            @error="(e) => (e.target.src = 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop')"
-          >
+            @error="
+              (e) =>
+                (e.target.src =
+                  'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop')
+            "
+          />
           <div class="overlay"></div>
         </div>
 
@@ -79,8 +99,15 @@ onUnmounted(() => {
               <h1 class="slide-title" v-html="slide.title"></h1>
               <p class="slide-subtitle-bottom">{{ slide.subtitle }}</p>
               <div class="slide-actions">
-                <BaseButton variant="primary" size="lg" class="btn-cinema">Book Venue</BaseButton>
-                <BaseButton variant="outline" size="lg" class="btn-cinema-outline">Virtual Tour</BaseButton>
+                <BaseButton variant="primary" size="lg" class="btn-cinema"
+                  >Book Venue</BaseButton
+                >
+                <BaseButton
+                  variant="outline"
+                  size="lg"
+                  class="btn-cinema-outline"
+                  >Virtual Tour</BaseButton
+                >
               </div>
             </div>
           </div>
@@ -89,13 +116,17 @@ onUnmounted(() => {
     </div>
 
     <!-- Minimalist Navigation -->
-    <button class="nav-btn prev" @click="prevSlide"><i class="fas fa-chevron-left"></i></button>
-    <button class="nav-btn next" @click="nextSlide"><i class="fas fa-chevron-right"></i></button>
+    <button class="nav-btn prev" @click="prevSlide">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="nav-btn next" @click="nextSlide">
+      <i class="fas fa-chevron-right"></i>
+    </button>
 
     <!-- Slide Indicators -->
     <div class="indicators">
-      <button 
-        v-for="(_, index) in slides" 
+      <button
+        v-for="(_, index) in slides"
         :key="index"
         :class="['indicator', { active: currentSlide === index }]"
         @click="currentSlide = index"
@@ -154,13 +185,23 @@ onUnmounted(() => {
 .overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, transparent 0%, rgba(15, 23, 42, 0.4) 100%),
-              linear-gradient(to right, rgba(15, 23, 42, 0.6) 0%, transparent 60%);
+  background:
+    radial-gradient(
+      circle at center,
+      transparent 0%,
+      rgba(15, 23, 42, 0.4) 100%
+    ),
+    linear-gradient(to right, rgba(15, 23, 42, 0.6) 0%, transparent 60%);
 }
 
 .slide.active .overlay {
-  background: radial-gradient(circle at center, transparent 0%, rgba(15, 23, 42, 0.4) 110%),
-              linear-gradient(to right, rgba(15, 23, 42, 0.8) 0%, transparent 80%);
+  background:
+    radial-gradient(
+      circle at center,
+      transparent 0%,
+      rgba(15, 23, 42, 0.4) 110%
+    ),
+    linear-gradient(to right, rgba(15, 23, 42, 0.8) 0%, transparent 80%);
 }
 
 /* Cinematic Typography */
@@ -189,10 +230,7 @@ onUnmounted(() => {
 }
 
 .text-gradient {
-  background: linear-gradient(to right, #6366F1, #F43F5E) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
+  color: var(--white-color);
   display: inline-block;
 }
 
@@ -224,6 +262,7 @@ onUnmounted(() => {
 }
 
 .slide.active .slide-title {
+  color: var(--white-color);
   transform: skewY(0) translateY(0);
 }
 
@@ -274,8 +313,12 @@ onUnmounted(() => {
   transform: translateY(-50%) scale(1.1);
 }
 
-.prev { left: 2rem; }
-.next { right: 2rem; }
+.prev {
+  left: 2rem;
+}
+.next {
+  right: 2rem;
+}
 
 .indicators {
   position: absolute;

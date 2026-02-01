@@ -57,7 +57,7 @@ onUnmounted(() => {
 </script>
 <template>
   <section class="hero-section relative">
-    <div class="container">
+    <div class="container" style="position: relative; height: 100%">
       <transition-group name="fade">
         <div
           v-for="(slide, index) in slides"
@@ -88,6 +88,8 @@ onUnmounted(() => {
   color: var(--white-color);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .hero-section .hero-title {
   font-weight: 800;

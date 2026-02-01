@@ -1,7 +1,7 @@
 <script setup>
-import HeroSection from '../Components/Section/HeroSection.vue';
-import HeroSlider from '../Components/Section/HeroSlider.vue'
-// import VisionSection from '../Components/Section/VisionSection.vue'
+// import HeroSection from '../Components/Section/HeroSection.vue';
+import HeroSlider from "../Components/Section/HeroSlider.vue";
+import VisionSection from "../Components/Section/VisionSection.vue";
 // import FeaturedSpaces from '../Components/Section/FeaturedSpaces.vue'
 // import PremiumFacilities from '../Components/Section/PremiumFacilities.vue'
 // import UpcomingEvents from '../Components/Section/UpcomingEvents.vue'
@@ -10,11 +10,11 @@ import HeroSlider from '../Components/Section/HeroSlider.vue'
 
 <template>
   <div>
-    <HeroSection/>
+    <!-- <HeroSection/> -->
     <HeroSlider />
 
     <!-- Vision & Philosophy Section -->
-    <!-- <VisionSection /> -->
+    <VisionSection />
 
     <!-- Featured Venue Spaces -->
     <!-- <FeaturedSpaces /> -->
@@ -32,6 +32,6 @@ import HeroSlider from '../Components/Section/HeroSlider.vue'
 
 <style scoped>
 .home-page {
-  margin-top: -5rem; 
+  margin-top: -5rem;
 }
 </style>

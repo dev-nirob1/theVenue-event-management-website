@@ -1,36 +1,41 @@
 <script setup>
-import BaseButton from '../Widget/BaseButton.vue'
-import SectionHeader from '../Widget/SectionHeader.vue'
+import { RouterLink } from "vue-router";
+import BaseParagraph from "../../../../components/element/BaseParagraph.vue";
+import BaseTitle from "../../../../components/element/BaseTitle.vue";
+import BaseButton from "../Widget/BaseButton.vue";
+import SectionHeader from "../Widget/SectionHeader.vue";
 </script>
 
 <template>
   <section class="vision-section container">
-    <div class="vision-grid">
+    <div class="medium-2 gap-2">
       <!-- Content Side (Left) -->
       <div class="vision-content">
-        <SectionHeader 
-          badge="Our Philosophy"
-          title="Where Vision Meets <br/> Architectural Mastery"
-          theme="light"
+        <SectionHeader
+          subTitle="Our Philosophy"
+          title="Where Vision Meets Architectural Mastery"
         />
-        
-        <p class="section-desc">
-          An architectural symphony of glass and steel, designed to serve as the ultimate stage for global summits and luxury ceremonies.
-        </p>
 
-        <div class="stats-row">
+        <BaseParagraph>
+          An architectural symphony of glass and steel, designed to serve as the
+          ultimate stage for global summits and luxury ceremonies.
+        </BaseParagraph>
+
+        <div class="medium-2 my-2 gap-1">
           <div class="stat-item">
-            <span class="num">150+</span>
-            <span class="label">Major Events</span>
+            <BaseTitle>150+</BaseTitle>
+            <BaseParagraph>Major Events</BaseParagraph>
           </div>
           <div class="stat-item">
-            <span class="num">20M+</span>
-            <span class="label">Investment</span>
+            <BaseTitle>20M+</BaseTitle>
+            <BaseParagraph>Investment</BaseParagraph>
           </div>
         </div>
 
-        <div class="action-row">
-          <BaseButton variant="primary" class="btn-fancy">Explore Our Story</BaseButton>
+        <div class="flex gap-1">
+          <BaseButton variant="primary" class="btn-fancy">
+            <RouterLink to="/about">Learn More</RouterLink>
+          </BaseButton>
           <button class="play-btn">
             <span class="icon"><i class="fas fa-play"></i></span>
             <span class="text">Watch Cinema</span>
@@ -42,21 +47,29 @@ import SectionHeader from '../Widget/SectionHeader.vue'
       <div class="vision-visuals">
         <div class="image-stack">
           <div class="img-wrapper main-img">
-            <img 
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
+            <img
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop"
               alt="Architecture"
-              @error="(e) => (e.target.src = 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop')"
-            >
+              @error="
+                (e) =>
+                  (e.target.src =
+                    'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop')
+              "
+            />
           </div>
           <div class="img-wrapper floating-img">
-            <img 
-              src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2069&auto=format&fit=crop" 
+            <img
+              src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2069&auto=format&fit=crop"
               alt="Detail"
-              @error="(e) => (e.target.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop')"
-            >
+              @error="
+                (e) =>
+                  (e.target.src =
+                    'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop')
+              "
+            />
           </div>
         </div>
-        
+
         <div class="floating-badge glass">
           <i class="fas fa-award"></i>
           <span>Award Winning Venue</span>
@@ -68,51 +81,18 @@ import SectionHeader from '../Widget/SectionHeader.vue'
 
 <style scoped>
 .vision-section {
-  padding: 6rem 0;
+  padding: 3.75rem 0;
   position: relative;
 }
 
-.vision-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
+.stat-item {
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  text-align: center;
 }
-
-.section-desc {
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: var(--text-muted);
-  max-width: 500px;
-  margin-bottom: 2.5rem;
-}
-
-.stats-row {
-  display: flex;
-  gap: 3rem;
-  margin-bottom: 3.5rem;
-}
-
-.stat-item .num {
-  display: block;
-  font-size: 2.25rem;
-  font-weight: 900;
-  color: var(--text-main);
-  margin-bottom: 0.5rem;
-}
-
-.stat-item .label {
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.action-row {
-  display: flex;
-  align-items: center;
-  gap: 3rem;
+.stat-item p {
+  margin: 0.5rem 0;
 }
 
 .btn-fancy {
@@ -220,8 +200,13 @@ import SectionHeader from '../Widget/SectionHeader.vue'
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 @media (max-width: 1024px) {
@@ -229,8 +214,12 @@ import SectionHeader from '../Widget/SectionHeader.vue'
     grid-template-columns: 1fr;
     gap: 6rem;
   }
-  .vision-content { order: 2; }
-  .vision-visuals { order: 1; }
+  .vision-content {
+    order: 2;
+  }
+  .vision-visuals {
+    order: 1;
+  }
 }
 
 @media (max-width: 768px) {
