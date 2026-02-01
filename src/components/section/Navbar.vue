@@ -193,13 +193,34 @@ const toggleMobileMenu = () => {
   transition: width var(--transition-fast);
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.router-link-active {
   color: var(--primary);
+}
+
+.is-scrolled .nav-links a.router-link-active {
+  color: var(--primary);
+}
+
+/* Home link should only be active on exact match to avoid staying active on all pages */
+.nav-links a[href="/"].router-link-active:not(.router-link-exact-active) {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.is-scrolled
+  .nav-links
+  a[href="/"].router-link-active:not(.router-link-exact-active) {
+  color: var(--text-main);
 }
 
 .nav-links a:hover::after,
 .nav-links a.router-link-active::after {
   width: 100%;
+}
+
+.nav-links
+  a[href="/"].router-link-active:not(.router-link-exact-active)::after {
+  width: 0;
 }
 
 .nav-actions {
@@ -283,6 +304,17 @@ const toggleMobileMenu = () => {
 .mobile-nav-links a {
   font-size: 1.25rem;
   font-weight: 700;
+  color: var(--text-main);
+  transition: color var(--transition-fast);
+}
+
+.mobile-nav-links a.router-link-active {
+  color: var(--primary);
+}
+
+/* Home link mobile fix */
+.mobile-nav-links
+  a[href="/"].router-link-active:not(.router-link-exact-active) {
   color: var(--text-main);
 }
 
