@@ -21,7 +21,6 @@ defineProps({
 
 <style>
 .section-header {
-  margin-bottom: 2rem;
   max-width: 700px;
 }
 .section-header .sub-title {

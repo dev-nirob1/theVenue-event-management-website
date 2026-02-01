@@ -218,10 +218,10 @@ onUnmounted(() => {
 }
 
 .slide-title {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(3rem, 6vw, 6rem);
   font-weight: 900;
   line-height: 0.95;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   letter-spacing: -0.04em;
   opacity: 0;
   transform: skewY(5deg) translateY(50px);
@@ -239,7 +239,7 @@ onUnmounted(() => {
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.8);
   max-width: 500px;
-  margin-bottom: 4rem;
+  margin-bottom: 1.5rem;
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s ease 1.2s;
@@ -269,14 +269,14 @@ onUnmounted(() => {
 /* Base Buttons Tweaks */
 .btn-cinema {
   border-radius: 4rem;
-  padding: 1.25rem 3rem;
+  /* padding: 1.25rem 3rem; */
   font-weight: 800;
   box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
 }
 
 .btn-cinema-outline {
   border-radius: 4rem;
-  padding: 1.25rem 3rem;
+  /* padding: 1.25rem 3rem; */
   font-weight: 800;
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.3);
@@ -297,9 +297,10 @@ onUnmounted(() => {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  font-size: 1.15rem;
   display: flex;
   align-items: center;
   justify-content: center;

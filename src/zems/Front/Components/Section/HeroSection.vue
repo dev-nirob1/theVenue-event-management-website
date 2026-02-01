@@ -68,7 +68,7 @@ onUnmounted(() => {
           <div class="content">
             <HeroTitle>{{ slide.title }}</HeroTitle>
             <BaseParagraph>{{ slide.subtitle }}</BaseParagraph>
-            <div class="flex gap-1 justify-center lg:justify-start">
+            <div class="flex gap-1 justify-center">
               <BaseButton>Book Venue</BaseButton>
               <BaseButton>Virtual Tour</BaseButton>
             </div>

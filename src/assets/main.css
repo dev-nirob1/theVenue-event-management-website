@@ -1,6 +1,6 @@
-@import './grid.css';
+@import "./grid.css";
 
-@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Quicksand:wght@300..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Quicksand:wght@300..700&display=swap");
 
 * {
   box-sizing: border-box;
@@ -9,12 +9,12 @@ html {
   scroll-behavior: smooth;
 }
 :root {
-  --body-font: 'Cabin', sans-serif;
-  --heading-font: 'Quicksand', serif;
+  --body-font: "Cabin", sans-serif;
+  --heading-font: "Quicksand", serif;
 
   --primary-color: #13443c;
   --secondary-color: #1abc9c;
-  --accent-color: #CBA135;
+  --accent-color: #cba135;
   --white-color: #ffffff;
   --dark-color: #000000;
   --light-color: #6c757d;
@@ -23,7 +23,7 @@ html {
   /* headings  */
   --heading-1: 1.5rem;
   --heading-2: 1.25rem;
-  --heading-3: 1.25rem;
+  --heading-3: 1.5rem;
   --heading-4: 1.125rem;
 
   /* box shadows  */
@@ -144,7 +144,7 @@ ul {
 }
 
 .features li::before {
-  content: '✓';
+  content: "✓";
   position: absolute;
   left: 0;
   color: var(--primary-color);
@@ -180,11 +180,11 @@ ul {
   outline: none;
   border: none;
   overflow: hidden;
-  padding: 1rem 2.5rem;
-  margin-top: 0.5rem;
+  padding: 0.5rem 2.5rem;
+  /* margin-top: 0.5rem; */
   border-radius: 1.5rem;
   color: var(--white-color);
-  font-size: 1rem;
+  font-size: 1.25rem;
   text-align: center;
   transition: all 0.3s ease-in-out;
   line-height: 1;
@@ -263,7 +263,7 @@ ul {
   :root {
     --heading-1: 2rem;
     --heading-2: 1.75rem;
-    --heading-3: 1.5rem;
+    --heading-3: 1.75rem;
     --heading-4: 1.375rem;
   }
 }
@@ -272,7 +272,7 @@ ul {
   :root {
     --heading-1: 2.25rem;
     --heading-2: 2rem;
-    --heading-3: 1.75rem;
+    --heading-3: 2.5rem;
     --heading-4: 1.5rem;
   }
 }
@@ -281,7 +281,7 @@ ul {
   :root {
     --heading-1: 3rem;
     --heading-2: 2.25rem;
-    --heading-3: 2rem;
+    --heading-3: 3.5rem;
     --heading-4: 1.75rem;
   }
 
@@ -304,7 +304,7 @@ ul {
 @media (min-width: 1200px) {
   :root {
     --heading-2: 2.5rem;
-    --heading-3: 2.25rem;
+    --heading-3: 3.5rem;
   }
 }
 
@@ -312,7 +312,6 @@ ul {
   :root {
     --heading-1: 3rem;
     --heading-2: 2.75rem;
-    --heading-3: 2.5rem;
     --heading-4: 2.25rem;
   }
 }

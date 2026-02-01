@@ -91,6 +91,9 @@ import SectionHeader from "../Widget/SectionHeader.vue";
   padding: 0.75rem;
   text-align: center;
 }
+.stat-item .title {
+  font-size: 2.5rem;
+}
 .stat-item p {
   margin: 0.5rem 0;
 }
@@ -141,12 +144,12 @@ import SectionHeader from "../Widget/SectionHeader.vue";
 .img-wrapper {
   position: absolute;
   overflow: hidden;
-  border-radius: 2rem;
+  border-radius: 1rem;
   box-shadow: var(--shadow-lg);
 }
 
 .main-img {
-  width: 85%;
+  width: 90%;
   height: 90%;
   top: 0;
   right: 0;
@@ -209,28 +212,18 @@ import SectionHeader from "../Widget/SectionHeader.vue";
   }
 }
 
-@media (max-width: 1024px) {
-  .vision-grid {
-    grid-template-columns: 1fr;
-    gap: 6rem;
-  }
-  .vision-content {
-    order: 2;
-  }
-  .vision-visuals {
-    order: 1;
-  }
-}
-
 @media (max-width: 768px) {
-  .action-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2rem;
+  .main-img {
+    width: 100%;
+    height: 100%;
   }
   .stats-row {
     flex-direction: column;
     gap: 2rem;
+  }
+  .floating-badge {
+    bottom: -4rem;
+    right: 1rem;
   }
 }
 </style>
