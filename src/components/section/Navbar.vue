@@ -52,7 +52,9 @@ const toggleMobileMenu = () => {
         <router-link to="/auth/login" class="login-link desktop-only"
           >Login</router-link
         >
-        <BaseButton size="md" class="desktop-only">Book Venue</BaseButton>
+        <BaseButton to="/contact" size="md" class="desktop-only"
+          >Book Venue</BaseButton
+        >
         <button class="mobile-toggle" @click="toggleMobileMenu">
           <span class="bar"></span>
           <span class="bar"></span>
@@ -99,7 +101,7 @@ const toggleMobileMenu = () => {
               >
             </li>
           </ul>
-          <BaseButton class="full-width">Book Venue</BaseButton>
+          <BaseButton to="/contact" class="full-width">Book Venue</BaseButton>
         </div>
       </div>
     </transition>

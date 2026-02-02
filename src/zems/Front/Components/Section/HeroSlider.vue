@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 import BaseButton from "../Widget/BaseButton.vue";
+import VideoPopup from "../Widget/VideoPopup.vue";
 
 const slides = [
   {
@@ -54,6 +55,17 @@ const stopAutoplay = () => {
   if (slideInterval.value) clearInterval(slideInterval.value);
 };
 
+// Video popup state
+const showVideoPopup = ref(false);
+
+const openVideoPopup = () => {
+  showVideoPopup.value = true;
+};
+
+const closeVideoPopup = () => {
+  showVideoPopup.value = false;
+};
+
 onMounted(() => {
   startAutoplay();
 });
@@ -93,19 +105,24 @@ onUnmounted(() => {
           <div class="overlay"></div>
         </div>
 
-        <div class="slide-content-wrapper">
+        <div class="slide-content-wrapper container">
           <div :class="['slide-content', `align-${slide.align}`]">
             <div class="content-inner">
               <h1 class="slide-title" v-html="slide.title"></h1>
               <p class="slide-subtitle-bottom">{{ slide.subtitle }}</p>
               <div class="slide-actions">
-                <BaseButton variant="primary" size="lg" class="btn-cinema"
+                <BaseButton
+                  to="/contact"
+                  variant="primary"
+                  size="lg"
+                  class="btn-cinema"
                   >Book Venue</BaseButton
                 >
                 <BaseButton
                   variant="outline"
                   size="lg"
                   class="btn-cinema-outline"
+                  @click="openVideoPopup"
                   >Virtual Tour</BaseButton
                 >
               </div>
@@ -132,6 +149,13 @@ onUnmounted(() => {
         @click="currentSlide = index"
       ></button>
     </div>
+
+    <!-- Video Popup -->
+    <VideoPopup
+      v-if="showVideoPopup"
+      videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+      @close="closeVideoPopup"
+    />
   </section>
 </template>
 
@@ -142,10 +166,6 @@ onUnmounted(() => {
   min-height: 700px;
   overflow: hidden;
   background: #000;
-}
-
-.slides-container {
-  height: 100%;
 }
 
 .slide {
@@ -209,7 +229,7 @@ onUnmounted(() => {
   position: relative;
   z-index: 20;
   width: 100%;
-  padding: 0 10rem;
+  /* padding: 0 10rem; */
 }
 
 .slide-content {
@@ -348,9 +368,29 @@ onUnmounted(() => {
   opacity: 0;
 }
 
+@media (max-width: 1024px) {
+  .nav-btn {
+    top: auto;
+    bottom: 8rem;
+    transform: translateY(0);
+  }
+
+  .nav-btn:hover {
+    transform: scale(1.1);
+  }
+
+  .prev {
+    left: 1.5rem;
+  }
+
+  .next {
+    right: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .slide-content-wrapper {
-    padding: 0 2rem;
+    /* padding: ; */
   }
   .slide-content {
     text-align: left;
@@ -360,8 +400,23 @@ onUnmounted(() => {
     gap: 1rem;
     align-items: flex-start;
   }
+  .slide-actions .btn {
+    display: block;
+    width: 100%;
+  }
+
   .nav-btn {
-    display: none;
+    bottom: 6rem;
+    width: 44px;
+    height: 44px;
+  }
+
+  .prev {
+    left: 1rem;
+  }
+
+  .next {
+    right: 1rem;
   }
 }
 </style>

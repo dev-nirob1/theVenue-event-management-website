@@ -84,7 +84,7 @@ defineProps({
   background: rgba(255, 255, 255, 0.1);
   color: white;
   padding: 0.75rem 2rem;
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   font-weight: 700;
   display: flex;
   align-items: center;

@@ -38,8 +38,7 @@ export const front_routes = [
       {
         path: 'about',
         name: 'about',
-        component: () => import('./Pages/AboutPage.vue'),
-        meta: { navbarTheme: 'light' }
+        component: () => import('./Pages/AboutPage.vue')
       },
       {
         path: 'contact',
