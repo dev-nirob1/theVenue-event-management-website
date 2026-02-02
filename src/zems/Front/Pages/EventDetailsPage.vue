@@ -306,6 +306,7 @@ onMounted(() => {
 
 .spotlight-card {
   display: grid;
+
   grid-template-columns: 1fr 1.2fr;
   background: white;
   border-radius: 1rem;
