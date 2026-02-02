@@ -31,7 +31,7 @@ const slides = [
     subtitle:
       "Vast, RAW, and versatile. A 15,000 sq ft canvas built for massive tech exhibitions and automotive shows.",
     image:
-      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop",
     align: "left",
   },
 ];
@@ -389,9 +389,6 @@ onUnmounted(() => {
 }
 
 @media (max-width: 768px) {
-  .slide-content-wrapper {
-    /* padding: ; */
-  }
   .slide-content {
     text-align: left;
   }

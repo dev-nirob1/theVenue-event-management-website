@@ -21,9 +21,8 @@ export const rooms = [
     ],
     images: [
       'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=2070&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=2070&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'
+      'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=2070&auto=format&fit=crop'
     ],
     hostedEvents: [
       { title: 'Royal Wedding: James & Sarah', date: 'Dec 2025', image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop' },
@@ -51,8 +50,8 @@ export const rooms = [
     ],
     images: [
       'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=2070&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=2069&auto=format&fit=crop'
+      'https://images.unsplash.com/photo-1570701979417-742944b58e70?q=80&w=2068&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?q=80&w=2070&auto=format&fit=crop'
     ],
     hostedEvents: [
       { title: 'Fashion Week Afterparty', date: 'Sep 2025', image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=2070&auto=format&fit=crop' },
@@ -81,12 +80,12 @@ export const rooms = [
     ],
     images: [
       'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop'
     ],
     hostedEvents: [
       { title: 'AI Ethics Workshop', date: 'Nov 2025', image: 'https://images.unsplash.com/photo-1591115765373-520b7a217294?q=80&w=2070&auto=format&fit=crop' },
-      { title: 'FinTech Startup Launch', date: 'Jul 2025', image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2074&auto=format&fit=crop' }
+      { title: 'FinTech Startup Launch', date: 'Jul 2025', image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2070&auto=format&fit=crop' }
     ]
   },
   {
@@ -110,9 +109,9 @@ export const rooms = [
       { name: 'Fashion Runway', capacity: 400 }
     ],
     images: [
-      'https://images.unsplash.com/photo-1522158633578-d19005a2c739?q=80&w=2071&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1531058020387-3be344556ec6?q=80&w=2070&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop'
+      'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=2070&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop'
     ],
     hostedEvents: [
       { title: 'Underground Sound Fest', date: 'Oct 2025', image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop' },
@@ -139,9 +138,9 @@ export const rooms = [
       { name: 'U-Shape', capacity: 25 }
     ],
     images: [
-      'https://images.unsplash.com/photo-1431540015161-0bf868a2d407?q=80&w=2070&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2069&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=1912&auto=format&fit=crop'
+      'https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?q=80&w=2070&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1505409859467-3a796fd5798e?q=80&w=2070&auto=format&fit=crop'
     ],
     hostedEvents: [
       { title: 'Fortune 500 Strategy', date: 'Aug 2025', image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop' },
@@ -168,9 +167,9 @@ export const rooms = [
       { name: 'Cocktail', capacity: 150 }
     ],
     images: [
-      'https://images.unsplash.com/photo-1523413363574-23c7422d5fd6?q=80&w=2071&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1534442220457-414406203cf3?q=80&w=1853&auto=format&fit=crop'
+      'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=2072&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2070&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?q=80&w=2069&auto=format&fit=crop'
     ],
     hostedEvents: [
       { title: 'Botanical Couture Launch', date: 'Oct 2025', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=2070&auto=format&fit=crop' },

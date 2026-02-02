@@ -35,7 +35,7 @@ onMounted(() => {
     <PageHero
       title="Extraordinary Moments <br/> In Motion"
       subtitle="The Event Gallery"
-      image="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop"
+      image="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop"
     />
 
     <!-- Ultra-Premium Cinematic Tabs -->

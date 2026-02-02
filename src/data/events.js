@@ -13,7 +13,7 @@ export const events = [
     description: 'A two-day immersive experience featuring the worlds leading innovators in AI, Robotics, and Sustainable Energy. Join 1,200 visionaries for keynote sessions and hands-on workshops.',
     ticketStatus: 'Available',
     price: 499,
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop'
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ export const events = [
     description: 'High fashion meets high purpose. An exclusive black-tie event raised funds for global education initiatives, featuring a panoramic sky-view dinner and celebrity auctions.',
     ticketStatus: 'Waitlist',
     price: 1500,
-    image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=2069&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070&auto=format&fit=crop'
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ export const events = [
     description: 'Discover the next generation of creative masters. A multi-room exhibition featuring interactive installations, digital art, and contemporary sculpture.',
     ticketStatus: 'Free Registration',
     price: 0,
-    image: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=2068&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=2080&auto=format&fit=crop'
   },
   {
     id: 4,
@@ -61,7 +61,7 @@ export const events = [
     description: 'A deep dive into the moral implications of artificial general intelligence. Featured 25 world-renowned ethicists and lead engineers from top labs.',
     ticketStatus: 'Completed',
     price: 299,
-    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=2070&auto=format&fit=crop'
   },
   {
     id: 5,
@@ -77,7 +77,7 @@ export const events = [
     description: 'An enchanting night of mystery and music. Our halls were transformed into a Venetian dreamscape for the citys most anticipated winter social event.',
     ticketStatus: 'Completed',
     price: 125,
-    image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop'
   },
   {
     id: 6,
@@ -93,6 +93,6 @@ export const events = [
     description: 'The exclusive unveiling of three high-growth financial technology startups. Networking session featured regional angel investors and banking executives.',
     ticketStatus: 'Completed',
     price: 0,
-    image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2074&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2070&auto=format&fit=crop'
   }
 ]
