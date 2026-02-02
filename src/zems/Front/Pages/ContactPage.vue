@@ -136,7 +136,7 @@ const contactDepts = [
 
 <style scoped>
 .contact-page {
-  padding-top: 8rem;
+  padding-top: 9rem;
   padding-bottom: 0;
   background: #f8fafc;
   min-height: 100vh;
@@ -169,13 +169,13 @@ const contactDepts = [
 .desk-intro {
   font-size: 1rem;
   color: var(--text-muted);
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .dept-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
@@ -206,8 +206,9 @@ const contactDepts = [
 }
 .node-links {
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
   font-size: 0.85rem;
   font-weight: 800;
 }
@@ -215,10 +216,22 @@ const contactDepts = [
   color: var(--primary);
 }
 .node-links .dot {
-  width: 4px;
-  height: 4px;
-  background: var(--border);
-  border-radius: 50%;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .node-links {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  .node-links .dot {
+    display: block;
+    width: 4px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 50%;
+  }
 }
 
 .hq-location {
@@ -254,7 +267,6 @@ const contactDepts = [
 .form-header h3 {
   font-size: 2.25rem;
   font-weight: 950;
-  margin-bottom: 0.75rem;
   color: var(--text-main);
   letter-spacing: -0.03em;
 }
@@ -277,10 +289,10 @@ const contactDepts = [
 .input-group select,
 .input-group textarea {
   width: 100%;
-  padding: 0.6rem 1rem;
+  padding: 0.76rem 1rem;
   background: #f8fafc;
   border: 1px solid var(--border);
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   font-size: 1rem;
   color: var(--text-main);
   transition: all 0.2s ease;
@@ -294,6 +306,7 @@ const contactDepts = [
 .submit-btn {
   width: 100%;
   padding: 1rem !important;
+  border-radius: 0.5rem;
 }
 
 /* 2. Map Section */
