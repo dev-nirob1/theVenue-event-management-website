@@ -21,7 +21,8 @@ export const front_routes = [
       {
         path: 'events/:slug/register',
         name: 'event-registration',
-        component: () => import('./Pages/EventRegistrationPage.vue')
+        component: () => import('./Pages/EventRegistrationPage.vue'),
+        meta: { navbarTheme: 'light' }
       },
       {
         path: 'rooms',

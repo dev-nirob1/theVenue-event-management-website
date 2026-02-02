@@ -3,7 +3,6 @@ import { ref, computed, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { events } from "../../../data/events";
 import BaseButton from "../Components/Widget/BaseButton.vue";
-import Breadcrumbs from "../Components/Widget/Breadcrumbs.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -41,9 +40,8 @@ const downloadPass = () => {
 </script>
 
 <template>
-  <div class="registration-page page-padding" v-if="event">
+  <div class="registration-page" v-if="event">
     <div class="container">
-      <Breadcrumbs />
       <div v-if="!isSuccess" class="reg-layout">
         <!-- Left: Event Recap -->
         <div class="event-brief glass">
@@ -225,7 +223,7 @@ const downloadPass = () => {
   min-height: 100vh;
   background: #f8fafc;
   padding-top: 8rem;
-  padding-bottom: 8rem;
+  padding-bottom: 4rem;
 }
 
 .reg-layout {
@@ -237,7 +235,7 @@ const downloadPass = () => {
 
 /* Left: Brief */
 .event-brief {
-  border-radius: 3rem;
+  border-radius: 1rem;
   overflow: hidden;
   background: white;
   border: 1px solid var(--border);
@@ -318,7 +316,7 @@ const downloadPass = () => {
 .form-card {
   padding: 4rem;
   background: white;
-  border-radius: 3rem;
+  border-radius: 1rem;
   border: 1px solid var(--border);
   box-shadow: var(--shadow-lg);
   position: relative;
@@ -410,7 +408,7 @@ const downloadPass = () => {
   align-items: center;
   justify-content: center;
   z-index: 10;
-  border-radius: 3rem;
+  border-radius: 1rem;
 }
 
 .loader {
@@ -470,7 +468,7 @@ const downloadPass = () => {
 
 .pass-main {
   background: white;
-  border-radius: 2.5rem;
+  border-radius: 1rem;
   border: 1px solid var(--border);
   box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.15);
   overflow: hidden;
