@@ -6,6 +6,7 @@ import BaseButton from "../Components/Widget/BaseButton.vue";
 import SectionHeader from "../Components/Widget/SectionHeader.vue";
 import Breadcrumbs from "../Components/Widget/Breadcrumbs.vue";
 import AppCTA from "../Components/Section/AppCTA.vue";
+import CuratorSection from "../Components/Section/CuratorSection.vue";
 
 const route = useRoute();
 const slug = computed(() => route.params.slug);
@@ -26,11 +27,10 @@ const setActiveImage = (img) => {
 </script>
 
 <template>
-  <div v-if="room" class="room-details-revised page-padding">
+  <div v-if="room" class="room-details-revised">
     <!-- 1. Room Gallery Section -->
     <section class="gallery-section">
       <div class="container gallery-container">
-        <Breadcrumbs />
         <div class="main-stage">
           <transition name="fade-scale" mode="out-in">
             <img
@@ -147,58 +147,8 @@ const setActiveImage = (img) => {
       </div>
     </section>
 
-    <!-- 3. Events Hosted In This Room -->
-    <section class="hosted-events-section">
-      <div class="container">
-        <SectionHeader
-          align="center"
-          badge="Gallery"
-          title="Events Hosted In This Room"
-          description="A showcase of extraordinary moments captured within our walls."
-        />
-
-        <div class="hosted-grid">
-          <div
-            v-for="event in room.hostedEvents"
-            :key="event.title"
-            class="hosted-card"
-          >
-            <div class="card-img">
-              <img :src="event.image" :alt="event.title" />
-              <div class="date-tag">{{ event.date }}</div>
-            </div>
-            <div class="card-body">
-              <h4>{{ event.title }}</h4>
-              <button class="view-story">
-                View Story <i class="fas fa-arrow-right"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. Book This Room CTA -->
-    <section class="booking-cta-section container">
-      <div class="cta-banner-premium">
-        <div class="cta-glow"></div>
-        <div class="cta-content">
-          <div class="cta-text">
-            <h2>Experience {{ room.title }}</h2>
-            <p>
-              Our event curators are ready to help you plan your next
-              masterpiece.
-            </p>
-          </div>
-          <div class="cta-actions">
-            <BaseButton variant="primary" size="lg" class="btn-cta"
-              >Check Availability</BaseButton
-            >
-            <button class="btn-secondary-outline">Schedule Virtual Tour</button>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- 3. Bespoke Event Curation Section -->
+    <CuratorSection />
   </div>
 
   <div v-else class="not-found container">
@@ -208,13 +158,9 @@ const setActiveImage = (img) => {
 </template>
 
 <style scoped>
-.room-details-revised {
-  padding-bottom: 8rem;
-}
-
 /* 1. Gallery Section */
 .gallery-section {
-  padding: 8rem 0 4rem;
+  padding: 8rem 0 4rem 0;
   background: #f8fafc;
 }
 
@@ -227,7 +173,7 @@ const setActiveImage = (img) => {
 .main-stage {
   position: relative;
   height: 600px;
-  border-radius: 3rem;
+  border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.15);
 }
@@ -256,7 +202,7 @@ const setActiveImage = (img) => {
   padding: 0.6rem 1.25rem;
   background: var(--primary);
   color: white;
-  border-radius: 2rem;
+  border-radius: 1rem;
   font-size: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -280,7 +226,7 @@ const setActiveImage = (img) => {
 
 .thumb-box {
   height: 100px;
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   overflow: hidden;
   cursor: pointer;
   position: relative;
@@ -309,7 +255,7 @@ const setActiveImage = (img) => {
 
 /* 2. Info Section */
 .info-section {
-  padding: 6rem 0;
+  padding: 4rem 0;
 }
 
 .info-grid {
@@ -324,7 +270,7 @@ const setActiveImage = (img) => {
   font-size: 1.25rem;
   line-height: 1.8;
   color: var(--text-muted);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .spec-highlights {
@@ -367,7 +313,7 @@ const setActiveImage = (img) => {
 
 .info-card {
   padding: 2.5rem;
-  border-radius: 2.5rem;
+  border-radius: 1rem;
   border: 1px solid var(--border);
   background: white;
 }
@@ -417,7 +363,7 @@ const setActiveImage = (img) => {
 .facility-pill {
   padding: 0.6rem 1.25rem;
   background: var(--background);
-  border-radius: 3rem;
+  border-radius: 1rem;
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--text-muted);
@@ -452,158 +398,12 @@ const setActiveImage = (img) => {
   padding: 0.5rem 1.5rem;
   background: rgba(99, 102, 241, 0.05);
   color: var(--primary);
-  border-radius: 4rem;
+  border-radius: 1rem;
   font-weight: 800;
   font-size: 0.85rem;
   border: 1px solid rgba(99, 102, 241, 0.1);
 }
-
-/* 3. Hosted Events */
-.hosted-events-section {
-  padding: 10rem 0;
-  background: #0f172a;
-  color: white;
-}
-
-.hosted-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 3rem;
-}
-
-.hosted-card {
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 2.5rem;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.4s ease;
-}
-
-.hosted-card:hover {
-  transform: translateY(-10px);
-  border-color: var(--primary);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.card-img {
-  height: 300px;
-  position: relative;
-}
-
-.card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.date-tag {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  padding: 0.5rem 1rem;
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(8px);
-  border-radius: 0.75rem;
-  font-weight: 700;
-  font-size: 0.8rem;
-}
-
-.card-body {
-  padding: 2.5rem;
-}
-
-.card-body h4 {
-  font-size: 1.5rem;
-  font-weight: 800;
-  margin-bottom: 2rem;
-  color: white;
-}
-
-.view-story {
-  background: transparent;
-  border: none;
-  color: var(--primary);
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  cursor: pointer;
-  transition: gap 0.3s ease;
-}
-
-.view-story:hover {
-  gap: 1.25rem;
-}
-
-/* 4. CTA Section */
-.booking-cta-section {
-  margin-top: -5rem;
-}
-
-.cta-banner-premium {
-  padding: 5rem;
-  background: white;
-  border-radius: 3.5rem;
-  box-shadow: 0 50px 100px -30px rgba(0, 0, 0, 0.15);
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-glow {
-  position: absolute;
-  top: -80%;
-  right: -20%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(
-    circle,
-    rgba(99, 102, 241, 0.1) 0%,
-    transparent 70%
-  );
-}
-
-.cta-content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 4rem;
-}
-
-.cta-text h2 {
-  font-size: 3rem;
-  font-weight: 900;
-  color: var(--text-main);
-  margin-bottom: 1rem;
-}
-
-.cta-text p {
-  font-size: 1.125rem;
-  color: var(--text-muted);
-  max-width: 500px;
-}
-
-.cta-actions {
-  display: flex;
-  gap: 2rem;
-}
-
-.btn-secondary-outline {
-  padding: 1.25rem 2.5rem;
-  border-radius: 4rem;
-  border: 2px solid var(--border);
-  background: transparent;
-  font-weight: 800;
-  color: var(--text-main);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-secondary-outline:hover {
-  background: var(--background);
-  border-color: var(--text-main);
-}
+/* Curator Section moved to component */
 
 /* Animations */
 .fade-scale-enter-active,
@@ -650,8 +450,5 @@ const setActiveImage = (img) => {
     flex-direction: column;
     width: 100%;
   }
-}
-.page-padding {
-  padding-top: 6rem;
 }
 </style>

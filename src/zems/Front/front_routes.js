@@ -31,27 +31,32 @@ export const front_routes = [
       {
         path: 'rooms/:slug',
         name: 'room-details',
-        component: () => import('./Pages/RoomDetailsPage.vue')
+        component: () => import('./Pages/RoomDetailsPage.vue'),
+        meta: { navbarTheme: 'light' }
       },
       {
         path: 'about',
         name: 'about',
-        component: () => import('./Pages/AboutPage.vue')
+        component: () => import('./Pages/AboutPage.vue'),
+        meta: { navbarTheme: 'light' }
       },
       {
         path: 'contact',
         name: 'contact',
-        component: () => import('./Pages/ContactPage.vue')
+        component: () => import('./Pages/ContactPage.vue'),
+        meta: { navbarTheme: 'light' }
       },
       {
         path: 'auth/login',
         name: 'login',
-        component: () => import('./Pages/LoginPage.vue')
+        component: () => import('./Pages/LoginPage.vue'),
+        meta: { navbarTheme: 'light' }
       },
       {
         path: 'auth/register',
         name: 'register',
-        component: () => import('./Pages/RegisterPage.vue')
+        component: () => import('./Pages/RegisterPage.vue'),
+        meta: { navbarTheme: 'light' }
       }
     ]
   }

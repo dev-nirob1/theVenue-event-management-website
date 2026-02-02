@@ -65,7 +65,7 @@ const breadcrumbs = computed(() => {
   display: flex;
   align-items: center;
   padding: 0.75rem 2rem;
-  border-radius: 4rem;
+  border-radius: 1rem;
   background: rgba(201, 201, 201, 0.6);
   border: 1px solid rgba(15, 23, 42, 0.08);
   box-shadow:

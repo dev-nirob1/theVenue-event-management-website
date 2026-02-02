@@ -1,43 +1,43 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { events } from '../data/events'
-import BaseButton from '../Components/Widget/BaseButton.vue'
-import Breadcrumbs from '../Components/Widget/Breadcrumbs.vue'
+import { ref, computed, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { events } from "../../../data/events";
+import BaseButton from "../Components/Widget/BaseButton.vue";
+import Breadcrumbs from "../Components/Widget/Breadcrumbs.vue";
 
-const route = useRoute()
-const router = useRouter()
-const slug = computed(() => route.params.slug)
-const event = computed(() => events.find(e => e.slug === slug.value))
+const route = useRoute();
+const router = useRouter();
+const slug = computed(() => route.params.slug);
+const event = computed(() => events.find((e) => e.slug === slug.value));
 
-const isProcessing = ref(false)
-const isSuccess = ref(false)
+const isProcessing = ref(false);
+const isSuccess = ref(false);
 const formData = ref({
-  fullName: '',
-  email: '',
-  jobTitle: '',
-  company: ''
-})
+  fullName: "",
+  email: "",
+  jobTitle: "",
+  company: "",
+});
 
 onMounted(() => {
-  window.scrollTo(0, 0)
+  window.scrollTo(0, 0);
   if (!event.value) {
-    router.push('/events')
+    router.push("/events");
   }
-})
+});
 
 const handleSubmit = async () => {
-  isProcessing.value = true
+  isProcessing.value = true;
   // Mock API call
-  await new Promise(resolve => setTimeout(resolve, 2000))
-  isProcessing.value = false
-  isSuccess.value = true
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-}
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  isProcessing.value = false;
+  isSuccess.value = true;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
 
 const downloadPass = () => {
-  alert('Downloading your Architectural Pass...')
-}
+  alert("Downloading your Architectural Pass...");
+};
 </script>
 
 <template>
@@ -48,7 +48,7 @@ const downloadPass = () => {
         <!-- Left: Event Recap -->
         <div class="event-brief glass">
           <div class="brief-media">
-            <img :src="event.image" :alt="event.title">
+            <img :src="event.image" :alt="event.title" />
             <div class="overlay"></div>
           </div>
           <div class="brief-content">
@@ -65,7 +65,11 @@ const downloadPass = () => {
               </div>
             </div>
             <div class="divider"></div>
-            <p class="brief-desc">Join industry leaders for an unforgettable experience at The Venue. Your digital pass grants you full access to all sessions and networking events.</p>
+            <p class="brief-desc">
+              Join industry leaders for an unforgettable experience at The
+              Venue. Your digital pass grants you full access to all sessions
+              and networking events.
+            </p>
           </div>
         </div>
 
@@ -74,35 +78,66 @@ const downloadPass = () => {
           <div class="form-card glass" :class="{ loading: isProcessing }">
             <div class="card-header">
               <h2>Secure Your Entry</h2>
-              <p>Enter your professional details to generate your digital entry pass.</p>
+              <p>
+                Enter your professional details to generate your digital entry
+                pass.
+              </p>
             </div>
 
             <form @submit.prevent="handleSubmit" class="reg-form">
               <div class="input-grid">
                 <div class="field-group">
                   <label>Full name</label>
-                  <input v-model="formData.fullName" type="text" placeholder="Alex Morgan" required>
+                  <input
+                    v-model="formData.fullName"
+                    type="text"
+                    placeholder="Alex Morgan"
+                    required
+                  />
                 </div>
                 <div class="field-group">
                   <label>Professional Email</label>
-                  <input v-model="formData.email" type="email" placeholder="alex@industry.com" required>
+                  <input
+                    v-model="formData.email"
+                    type="email"
+                    placeholder="alex@industry.com"
+                    required
+                  />
                 </div>
                 <div class="field-group">
                   <label>Job Title</label>
-                  <input v-model="formData.jobTitle" type="text" placeholder="Creative Director" required>
+                  <input
+                    v-model="formData.jobTitle"
+                    type="text"
+                    placeholder="Creative Director"
+                    required
+                  />
                 </div>
                 <div class="field-group">
                   <label>Organization</label>
-                  <input v-model="formData.company" type="text" placeholder="Design Co." required>
+                  <input
+                    v-model="formData.company"
+                    type="text"
+                    placeholder="Design Co."
+                    required
+                  />
                 </div>
               </div>
 
               <div class="consent-check">
-                <input type="checkbox" id="consent" required>
-                <label for="consent">I agree to the terms of attendance and architectural safety protocols.</label>
+                <input type="checkbox" id="consent" required />
+                <label for="consent"
+                  >I agree to the terms of attendance and architectural safety
+                  protocols.</label
+                >
               </div>
 
-              <BaseButton variant="primary" size="lg" :disabled="isProcessing" class="submit-btn">
+              <BaseButton
+                variant="primary"
+                size="lg"
+                :disabled="isProcessing"
+                class="submit-btn"
+              >
                 <span v-if="!isProcessing">Generate My Pass</span>
                 <span v-else>Processing Request...</span>
                 <i v-if="!isProcessing" class="fas fa-ticket-alt"></i>
@@ -129,16 +164,22 @@ const downloadPass = () => {
         <div class="digital-pass-box">
           <div class="pass-main glass">
             <div class="pass-header">
-              <div class="brand">THE VENUE <span class="pass-type">OFFICIAL PASS</span></div>
-              <div class="pass-id">#{{ Math.random().toString(36).substr(2, 9).toUpperCase() }}</div>
+              <div class="brand">
+                THE VENUE <span class="pass-type">OFFICIAL PASS</span>
+              </div>
+              <div class="pass-id">
+                #{{ Math.random().toString(36).substr(2, 9).toUpperCase() }}
+              </div>
             </div>
-            
+
             <div class="pass-content">
               <div class="pass-info">
                 <div class="event-name">{{ event.title }}</div>
                 <div class="attendee-name">{{ formData.fullName }}</div>
-                <div class="attendee-title">{{ formData.jobTitle }} • {{ formData.company }}</div>
-                
+                <div class="attendee-title">
+                  {{ formData.jobTitle }} • {{ formData.company }}
+                </div>
+
                 <div class="pass-meta">
                   <div class="p-node">
                     <span class="p-label">DATE</span>
@@ -150,7 +191,7 @@ const downloadPass = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div class="pass-qr">
                 <div class="qr-mock">
                   <div v-for="i in 16" :key="i" class="qr-square"></div>
@@ -158,7 +199,7 @@ const downloadPass = () => {
                 <div class="qr-label">SCAN AT ENTRY</div>
               </div>
             </div>
-            
+
             <div class="pass-footer">
               <div class="security-strip"></div>
               <p>This pass is mandatory for entry. Non-transferable.</p>
@@ -228,7 +269,7 @@ const downloadPass = () => {
   display: inline-block;
   padding: 0.5rem 1rem;
   background: rgba(16, 185, 129, 0.1);
-  color: #10B981;
+  color: #10b981;
   border-radius: 2rem;
   font-size: 0.7rem;
   font-weight: 800;
@@ -258,7 +299,9 @@ const downloadPass = () => {
   color: var(--text-muted);
 }
 
-.meta-item i { color: var(--primary); }
+.meta-item i {
+  color: var(--primary);
+}
 
 .divider {
   height: 1px;
@@ -380,7 +423,11 @@ const downloadPass = () => {
   margin-bottom: 1.5rem;
 }
 
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 /* Success State */
 .success-wrap {
@@ -392,7 +439,7 @@ const downloadPass = () => {
 .check-icon {
   width: 80px;
   height: 80px;
-  background: #10B981;
+  background: #10b981;
   color: white;
   border-radius: 50%;
   display: flex;
@@ -425,20 +472,26 @@ const downloadPass = () => {
   background: white;
   border-radius: 2.5rem;
   border: 1px solid var(--border);
-  box-shadow: 0 40px 100px -20px rgba(0,0,0,0.15);
+  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   text-align: left;
   animation: passReveal 1s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 @keyframes passReveal {
-  from { opacity: 0; transform: translateY(50px) rotateX(-10deg); }
-  to { opacity: 1; transform: translateY(0) rotateX(0); }
+  from {
+    opacity: 0;
+    transform: translateY(50px) rotateX(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
 }
 
 .pass-header {
   padding: 1.5rem 2.5rem;
-  background: #0F172A;
+  background: #0f172a;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -531,12 +584,16 @@ const downloadPass = () => {
 }
 
 .qr-square {
-  background: #0F172A;
+  background: #0f172a;
   border-radius: 2px;
 }
 
-.qr-square:nth-child(even) { opacity: 0.1; }
-.qr-square:nth-child(3n) { opacity: 0.8; }
+.qr-square:nth-child(even) {
+  opacity: 0.1;
+}
+.qr-square:nth-child(3n) {
+  opacity: 0.8;
+}
 
 .qr-label {
   font-size: 0.65rem;
@@ -557,7 +614,13 @@ const downloadPass = () => {
   left: 0;
   right: 0;
   height: 4px;
-  background: repeating-linear-gradient(45deg, #e2e8f0, #e2e8f0 10px, white 10px, white 20px);
+  background: repeating-linear-gradient(
+    45deg,
+    #e2e8f0,
+    #e2e8f0 10px,
+    white 10px,
+    white 20px
+  );
 }
 
 .pass-footer p {
@@ -584,18 +647,37 @@ const downloadPass = () => {
   transition: color 0.3s ease;
 }
 
-.return-btn:hover { color: var(--primary); }
+.return-btn:hover {
+  color: var(--primary);
+}
 
 @media (max-width: 1024px) {
-  .reg-layout { grid-template-columns: 1fr; }
-  .pass-content { flex-direction: column; align-items: flex-start; gap: 3rem; }
+  .reg-layout {
+    grid-template-columns: 1fr;
+  }
+  .pass-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .input-grid { grid-template-columns: 1fr; }
-  .event-name { font-size: 1.75rem; }
-  .pass-meta { flex-direction: column; gap: 1.5rem; }
-  .success-actions { flex-direction: column; }
-  .form-card { padding: 2.5rem; }
+  .input-grid {
+    grid-template-columns: 1fr;
+  }
+  .event-name {
+    font-size: 1.75rem;
+  }
+  .pass-meta {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .success-actions {
+    flex-direction: column;
+  }
+  .form-card {
+    padding: 2.5rem;
+  }
 }
 </style>

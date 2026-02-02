@@ -1,54 +1,45 @@
 <script setup>
-import { computed, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
-import { events } from '../data/events'
-import { rooms } from '../data/rooms'
-import BaseButton from '../Components/Widget/BaseButton.vue'
-import SectionHeader from '../Components/Widget/SectionHeader.vue'
-import Breadcrumbs from '../Components/Widget/Breadcrumbs.vue'
+import { computed, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import { events } from "../../../data/events";
+import { rooms } from "../../../data/rooms";
+import BaseButton from "../Components/Widget/BaseButton.vue";
+import SectionHeader from "../Components/Widget/SectionHeader.vue";
+import Breadcrumbs from "../Components/Widget/Breadcrumbs.vue";
+import PageHero from "../Components/Widget/PageHero.vue";
 
-const route = useRoute()
-const slug = computed(() => route.params.slug)
-const event = computed(() => events.find(e => e.slug === slug.value))
-const relatedVenue = computed(() => rooms.find(r => r.slug === event.value?.venueSlug))
+const route = useRoute();
+const slug = computed(() => route.params.slug);
+const event = computed(() => events.find((e) => e.slug === slug.value));
+const relatedVenue = computed(() =>
+  rooms.find((r) => r.slug === event.value?.venueSlug),
+);
 
 onMounted(() => {
-  window.scrollTo(0, 0)
-})
+  window.scrollTo(0, 0);
+});
 </script>
 
 <template>
-  <div v-if="event" class="event-details-page page-padding">
-    <!-- Hero Section -->
-    <!-- <section class="event-hero">
-      <div class="hero-bg">
-        <img :src="event.image" :alt="event.title" class="hero-img">
-        <div class="hero-overlay"></div>
-      </div>
-      
-      <div class="container hero-content">
-        <Breadcrumbs />
-        <div class="event-badge">{{ event.category }} Event</div>
-        <h1 class="event-title">{{ event.title }}</h1>
-        <div class="event-short-meta">
-          <span><i class="far fa-calendar-alt"></i> {{ event.displayDate }}</span>
-          <span><i class="fas fa-map-marker-alt"></i> {{ event.location }}</span>
-        </div>
-      </div>
-    </section> -->
+  <div v-if="event" class="event-details-page">
+    <PageHero
+      :title="event.title"
+      :subtitle="event.category + ' Event'"
+      :image="event.image"
+    />
 
     <!-- Main Content -->
-    <!-- <section class="event-info-section container">
-      <div class="info-grid"> -->
+    <section class="event-info-section container">
+      <div class="info-grid">
         <!-- Main Description -->
-        <!-- <div class="info-main">
-          <SectionHeader 
+        <div class="info-main">
+          <SectionHeader
             badge="About the Event"
             title="The Vision & Experience"
             theme="light"
           />
           <p class="description-text">{{ event.description }}</p>
-          
+
           <div class="organizer-box glass">
             <div class="org-icon"><i class="fas fa-id-badge"></i></div>
             <div class="org-text">
@@ -56,13 +47,16 @@ onMounted(() => {
               <h4 class="org-name">{{ event.organizer }}</h4>
             </div>
           </div>
-        </div> -->
+        </div>
 
         <!-- Sidebar Actions -->
-        <!-- <div class="info-sidebar">
+        <div class="info-sidebar">
           <div class="booking-card glass">
             <div class="booking-header">
-              <div class="status-indicator" :class="event.ticketStatus.toLowerCase().replace(' ', '-')">
+              <div
+                class="status-indicator"
+                :class="event.ticketStatus.toLowerCase().replace(' ', '-')"
+              >
                 {{ event.ticketStatus }}
               </div>
               <div class="price-tag" v-if="event.price > 0">
@@ -74,37 +68,55 @@ onMounted(() => {
               </div>
             </div>
 
-            <router-link :to="`/events/${event.slug}/register`" class="full-width-btn" v-if="event.type === 'upcoming'">
+            <router-link
+              :to="`/events/${event.slug}/register`"
+              class="full-width-btn"
+              v-if="event.type === 'upcoming'"
+            >
               <BaseButton variant="primary">Secure Your Spot</BaseButton>
             </router-link>
-            <BaseButton variant="secondary" class="full-width-btn" v-else disabled>
+            <BaseButton
+              variant="secondary"
+              class="full-width-btn"
+              v-else
+              disabled
+            >
               Event Concluded
             </BaseButton>
-            
-            <p class="cta-note">Secure payment gateway integrated via Stripe.</p>
-          </div> -->
+
+            <p class="cta-note">
+              Secure payment gateway integrated via Stripe.
+            </p>
+          </div>
 
           <!-- Feature List -->
-          <!-- <div class="features-card glass">
+          <div class="features-card glass">
             <h4 class="card-title">Event Highlights</h4>
             <ul class="feature-list">
-              <li><i class="fas fa-check-circle"></i> Networking session included</li>
-              <li><i class="fas fa-check-circle"></i> Digital certificate of attendance</li>
-              <li><i class="fas fa-check-circle"></i> Access to keynote recordings</li>
+              <li>
+                <i class="fas fa-check-circle"></i> Networking session included
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Digital certificate of
+                attendance
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Access to keynote recordings
+              </li>
             </ul>
           </div>
         </div>
-      </div> -->
-    <!-- </section> -->
+      </div>
+    </section>
 
     <!-- Venue Spotlight -->
-    <!-- <section v-if="relatedVenue" class="venue-spotlight container">
+    <section v-if="relatedVenue" class="venue-spotlight container">
       <div class="spotlight-card glass">
         <div class="spotlight-img">
-          <img :src="relatedVenue.images[0]" :alt="relatedVenue.title">
+          <img :src="relatedVenue.images[0]" :alt="relatedVenue.title" />
         </div>
         <div class="spotlight-content">
-          <SectionHeader 
+          <SectionHeader
             badge="The Stage"
             :title="`Hosted at <br/> ${relatedVenue.title}`"
             theme="light"
@@ -115,13 +127,13 @@ onMounted(() => {
           </router-link>
         </div>
       </div>
-    </section> -->
+    </section>
   </div>
 
-  <!-- <div v-else class="not-found container">
+  <div v-else class="not-found container">
     <h2>Event Not Found</h2>
     <router-link to="/events">Back to Events</router-link>
-  </div> -->
+  </div>
 </template>
 
 <style scoped>
@@ -154,7 +166,11 @@ onMounted(() => {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.4) 100%);
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 42, 0.9) 0%,
+    rgba(15, 23, 42, 0.4) 100%
+  );
 }
 
 .hero-content {
@@ -188,10 +204,12 @@ onMounted(() => {
   gap: 2rem;
   font-size: 1.125rem;
   font-weight: 600;
-  color: #94A3B8;
+  color: #94a3b8;
 }
 
-.event-short-meta i { color: var(--primary); }
+.event-short-meta i {
+  color: var(--primary);
+}
 
 /* Content Section */
 .event-info-section {
@@ -239,7 +257,7 @@ onMounted(() => {
   font-size: 0.75rem;
   text-transform: uppercase;
   font-weight: 800;
-  color: #94A3B8;
+  color: #94a3b8;
   letter-spacing: 0.1em;
 }
 
@@ -261,7 +279,7 @@ onMounted(() => {
   background: white;
   border-radius: 2.5rem;
   border: 1px solid var(--border);
-  box-shadow: 0 40px 100px -20px rgba(0,0,0,0.08);
+  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.08);
 }
 
 .booking-header {
@@ -281,9 +299,18 @@ onMounted(() => {
   width: fit-content;
 }
 
-.status-indicator.available { background: #10B981; color: white; }
-.status-indicator.waitlist { background: #F59E0B; color: white; }
-.status-indicator.completed { background: #64748B; color: white; }
+.status-indicator.available {
+  background: #10b981;
+  color: white;
+}
+.status-indicator.waitlist {
+  background: #f59e0b;
+  color: white;
+}
+.status-indicator.completed {
+  background: #64748b;
+  color: white;
+}
 
 .price-tag .label {
   display: block;
@@ -304,7 +331,7 @@ onMounted(() => {
 
 .cta-note {
   font-size: 0.75rem;
-  color: #94A3B8;
+  color: #94a3b8;
   text-align: center;
   margin-top: 1.5rem;
 }
@@ -337,7 +364,9 @@ onMounted(() => {
   color: var(--text-muted);
 }
 
-.feature-list i { color: var(--primary); }
+.feature-list i {
+  color: var(--primary);
+}
 
 /* Venue Spotlight */
 .venue-spotlight {
@@ -351,7 +380,7 @@ onMounted(() => {
   border-radius: 3rem;
   overflow: hidden;
   border: 1px solid var(--border);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
 }
 
 .spotlight-img img {
@@ -382,13 +411,23 @@ onMounted(() => {
   gap: 1rem;
 }
 
-.venue-link:hover i { transform: translateX(5px); }
-.venue-link i { transition: transform 0.3s ease; }
+.venue-link:hover i {
+  transform: translateX(5px);
+}
+.venue-link i {
+  transition: transform 0.3s ease;
+}
 
 @media (max-width: 1024px) {
-  .info-grid { grid-template-columns: 1fr; }
-  .spotlight-card { grid-template-columns: 1fr; }
-  .spotlight-img { height: 300px; }
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  .spotlight-card {
+    grid-template-columns: 1fr;
+  }
+  .spotlight-img {
+    height: 300px;
+  }
 }
 .page-padding {
   padding-top: 6rem;

@@ -1,6 +1,10 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, computed } from "vue";
+import { useRoute } from "vue-router";
 import BaseButton from "../../zems/Front/Components/Widget/BaseButton.vue";
+
+const route = useRoute();
+const isLightNav = computed(() => route.meta.navbarTheme === "light");
 
 const isScrolled = ref(false);
 const isMobileMenuOpen = ref(false);
@@ -23,7 +27,12 @@ const toggleMobileMenu = () => {
 </script>
 
 <template>
-  <header :class="['navbar-container', { 'is-scrolled': isScrolled }]">
+  <header
+    :class="[
+      'navbar-container',
+      { 'is-scrolled': isScrolled, 'is-light-nav': isLightNav },
+    ]"
+  >
     <nav class="navbar container">
       <router-link to="/" class="logo">
         <span class="logo-icon">V</span>
@@ -213,6 +222,12 @@ const toggleMobileMenu = () => {
   color: var(--text-main);
 }
 
+.is-light-nav:not(.is-scrolled)
+  .nav-links
+  a[href="/"].router-link-active:not(.router-link-exact-active) {
+  color: black;
+}
+
 .nav-links a:hover::after,
 .nav-links a.router-link-active::after {
   width: 100%;
@@ -270,6 +285,30 @@ const toggleMobileMenu = () => {
 }
 
 .is-scrolled .mobile-toggle .bar {
+  background-color: var(--text-main);
+}
+
+/* Light Navigation Style (for light hero sections) */
+.is-light-nav:not(.is-scrolled) {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.is-light-nav:not(.is-scrolled) .logo {
+  color: var(--text-main);
+}
+
+.is-light-nav:not(.is-scrolled) .nav-links a {
+  color: black;
+}
+
+.is-light-nav:not(.is-scrolled) .login-link {
+  color: var(--text-main);
+}
+
+.is-light-nav:not(.is-scrolled) .mobile-toggle .bar {
   background-color: var(--text-main);
 }
 
