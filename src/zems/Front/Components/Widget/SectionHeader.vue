@@ -57,7 +57,7 @@ defineProps({
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1.25rem;
+  padding: 0.75rem;
   background: rgba(var(--primary-rgb), 0.1);
   color: var(--primary);
   border-radius: 2rem;
@@ -65,7 +65,6 @@ defineProps({
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-bottom: 1rem;
   border: 1px solid rgba(var(--primary-rgb), 0.2);
 }
 

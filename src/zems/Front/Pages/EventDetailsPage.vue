@@ -138,82 +138,13 @@ onMounted(() => {
 
 <style scoped>
 .event-details-page {
-  padding-bottom: 8rem;
+  padding-bottom: 4rem;
+  background: #f8fafc;
 }
 
-/* Hero */
-.event-hero {
-  height: 70vh;
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  padding-bottom: 6rem;
-  overflow: hidden;
-}
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(15, 23, 42, 0.9) 0%,
-    rgba(15, 23, 42, 0.4) 100%
-  );
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  color: white;
-}
-
-.event-badge {
-  display: inline-block;
-  padding: 0.5rem 1.25rem;
-  background: var(--primary);
-  border-radius: 2rem;
-  font-size: 0.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 1.5rem;
-}
-
-.event-title {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 950;
-  line-height: 1;
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.04em;
-}
-
-.event-short-meta {
-  display: flex;
-  gap: 2rem;
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #94a3b8;
-}
-
-.event-short-meta i {
-  color: var(--primary);
-}
-
-/* Content Section */
+/* Main Content Section */
 .event-info-section {
-  padding: 6rem 0;
+  padding: 4rem 0;
 }
 
 .info-grid {
@@ -234,16 +165,16 @@ onMounted(() => {
   align-items: center;
   gap: 1.5rem;
   padding: 2rem;
-  background: #f8fafc;
-  border-radius: 2rem;
+  background: white;
+  border-radius: 1rem;
   border: 1px solid var(--border);
 }
 
 .org-icon {
   width: 60px;
   height: 60px;
-  background: white;
-  border-radius: 1.5rem;
+  background: var(--background);
+  border-radius: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -277,7 +208,7 @@ onMounted(() => {
 .booking-card {
   padding: 3rem;
   background: white;
-  border-radius: 2.5rem;
+  border-radius: 1rem;
   border: 1px solid var(--border);
   box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.08);
 }
@@ -292,7 +223,7 @@ onMounted(() => {
 .status-indicator {
   display: inline-block;
   padding: 0.4rem 1rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
   font-size: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -338,8 +269,8 @@ onMounted(() => {
 
 .features-card {
   padding: 2.5rem;
-  background: #f8fafc;
-  border-radius: 2rem;
+  background: white;
+  border-radius: 1rem;
   border: 1px solid var(--border);
 }
 
@@ -370,14 +301,14 @@ onMounted(() => {
 
 /* Venue Spotlight */
 .venue-spotlight {
-  padding: 4rem 0;
+  padding: 2rem 0;
 }
 
 .spotlight-card {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   background: white;
-  border-radius: 3rem;
+  border-radius: 1rem;
   overflow: hidden;
   border: 1px solid var(--border);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
@@ -390,7 +321,7 @@ onMounted(() => {
 }
 
 .spotlight-content {
-  padding: 4rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -398,8 +329,7 @@ onMounted(() => {
 
 .spotlight-content p {
   color: var(--text-muted);
-  margin-bottom: 2rem;
-  line-height: 1.7;
+  margin-top: 0;
 }
 
 .venue-link {
@@ -417,6 +347,9 @@ onMounted(() => {
 .venue-link i {
   transition: transform 0.3s ease;
 }
+.spotlight-img {
+  height: 350px;
+}
 
 @media (max-width: 1024px) {
   .info-grid {
@@ -428,8 +361,5 @@ onMounted(() => {
   .spotlight-img {
     height: 300px;
   }
-}
-.page-padding {
-  padding-top: 6rem;
 }
 </style>
