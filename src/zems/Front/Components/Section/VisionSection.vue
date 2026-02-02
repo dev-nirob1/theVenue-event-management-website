@@ -1,9 +1,22 @@
 <script setup>
+import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import BaseParagraph from "../../../../components/element/BaseParagraph.vue";
 import BaseTitle from "../../../../components/element/BaseTitle.vue";
 import BaseButton from "../Widget/BaseButton.vue";
 import SectionHeader from "../Widget/SectionHeader.vue";
+import VideoPopup from "../Widget/VideoPopup.vue";
+
+// Video popup state
+const showVideoPopup = ref(false);
+
+const openVideoPopup = () => {
+  showVideoPopup.value = true;
+};
+
+const closeVideoPopup = () => {
+  showVideoPopup.value = false;
+};
 </script>
 
 <template>
@@ -16,7 +29,7 @@ import SectionHeader from "../Widget/SectionHeader.vue";
           title="Where Vision Meets Architectural Mastery"
         />
 
-        <BaseParagraph>
+        <BaseParagraph class="vision-description">
           An architectural symphony of glass and steel, designed to serve as the
           ultimate stage for global summits and luxury ceremonies.
         </BaseParagraph>
@@ -36,7 +49,7 @@ import SectionHeader from "../Widget/SectionHeader.vue";
           <BaseButton variant="primary" class="btn-fancy">
             <RouterLink to="/about">Learn More</RouterLink>
           </BaseButton>
-          <button class="play-btn">
+          <button class="play-btn" @click="openVideoPopup">
             <span class="icon"><i class="fas fa-play"></i></span>
             <span class="text">Watch Cinema</span>
           </button>
@@ -76,6 +89,13 @@ import SectionHeader from "../Widget/SectionHeader.vue";
         </div>
       </div>
     </div>
+
+    <!-- Video Popup -->
+    <VideoPopup
+      v-if="showVideoPopup"
+      videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+      @close="closeVideoPopup"
+    />
   </section>
 </template>
 
@@ -83,6 +103,12 @@ import SectionHeader from "../Widget/SectionHeader.vue";
 .vision-section {
   padding: 3.75rem 0 4.75rem 0;
   position: relative;
+}
+
+.vision-description {
+  font-size: 1.25rem;
+  margin-top: 0;
+  color: var(--text-secondary);
 }
 
 .stat-item {

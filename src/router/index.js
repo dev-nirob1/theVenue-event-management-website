@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { front_routes } from '../zems/Front/front_routes'
+import { auth_routes } from '../zems/Auth/routes/auth_routes'
 
 const routes = [
   ...front_routes,
+  ...auth_routes,
   {
     path: '/dashboard',
     name: 'dashboard',

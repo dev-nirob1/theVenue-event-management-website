@@ -45,18 +45,6 @@ export const front_routes = [
         name: 'contact',
         component: () => import('./Pages/ContactPage.vue'),
         meta: { navbarTheme: 'light' }
-      },
-      {
-        path: 'auth/login',
-        name: 'login',
-        component: () => import('./Pages/LoginPage.vue'),
-        meta: { navbarTheme: 'light' }
-      },
-      {
-        path: 'auth/register',
-        name: 'register',
-        component: () => import('./Pages/RegisterPage.vue'),
-        meta: { navbarTheme: 'light' }
       }
     ]
   }

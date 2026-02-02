@@ -255,10 +255,10 @@ onUnmounted(() => {
 }
 
 .slide-subtitle-bottom {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.8);
-  max-width: 500px;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 550px;
   margin-bottom: 1.5rem;
   opacity: 0;
   transform: translateY(30px);
