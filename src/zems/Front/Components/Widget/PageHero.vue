@@ -158,13 +158,13 @@ onMounted(() => {
 }
 
 .hero-title {
-  font-size: clamp(3.5rem, 9vw, 6rem);
+  font-size: clamp(3rem, 9vw, 6rem);
   font-weight: 950;
   color: white;
   text-transform: uppercase;
   line-height: 0.95;
   letter-spacing: -0.04em;
-  margin: 0;
+  margin-bottom: 1rem;
   text-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
@@ -243,11 +243,23 @@ onMounted(() => {
     margin-bottom: 5rem;
   }
   .hero-title {
-    font-size: 3rem;
+    font-size: clamp(2rem, 10vw, 4rem);
+    line-height: 1.1;
   }
   .breadcrumb-dock {
     padding: 0.5rem 1.5rem;
     bottom: -3.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.25rem;
+  }
+  .page-hero-cinematic {
+    height: 40vh;
+    min-height: 320px;
+    margin-bottom: 4rem;
   }
 }
 </style>

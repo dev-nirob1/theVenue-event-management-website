@@ -66,7 +66,7 @@ const breadcrumbs = computed(() => {
   align-items: center;
   padding: 0.75rem 2rem;
   border-radius: 4rem;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(201, 201, 201, 0.6);
   border: 1px solid rgba(15, 23, 42, 0.08);
   box-shadow:
     0 10px 30px -10px rgba(15, 23, 42, 0.05),
@@ -91,13 +91,9 @@ const breadcrumbs = computed(() => {
 }
 
 .index {
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   font-weight: 900;
   color: var(--primary);
-}
-
-.breadcrumb-link {
-  color: var(--text-muted);
 }
 
 .breadcrumb-link:hover {
@@ -131,7 +127,7 @@ const breadcrumbs = computed(() => {
 .slash {
   width: 1px;
   height: 100%;
-  background: rgba(15, 23, 42, 0.1);
+  background: rgba(25, 47, 99, 0.1);
   transform: rotate(25deg);
 }
 

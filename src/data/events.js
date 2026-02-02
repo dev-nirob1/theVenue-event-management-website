@@ -61,7 +61,7 @@ export const events = [
     description: 'A deep dive into the moral implications of artificial general intelligence. Featured 25 world-renowned ethicists and lead engineers from top labs.',
     ticketStatus: 'Completed',
     price: 299,
-    image: 'https://images.unsplash.com/photo-1591115765373-520b7a217294?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2070&auto=format&fit=crop'
   },
   {
     id: 5,
